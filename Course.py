@@ -62,7 +62,7 @@ class Course:
         Display the string representation of the course
         """
 
-        # self.isFinished()
+        self.isFinished()
 
         return  f"Course Name: {self._name}\n"\
                 f"Course Prerequsites: {self._preReq}\n"\
@@ -104,38 +104,30 @@ class Course:
 
 def readSaveCourse(fileName):
 
-    fields = []
-    rows = []
+    """
+    Reading courses from a csv file, then creating a course object and 
+    returning a list containing all of the courses.
+    """
 
-    Courses = []
+    fields = []; rows = []; Courses = []
 
     with open(fileName, "r") as csvFile:
 
-        csvreader = csv.reader(csvFile)
-        fields = next(csvreader)
+        csvreader = csv.reader(csvFile); fields = next(csvreader)
 
-        for row in csvreader:
-            rows.append(row)
+        for row in csvreader: rows.append(row)
  
     for row in rows[:]:
 
         course = Course(row[0])
         course.addDescription(row[1])
-        course.updateClassTime(row[2])
-
+        course.updateClassTime(int (row[2]))
+        course.addPreReq(row[3]) #eventuall add the ability to add courses
         Courses.append(course)
-
-        # print('\n')
-    
-    # for classes in Courses:
-
-    #     print(f"\n{classes.courseInfo()}")
-    
-    # print("\n")
 
     return Courses
 
-def displaySavedCourses(courses):
+def displaySavedCourses(courses : Course):
 
     for classes in courses:
 
@@ -147,22 +139,6 @@ def displaySavedCourses(courses):
 if __name__ == "__main__":
 
     print("Testing Course")
-
-    # courses = ["abc101", "abc201"]
-
-    # course1 = Course()
-    # course2 = Course()
-
-    # course1.setName(courses[0])
-    # course2.setName(courses[1])
-    # course1.updateClassTime(4)
-    # course2.updateClassTime(2)
-    # course1.addTimeDone(4.5)
-    # course2.addTimeDone(1.5)
-    # course2.addPreReq(courses[0])
-
-    # print(f"\nCourses Information:\n\n{course1.courseInfo()}\n"\
-    #         f"\n{course2.courseInfo()}\n\n")
 
     print("TESTING Read Write of Courses")
 
