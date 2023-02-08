@@ -18,7 +18,7 @@ class Cohort:
     
     def __str__(self) -> str:
         
-        return  f"\nCohort: {self._cohortNumber}\n"\
+        return  f"\nCohort: {self._cohortName}\n"\
                 f"Size: {self._cohortSize}\n"\
                 f"Courses Done: {self._courseFinished}\n"\
                 f"Courses NotDone: {self._courseNotFinished}\n"
