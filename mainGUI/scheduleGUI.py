@@ -1,7 +1,7 @@
 '''
 Author: Fahad Ali
 Student ID: 3099218
-Description: Create main GUI app
+Description: Create main GUI app, with multiple functionalities
 References: 
 https://www.geeksforgeeks.org/pyqt5-input-dialog-python/
 https://www.pythonguis.com/tutorials/pyqt-dialogs/
@@ -29,16 +29,17 @@ class MainWindow(QWidget):
         self.setupUI()
         
     def cohort_button(self):
-        # create cohort dialog
+        # create cohort dialog and open it
         cohortDialog = CreateCohortDialog(self)
         cohortDialog.open()
         
     def schedule_button(self):
+        # create schedule dialog and open it
         scheduleDialog = ScheduleDialog()
         scheduleDialog.open()
         
     def setupUI(self):
-        # create layout
+        # create layout for main window
         mainlLayout = QHBoxLayout(self)
         
         # create cohort button and execute dialog
@@ -49,10 +50,10 @@ class MainWindow(QWidget):
         scheduleButton = QPushButton("Click to see Schedules", self)
         scheduleButton.clicked.connect(self.schedule_button)
         
-        # add buttonts to layout
+        # add buttons to main window layout
         mainlLayout.addWidget(cohortButton, 1)
         mainlLayout.addWidget(scheduleButton, 1)
-        # set layout
+        # set main window layout
         self.setLayout(mainlLayout)
 
 class CreateCohortDialog(QDialog):
@@ -98,7 +99,7 @@ class CreateCohortDialog(QDialog):
         # call method that inputs numbers from the entry box
         self.setup_input()
 
-        # creating a dialog button for ok and cancel
+        # creating a dialog button for save and cancel
         self.buttonBox = QDialogButtonBox(QDialogButtonBox.Cancel | QDialogButtonBox.Save)
         
         # create cohort show button
@@ -109,24 +110,26 @@ class CreateCohortDialog(QDialog):
         # add functionality when "Save" clicked
         self.buttonBox.accepted.connect(self.create_cohorts)
         
-        # TODO: add dialog that gives error when save not clicked first
+        ''' TODO: add dialog that gives error when save not clicked first
         # if self.buttonBox.accepted:
         # add functionality when "Clicked to show cohort" after saving
         cohortShow.clicked.connect(self.display_cohorts)
         # else:
         #     pass
+        '''
+        cohortShow.clicked.connect(self.display_cohorts)
         
-        # create a veritcal layout
+        # create a veritcal layout in cohort dialog
         cohortLayout = QVBoxLayout()
         cohortLayout.addWidget(self.form)
-        # add button to the layout
+        # add button to the cohort layout
         cohortLayout.addWidget(self.buttonBox)
         cohortLayout.addWidget(cohortShow)
-        # set lay out
+        # set cohort lay out
         self.setLayout(cohortLayout)
 
     def create_cohorts(self):
-        # call students class
+        # call students class from students module
         self._studentCohort = Students.students()
 
         # assign input to class attributes
@@ -151,7 +154,7 @@ class CreateCohortDialog(QDialog):
         CohortTable(self)
 
     def setup_input(self):
-        # create a form layout
+        # create a form layout for the cohort inputs
         studentInput = QFormLayout()
 
         studentInput.addRow(QLabel("Select term number: "), self.term) 
@@ -173,7 +176,9 @@ class CohortTable(QWidget):
     Description: This class creates a table of the cohort groups
     '''
     def __init__(self, CreateCohortDialog):
+        # inherit cohort dialog
         super().__init__(CreateCohortDialog)
+        # set attributes
         self.table = QTableWidget()
         self.table.setColumnCount(len(CreateCohortDialog._cohortFinal))
         self.table.setRowCount(len(max(CreateCohortDialog._cohortFinal,key=len)))
@@ -181,6 +186,7 @@ class CohortTable(QWidget):
             ,"FS", "DXD", "BK", "SCM"])
         self.table.resize(500,500)
         
+        # initialize variables
         j = 0
         for cohortLists in CreateCohortDialog._cohortFinal:
             i = 0
