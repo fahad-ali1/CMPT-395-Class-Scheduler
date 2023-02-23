@@ -98,58 +98,41 @@ class Classroom:
         self.normalCapacity = normalCapacity
         self.lab = lab
         self.isGhost = False
-        self.schedule = []
+        self.schedule = None
 
     def setGhost(self):
         self.isGhost = True
+
+    def setSchedule(self, schedule):
+        self.schedule = schedule
 
     def printClassroom(self):
         print("Classroom #: ", self.classRoomNumber, "Normal Capacity: ", self.normalCapacity, \
               "lab: ", self.lab, " isGhost: ", self.isGhost)
 
 
-def getClassrooms(fileName):
-    classroomList = []
-    try:
-        with open(fileName) as fileObject:
-            # discard header
-            next(fileObject)
-            reader_obj = csv.reader(fileObject)
-            # for loop to create a classroom object out of each row
-            # after classroom is created, add classroom to a classroom list
-            for row in reader_obj:
-                # set lab flag to true for lab
-                if "Lab" in row[0]:
-                    classroom = Classroom(row[0], row[1], True)
-                    classroomList.append(classroom)
-                else:
-                    classroom = Classroom(row[0], row[1])
-                    classroomList.append(classroom)
-    except:
-        print('Error: file not found')
-    return classroomList
+class ScheduleNode:
+    def __init__(self, time, cohort, start_date, end_date):
+        self.time = time
+        self.cohort = cohort
+        self.start_date = start_date
+        self.end_date = end_date
+        self.prev = None
+        self.next = None
 
-'''
-def getProgramCourses(fileName):
-    program = Program()
-    counter = 0
-    try:
-        with open(fileName) as fileObject:
-            programName = next(fileObject)
-            program.addProgramType(programName)
-            reader_obj = csv.reader(fileObject)
-            for row in reader_obj:
-                if re.search('Term [1-3]', row[0]):
-                    counter += 1
-                    pass
-                else:
-                    formattedDescript = re.sub('~>', ',', row[1])
-                    course = Course(row[0], formattedDescript, row[2])
-                    program.addToTerm(course, counter)
-    except:
-        print('Error: file not found')
-    return program
-    '''
+
+def getClassrooms():
+    wb = load_workbook('AllCourses.xlsx')
+    allClassrooms = []
+    ws = wb.worksheets[8]
+    for i in range(2, ws.max_row + 1):
+        if "Lab" in ws['A' + str(i)].value:
+            classroom = Classroom(ws['A' + str(i)].value, ws['B' + str(i)].value, True)
+            allClassrooms.append(classroom)
+        else:
+            classroom = Classroom(ws['A' + str(i)].value, ws['B' + str(i)].value)
+            allClassrooms.append(classroom)
+    return allClassrooms
 
 
 def getAllPrograms():
@@ -168,6 +151,3 @@ def getAllPrograms():
                 program.addToTerm(course, term)
         allPrograms.append(program)
     return allPrograms
-
-
-getAllPrograms()
