@@ -18,7 +18,6 @@ class MainMenu(QMainWindow):
 
         # call students class from students module
         self._studentCohort = Students.students()
-
         # Define student inputs (in student input tab)
         self.terminput = self.findChild(QSpinBox, "TermInput")
         self.BCOMinput = self.findChild(QSpinBox, "BCOMinput")
@@ -32,13 +31,15 @@ class MainMenu(QMainWindow):
         self.SCMinput = self.findChild(QSpinBox, "SCMinput")
         
         # Define buttons in input tab
-        self.saveButton = self.findChild(QPushButton, "CreateCohort")
+        self.createCohort = self.findChild(QPushButton, "CreateCohort")
         self.revertButton = self.findChild(QPushButton, "RevertButton")
         self.uploadButton = self.findChild(QPushButton, "UploadFileButton")
         
-        # Define cohorts table in cohort tab
-        self.cohortTable = self.findChild(QTableWidget, "CohortTable")
-        
+        # Define cohorts tables in cohort tab
+        self.cohortTable1 = self.findChild(QTableWidget, "CohortTable1")
+        self.cohortTable2 = self.findChild(QTableWidget, "CohortTable2")
+        self.cohortTable3 = self.findChild(QTableWidget, "CohortTable3")
+
         # Define buttons in cohort tab 
         self.saveAs = self.findChild(QPushButton, "SaveAsCohort")
         
@@ -49,8 +50,8 @@ class MainMenu(QMainWindow):
         self.uploadButton.clicked.connect(self.upload_file)
 
         #test
-        self.saveButton.clicked.connect(self.create_cohorts)
-        self.saveButton.clicked.connect(self.add_cohort_table)
+        self.createCohort.clicked.connect(self.create_cohorts)
+        self.createCohort.clicked.connect(self.add_cohort_table)
 
     def create_cohorts(self):
         '''
@@ -73,15 +74,16 @@ class MainMenu(QMainWindow):
 
     def add_cohort_table(self):
         '''
-        Description: create cohort table
+        Description: create cohort tables
         '''
-        self.cohortTable.setRowCount(len(max(self._cohortFinal,key=len)))
+        self.tables = [self.cohortTable1, self.cohortTable2, self.cohortTable3]
+        self.tables[int(self.terminput.text())-1].setRowCount(len(max(self._cohortFinal,key=len)))
         
         j = 0
         for cohortLists in self._cohortFinal:
             i = 0
             for cohorts in cohortLists:
-                self.cohortTable.setItem(i, j, QTableWidgetItem(cohorts))
+                self.tables[int(self.terminput.text())-1].setItem(i, j, QTableWidgetItem(cohorts))
                 i += 1
             j += 1
     
@@ -89,21 +91,24 @@ class MainMenu(QMainWindow):
         '''
         Description: revert all changes 
         '''
+        for tables in range (1,4):
         # Set all spin box objects to 0
-        self.terminput.setValue(1)
-        self.BCOMinput.setValue(0)
-        self.PCOMinput.setValue(0)
-        self.PMinput.setValue(0)
-        self.BAinput.setValue(0)
-        self.GLMinput.setValue(0)
-        self.FSinput.setValue(0)
-        self.DXDinput.setValue(0)
-        self.BKinput.setValue(0)
-        self.SCMinput.setValue(0)
+            self.terminput.setValue(tables)
+            self.BCOMinput.setValue(0)
+            self.PCOMinput.setValue(0)
+            self.PMinput.setValue(0)
+            self.BAinput.setValue(0)
+            self.GLMinput.setValue(0)
+            self.FSinput.setValue(0)
+            self.DXDinput.setValue(0)
+            self.BKinput.setValue(0)
+            self.SCMinput.setValue(0)
 
-        # Delete all cohorts and information on the cohort table
-        self.create_cohorts()
-        self.add_cohort_table()
+            # Delete all cohorts and information on the cohort tables
+            self.create_cohorts()
+            self.add_cohort_table()
+            
+        self.terminput.setValue(0)
         
     def upload_file(self):
         '''
@@ -113,6 +118,9 @@ class MainMenu(QMainWindow):
         path = QFileDialog.getOpenFileName()
         # give path 
         self.file = path[0]
+        
+        self._studentCohort._term = 3
+        self._studentCohort._BCOMStudents = 234
 
 # Initialize The App
 def main():
