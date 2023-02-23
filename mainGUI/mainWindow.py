@@ -8,6 +8,7 @@ from PyQt5 import uic
 
 import Students
 import sys
+import MikeCode
 
 class MainMenu(QMainWindow):
     def __init__(self):
@@ -24,11 +25,10 @@ class MainMenu(QMainWindow):
         self.PCOMinput = self.findChild(QSpinBox, "PCOMinput")
         self.PMinput = self.findChild(QSpinBox, "PMinput")
         self.BAinput = self.findChild(QSpinBox, "BAinput")
-        self.GLMinput = self.findChild(QSpinBox, "GLMinput")
+        self.SCMTinput = self.findChild(QSpinBox, "SCMTinput")
+        self.BKinput = self.findChild(QSpinBox, "BKinput")
         self.FSinput = self.findChild(QSpinBox, "FSinput")
         self.DXDinput = self.findChild(QSpinBox, "DXDinput")
-        self.BKinput = self.findChild(QSpinBox, "BKinput")
-        self.SCMinput = self.findChild(QSpinBox, "SCMinput")
         
         # Define buttons in input tab
         self.createCohort = self.findChild(QPushButton, "CreateCohort")
@@ -63,11 +63,10 @@ class MainMenu(QMainWindow):
         self._studentCohort._PCOMStudents = int(self.PCOMinput.text())
         self._studentCohort._PMStudents = int(self.PMinput.text())
         self._studentCohort._BAStudents = int(self.BAinput.text())
-        self._studentCohort._GLMStudents = int(self.GLMinput.text())
+        self._studentCohort._SCMTStudents = int(self.SCMTinput.text())
+        self._studentCohort._BKStudents = int(self.BKinput.text())
         self._studentCohort._FSStudents = int(self.FSinput.text())
         self._studentCohort._DXDStudents = int(self.DXDinput.text())
-        self._studentCohort._BKStudents = int(self.BKinput.text())
-        self._studentCohort._SCMStudents = int(self.SCMinput.text())
 
         # create cohort final attribute
         self._cohortFinal = self._studentCohort.cohorts_final()
@@ -98,11 +97,10 @@ class MainMenu(QMainWindow):
             self.PCOMinput.setValue(0)
             self.PMinput.setValue(0)
             self.BAinput.setValue(0)
-            self.GLMinput.setValue(0)
+            self.SCMTinput.setValue(0)
+            self.BKinput.setValue(0)
             self.FSinput.setValue(0)
             self.DXDinput.setValue(0)
-            self.BKinput.setValue(0)
-            self.SCMinput.setValue(0)
 
             # Delete all cohorts and information on the cohort tables
             self.create_cohorts()
@@ -117,10 +115,12 @@ class MainMenu(QMainWindow):
         # open file browser to choose file
         path = QFileDialog.getOpenFileName()
         # give path 
-        self.file = path[0]
+        filename = path[0]
         
-        self._studentCohort._term = 3
-        self._studentCohort._BCOMStudents = 234
+        #in testing
+        fileinput = MikeCode.getProgramNumbers(filename)
+        #in testing
+        print(fileinput[0])
 
 # Initialize The App
 def main():
