@@ -7,6 +7,7 @@ Purpose: Rough idea of a course structure
 import csv
 import re
 
+import openpyxl
 from openpyxl.reader.excel import load_workbook
 
 
@@ -151,3 +152,17 @@ def getAllPrograms():
                 program.addToTerm(course, term)
         allPrograms.append(program)
     return allPrograms
+
+
+def getProgramNumbers(fileName):
+    try:
+        wb = load_workbook(fileName)
+        # wb = load_workbook("semester_data.xlsx") #fast testing
+        ws = wb.active
+        programNumbersList = []
+        for i in range(2, ws.max_row + 1):
+            programNumbersList.append([ws['B' + str(i)].value, ws['C' + str(i)].value, ws['D' + str(i)].value])
+        return programNumbersList
+    except:
+        print("Error: File not found")
+        return -1
