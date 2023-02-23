@@ -17,11 +17,10 @@ class students:
 
         self._PMStudents = None
         self._BAStudents = None
-        self._GLMStudents = None
+        self._SCMTStudents = None
         self._FSStudents = None
         self._DXDStudents = None
         self._BKStudents = None
-        self._SCMStudents = None
         
         self._term = None
 
@@ -37,11 +36,10 @@ class students:
 
         cohortList.append(self.divide_to_cohorts(self._PMStudents, 2))
         cohortList.append(self.divide_to_cohorts(self._BAStudents, 3))
-        cohortList.append(self.divide_to_cohorts(self._GLMStudents, 4))
-        cohortList.append(self.divide_to_cohorts(self._FSStudents, 5))
-        cohortList.append(self.divide_to_cohorts(self._DXDStudents, 6))
-        cohortList.append(self.divide_to_cohorts(self._BKStudents, 7))
-        cohortList.append(self.divide_to_cohorts(self._SCMStudents, 8))
+        cohortList.append(self.divide_to_cohorts(self._SCMTStudents, 4))
+        cohortList.append(self.divide_to_cohorts(self._BKStudents, 5))
+        cohortList.append(self.divide_to_cohorts(self._FSStudents, 6))
+        cohortList.append(self.divide_to_cohorts(self._DXDStudents, 7))
 
         return(cohortList)
 
@@ -52,8 +50,8 @@ class students:
         Returns: a list of cohort strings
         '''
         # initialize values
-        cohortDict = {0:"BC", 1: "PC", 2:"PM", 3:"BA", 4:"GL", 5:"FS", 6:"DXD",\
-                      7:"BK", 8:"SCM"}
+        cohortDict = {0:"BC", 1: "PC", 2:"PM", 3:"BA", 4:"SCMT", 5:"BK", 6:"FS",\
+                      7:"DXD"}
         cohortProgramList = []
         cohortGroups = 0
         studentRemaining = 0
