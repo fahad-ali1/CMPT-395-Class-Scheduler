@@ -153,7 +153,22 @@ def getAllPrograms():
         allPrograms.append(program)
     return allPrograms
 
-
+'''
+Returns a list of lists. Inner list is the number of students per term for each program.
+List order is as follows:
+BCOM
+PCOM
+PM
+BA
+SCMT
+BK
+FS
+DXD
+Example: [[1,2,3],[4,5,6],[7,8,9]]
+index 0: BCOM term 1,2,3
+index 1: PCOM term 1,2,3
+index 3: PM term 1,2,3
+'''
 def getProgramNumbers(fileName):
     try:
         wb = load_workbook(fileName)
