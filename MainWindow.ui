@@ -40,7 +40,7 @@
      <x>9</x>
      <y>9</y>
      <width>1181</width>
-     <height>781</height>
+     <height>791</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -645,212 +645,202 @@
     <attribute name="title">
      <string>Cohorts</string>
     </attribute>
-    <widget class="QPushButton" name="SaveAsCohort">
-     <property name="geometry">
-      <rect>
-       <x>9</x>
-       <y>729</y>
-       <width>99</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>200</width>
-       <height>30</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>Save all as (excel file)</string>
-     </property>
-    </widget>
-    <widget class="QTabWidget" name="tabWidget">
-     <property name="geometry">
-      <rect>
-       <x>9</x>
-       <y>9</y>
-       <width>1151</width>
-       <height>721</height>
-      </rect>
-     </property>
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
-     <widget class="QWidget" name="tab1">
-      <attribute name="title">
-       <string>Term 1</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QTableWidget" name="CohortTable1">
-         <column>
-          <property name="text">
-           <string>BCOM</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>PCOM</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>PM</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>BA</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>GLM</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>FSS</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>DXD</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>BK</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>SCM</string>
-          </property>
-         </column>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab_2">
-      <attribute name="title">
-       <string>Term 2</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
-        <widget class="QTableWidget" name="CohortTable2">
-         <column>
-          <property name="text">
-           <string>BCOM</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>PCOM</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>PM</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>BA</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>GLM</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>FSS</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>DXD</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>BK</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>SCM</string>
-          </property>
-         </column>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab_3">
-      <attribute name="title">
-       <string>Term 3</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="0">
-        <widget class="QTableWidget" name="CohortTable3">
-         <column>
-          <property name="text">
-           <string>BCOM</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>PCOM</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>PM</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>BA</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>GLM</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>FSS</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>DXD</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>BK</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>SCM</string>
-          </property>
-         </column>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
+    <layout class="QGridLayout" name="gridLayout_5">
+     <item row="0" column="0">
+      <widget class="QTabWidget" name="CohortTables">
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="tab1">
+        <attribute name="title">
+         <string>Term 1</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QTableWidget" name="CohortTable1">
+           <column>
+            <property name="text">
+             <string>BCOM</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>PCOM</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>PM</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>BA</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>GLM</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>FSS</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>DXD</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>BK</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>SCM</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_2">
+        <attribute name="title">
+         <string>Term 2</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <widget class="QTableWidget" name="CohortTable2">
+           <column>
+            <property name="text">
+             <string>BCOM</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>PCOM</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>PM</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>BA</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>GLM</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>FSS</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>DXD</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>BK</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>SCM</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_3">
+        <attribute name="title">
+         <string>Term 3</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <widget class="QTableWidget" name="CohortTable3">
+           <column>
+            <property name="text">
+             <string>BCOM</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>PCOM</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>PM</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>BA</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>GLM</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>FSS</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>DXD</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>BK</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>SCM</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="SaveAsCohort">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>250</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Save all as (excel file)</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
    <widget class="QWidget" name="Schedules">
     <attribute name="title">
