@@ -111,10 +111,10 @@
     <widget class="QLabel" name="ImportantNote2">
      <property name="geometry">
       <rect>
-       <x>730</x>
+       <x>700</x>
        <y>40</y>
-       <width>351</width>
-       <height>61</height>
+       <width>401</width>
+       <height>101</height>
       </rect>
      </property>
      <property name="font">
@@ -123,7 +123,7 @@
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600; color:#aa0000;&quot;&gt;Upload a &lt;/span&gt;&lt;span style=&quot; font-weight:600; font-style:italic; color:#aa0000;&quot;&gt;.xlsx&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#aa0000;&quot;&gt; file in the proper format as shown&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600; color:#aa0000;&quot;&gt;to see cohorts&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600; color:#aa0000;&quot;&gt;Upload a &lt;/span&gt;&lt;span style=&quot; font-weight:600; font-style:italic; color:#aa0000;&quot;&gt;.xlsx&lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#aa0000;&quot;&gt; file in the proper format (or download the &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600; color:#aa0000;&quot;&gt;template from the button at the bottom). This will auto input&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600; color:#aa0000;&quot;&gt;all the students, assign cohorts, and create schedules&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600; color:#aa0000;&quot;&gt; in the proper rooms.&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="Line" name="HoritzontalLine">
@@ -148,7 +148,7 @@
      <property name="geometry">
       <rect>
        <x>260</x>
-       <y>720</y>
+       <y>740</y>
        <width>161</width>
        <height>23</height>
       </rect>
@@ -166,14 +166,14 @@
       </size>
      </property>
      <property name="text">
-      <string>Create Cohorts (Cohorts tab)</string>
+      <string>Create Cohorts </string>
      </property>
     </widget>
     <widget class="QPushButton" name="RevertButton">
      <property name="geometry">
       <rect>
        <x>440</x>
-       <y>720</y>
+       <y>740</y>
        <width>161</width>
        <height>23</height>
       </rect>
@@ -189,6 +189,12 @@
        <width>200</width>
        <height>30</height>
       </size>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string>Revert Changes</string>
@@ -198,7 +204,7 @@
      <property name="geometry">
       <rect>
        <x>1000</x>
-       <y>720</y>
+       <y>740</y>
        <width>161</width>
        <height>23</height>
       </rect>
@@ -216,7 +222,7 @@
       </size>
      </property>
      <property name="text">
-      <string>Upload Excel File</string>
+      <string>Upload File (.xlsx)</string>
      </property>
     </widget>
     <widget class="QWidget" name="layoutWidget">
@@ -600,13 +606,13 @@
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600; color:#aa0000;&quot;&gt;Input student manually to see cohorts in the&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600; color:#aa0000;&quot;&gt; tab above&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="inputTemplate">
      <property name="geometry">
       <rect>
-       <x>740</x>
-       <y>80</y>
-       <width>331</width>
-       <height>341</height>
+       <x>710</x>
+       <y>150</y>
+       <width>371</width>
+       <height>381</height>
       </rect>
      </property>
      <property name="text">
@@ -615,193 +621,365 @@
      <property name="pixmap">
       <pixmap>Images/StudentInputExample.png</pixmap>
      </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
     </widget>
+    <widget class="QPushButton" name="SaveAs">
+     <property name="geometry">
+      <rect>
+       <x>820</x>
+       <y>740</y>
+       <width>161</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>200</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Save Template (.xlsx)</string>
+     </property>
+    </widget>
+    <widget class="QProgressBar" name="progressBar">
+     <property name="geometry">
+      <rect>
+       <x>1000</x>
+       <y>710</y>
+       <width>180</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>180</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>180</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="value">
+      <number>0</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="MacEwanLogo">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>560</y>
+       <width>261</width>
+       <height>161</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>Images/MacEwanLogo.jpg</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <zorder>MacEwanLogo</zorder>
+    <zorder>VerticalManualInputLine</zorder>
+    <zorder>UploadExcelText</zorder>
+    <zorder>ManualInputText</zorder>
+    <zorder>ImportantNote2</zorder>
+    <zorder>HoritzontalLine</zorder>
+    <zorder>CreateCohort</zorder>
+    <zorder>RevertButton</zorder>
+    <zorder>UploadFileButton</zorder>
+    <zorder>layoutWidget</zorder>
+    <zorder>ImportantNote1</zorder>
+    <zorder>inputTemplate</zorder>
+    <zorder>SaveAs</zorder>
+    <zorder>progressBar</zorder>
    </widget>
    <widget class="QWidget" name="Cohorts">
     <attribute name="title">
      <string>Cohorts</string>
     </attribute>
-    <layout class="QGridLayout" name="gridLayout_5">
-     <item row="0" column="0">
-      <widget class="QTabWidget" name="CohortTables">
-       <property name="currentIndex">
-        <number>0</number>
-       </property>
-       <widget class="QWidget" name="term1Cohort">
-        <attribute name="title">
-         <string>Term 1</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
-          <widget class="QTableWidget" name="CohortTable1">
-           <column>
-            <property name="text">
-             <string>BCOM</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>PCOM</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>PM</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>BA</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>SCMT</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>BK</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>FSS</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>DXD</string>
-            </property>
-           </column>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="term2Cohort">
-        <attribute name="title">
-         <string>Term 2</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="0">
-          <widget class="QTableWidget" name="CohortTable2">
-           <column>
-            <property name="text">
-             <string>BCOM</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>PCOM</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>PM</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>BA</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>SCMT</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>BK</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>FSS</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>DXD</string>
-            </property>
-           </column>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="term3Cohort">
-        <attribute name="title">
-         <string>Term 3</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_4">
-         <item row="0" column="0">
-          <widget class="QTableWidget" name="CohortTable3">
-           <column>
-            <property name="text">
-             <string>BCOM</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>PCOM</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>PM</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>BA</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>SCMT</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>BK</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>FSS</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>DXD</string>
-            </property>
-           </column>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="SaveAsCohort">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>250</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Save all as (excel file)</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QPushButton" name="SaveAs2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>740</y>
+       <width>161</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>161</width>
+       <height>23</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>161</width>
+       <height>23</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Save as (.xlsx)</string>
+     </property>
+    </widget>
+    <widget class="QTabWidget" name="CohortTables">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>9</y>
+       <width>1151</width>
+       <height>731</height>
+      </rect>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="term1Cohort">
+      <attribute name="title">
+       <string>Term 1</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QTableWidget" name="CohortTable1">
+         <column>
+          <property name="text">
+           <string>BCOM</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>PCOM</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>PM</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>BA</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>SCMT</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>BK</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>FSS</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>DXD</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="term2Cohort">
+      <attribute name="title">
+       <string>Term 2</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QTableWidget" name="CohortTable2">
+         <column>
+          <property name="text">
+           <string>BCOM</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>PCOM</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>PM</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>BA</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>SCMT</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>BK</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>FSS</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>DXD</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="term3Cohort">
+      <attribute name="title">
+       <string>Term 3</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QTableWidget" name="CohortTable3">
+         <column>
+          <property name="text">
+           <string>BCOM</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>PCOM</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>PM</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>BA</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>SCMT</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>BK</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>FSS</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>DXD</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QPushButton" name="UploadFileButton2">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>740</y>
+       <width>161</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>161</width>
+       <height>23</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>161</width>
+       <height>23</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <stylestrategy>PreferDefault</stylestrategy>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>Upload File (.xlsx)</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="RevertButton2">
+     <property name="geometry">
+      <rect>
+       <x>980</x>
+       <y>740</y>
+       <width>161</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>200</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Revert Changes</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="Schedules">
     <attribute name="title">
