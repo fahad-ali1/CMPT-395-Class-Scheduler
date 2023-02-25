@@ -10,7 +10,7 @@ import Students
 import sys
 import MikeCode
 
-class MainMenu(QMainWindow):
+class MainMenu(QWidget):
     def __init__(self):
         super(MainMenu, self).__init__()
 
