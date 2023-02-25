@@ -19,6 +19,10 @@ class MainMenu(QMainWindow):
 
         # call students class from students module
         self._studentCohort = Students.students()
+        
+        # list to zero all the spin boxes quickly
+        self.zero = [0,0,0,0,0,0,0,0]
+        
         # Define student inputs (in student input tab)
         self.terminput = self.findChild(QSpinBox, "TermInput")
         self.BCOMinput = self.findChild(QSpinBox, "BCOMinput")
@@ -77,7 +81,6 @@ class MainMenu(QMainWindow):
         '''
         self.tables = [self.cohortTable1, self.cohortTable2, self.cohortTable3]
         self.tables[int(self.terminput.text())-1].setRowCount(len(max(self._cohortFinal,key=len)))
-        
         j = 0
         for cohortLists in self._cohortFinal:
             i = 0
@@ -86,27 +89,34 @@ class MainMenu(QMainWindow):
                 i += 1
             j += 1
     
+    def spin_box_values(self, value, tables):
+            '''
+            Description: changes spinbox values
+            '''
+            self.terminput.setValue(tables)
+            self.BCOMinput.setValue(value[0])
+            self.PCOMinput.setValue(value[1])
+            self.PMinput.setValue(value[2])
+            self.BAinput.setValue(value[3])
+            self.SCMTinput.setValue(value[4])
+            self.BKinput.setValue(value[5])
+            self.FSinput.setValue(value[6])
+            self.DXDinput.setValue(value[7])
+
+    
     def revert_changes(self):
         '''
         Description: revert all changes 
         '''
         for tables in range (1,4):
-        # Set all spin box objects to 0
-            self.terminput.setValue(tables)
-            self.BCOMinput.setValue(0)
-            self.PCOMinput.setValue(0)
-            self.PMinput.setValue(0)
-            self.BAinput.setValue(0)
-            self.SCMTinput.setValue(0)
-            self.BKinput.setValue(0)
-            self.FSinput.setValue(0)
-            self.DXDinput.setValue(0)
+            # Set all spin box objects to 0
+            self.spin_box_values(self.zero, tables)
 
             # Delete all cohorts and information on the cohort tables
             self.create_cohorts()
             self.add_cohort_table()
             
-        self.terminput.setValue(0)
+        self.terminput.setValue(1)
         
     def upload_file(self):
         '''
@@ -117,11 +127,35 @@ class MainMenu(QMainWindow):
         # give path 
         filename = path[0]
         
-        #in testing
+        # input file and extract student inputs
         fileinput = MikeCode.getProgramNumbers(filename)
-        #in testing
-        print(fileinput[0])
+        
+        studentsByProgarm = {"BCOM":fileinput[0], "PCOM":fileinput[1], 
+                             "PM":fileinput[2], "BA":fileinput[3], 
+                             "SCMT":fileinput[4], "BK":fileinput[5],
+                             "FS":fileinput[6], "DXD":fileinput[7]}
+        term1=[]
+        term2=[]
+        term3=[]
+        inputs = [term1, term2, term3]
+        # loop through dictionary values
+        for studentInputs in studentsByProgarm.values():
+            # studentInputs[0] = term 1
+            # studentInputs[1] = term 2
+            # studentInputs[2] = term 3
+            term1.append(int(studentInputs[0]))
+            term2.append(int(studentInputs[1]))
+            term3.append(int(studentInputs[2]))
+            
+        for tables in range (1,4):
+            self.spin_box_values(inputs[tables-1], tables)
 
+            self.create_cohorts()
+            self.add_cohort_table()
+            
+        self.spin_box_values(self.zero, tables)
+        self.terminput.setValue(1)
+            
 # Initialize The App
 def main():
     app = QApplication(sys.argv)
