@@ -179,5 +179,5 @@ def getProgramNumbers(fileName):
             programNumbersList.append([ws['B' + str(i)].value, ws['C' + str(i)].value, ws['D' + str(i)].value])
         return programNumbersList
     except:
-        print("Error: File not found")
+        # print("Error: File not found")
         return -1
