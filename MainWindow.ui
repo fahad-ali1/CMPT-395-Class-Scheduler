@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainMenu</class>
  <widget class="QWidget" name="MainMenu">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -9,7 +12,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>827</width>
+    <width>858</width>
     <height>650</height>
    </rect>
   </property>
@@ -21,21 +24,37 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>680</width>
+    <width>777</width>
     <height>650</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>1300</width>
-    <height>10704</height>
+    <height>1300</height>
    </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::ActionsContextMenu</enum>
   </property>
   <property name="windowTitle">
    <string>Student Schedules</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Images/MacEwanLogo2.jpg</normaloff>Images/MacEwanLogo2.jpg</iconset>
+  </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
