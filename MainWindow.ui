@@ -12,7 +12,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>858</width>
+    <width>897</width>
     <height>650</height>
    </rect>
   </property>
@@ -55,6 +55,9 @@
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -144,7 +147,7 @@
          <item row="0" column="0" colspan="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QLabel" name="ManualInputText">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -171,10 +174,10 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="3" colspan="2">
+         <item row="1" column="3" colspan="2" alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="label">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -234,33 +237,6 @@
              </property>
              <property name="text">
               <string>Supply Chain Mangement &amp; Logisitics (SCMT)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QSpinBox" name="BCOMinput">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="autoFillBackground">
-              <bool>false</bool>
-             </property>
-             <property name="buttonSymbols">
-              <enum>QAbstractSpinBox::NoButtons</enum>
-             </property>
-             <property name="correctionMode">
-              <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
-             </property>
-             <property name="minimum">
-              <number>0</number>
-             </property>
-             <property name="maximum">
-              <number>999</number>
-             </property>
-             <property name="value">
-              <number>0</number>
              </property>
             </widget>
            </item>
@@ -329,33 +305,6 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1">
-            <widget class="QSpinBox" name="BAinput">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="autoFillBackground">
-              <bool>false</bool>
-             </property>
-             <property name="buttonSymbols">
-              <enum>QAbstractSpinBox::NoButtons</enum>
-             </property>
-             <property name="correctionMode">
-              <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
-             </property>
-             <property name="minimum">
-              <number>0</number>
-             </property>
-             <property name="maximum">
-              <number>999</number>
-             </property>
-             <property name="value">
-              <number>0</number>
-             </property>
-            </widget>
-           </item>
            <item row="6" column="0">
             <widget class="QLabel" name="BK">
              <property name="font">
@@ -387,114 +336,6 @@
              </property>
             </widget>
            </item>
-           <item row="7" column="1">
-            <widget class="QSpinBox" name="FSinput">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="autoFillBackground">
-              <bool>false</bool>
-             </property>
-             <property name="buttonSymbols">
-              <enum>QAbstractSpinBox::NoButtons</enum>
-             </property>
-             <property name="correctionMode">
-              <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
-             </property>
-             <property name="minimum">
-              <number>0</number>
-             </property>
-             <property name="maximum">
-              <number>999</number>
-             </property>
-             <property name="value">
-              <number>0</number>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QSpinBox" name="PCOMinput">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="autoFillBackground">
-              <bool>false</bool>
-             </property>
-             <property name="buttonSymbols">
-              <enum>QAbstractSpinBox::NoButtons</enum>
-             </property>
-             <property name="correctionMode">
-              <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
-             </property>
-             <property name="minimum">
-              <number>0</number>
-             </property>
-             <property name="maximum">
-              <number>999</number>
-             </property>
-             <property name="value">
-              <number>0</number>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1">
-            <widget class="QSpinBox" name="SCMTinput">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="autoFillBackground">
-              <bool>false</bool>
-             </property>
-             <property name="buttonSymbols">
-              <enum>QAbstractSpinBox::NoButtons</enum>
-             </property>
-             <property name="correctionMode">
-              <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
-             </property>
-             <property name="minimum">
-              <number>0</number>
-             </property>
-             <property name="maximum">
-              <number>999</number>
-             </property>
-             <property name="value">
-              <number>0</number>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QSpinBox" name="PMinput">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="autoFillBackground">
-              <bool>false</bool>
-             </property>
-             <property name="buttonSymbols">
-              <enum>QAbstractSpinBox::NoButtons</enum>
-             </property>
-             <property name="correctionMode">
-              <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
-             </property>
-             <property name="minimum">
-              <number>0</number>
-             </property>
-             <property name="maximum">
-              <number>999</number>
-             </property>
-             <property name="value">
-              <number>0</number>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="TermNum">
              <property name="font">
@@ -521,6 +362,81 @@
              </property>
             </widget>
            </item>
+           <item row="1" column="1">
+            <widget class="QSpinBox" name="BCOMinput">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="maximum">
+              <number>555</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QSpinBox" name="PCOMinput">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="maximum">
+              <number>555</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QSpinBox" name="PMinput">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="maximum">
+              <number>555</number>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QSpinBox" name="BAinput">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="maximum">
+              <number>555</number>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QSpinBox" name="SCMTinput">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="maximum">
+              <number>555</number>
+             </property>
+            </widget>
+           </item>
            <item row="6" column="1">
             <widget class="QSpinBox" name="BKinput">
              <property name="font">
@@ -528,23 +444,26 @@
                <pointsize>10</pointsize>
               </font>
              </property>
-             <property name="autoFillBackground">
-              <bool>false</bool>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="maximum">
+              <number>555</number>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QSpinBox" name="FSinput">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
              </property>
              <property name="buttonSymbols">
               <enum>QAbstractSpinBox::NoButtons</enum>
              </property>
-             <property name="correctionMode">
-              <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
-             </property>
-             <property name="minimum">
-              <number>0</number>
-             </property>
              <property name="maximum">
-              <number>999</number>
-             </property>
-             <property name="value">
-              <number>0</number>
+              <number>555</number>
              </property>
             </widget>
            </item>
@@ -555,23 +474,11 @@
                <pointsize>10</pointsize>
               </font>
              </property>
-             <property name="autoFillBackground">
-              <bool>false</bool>
-             </property>
              <property name="buttonSymbols">
               <enum>QAbstractSpinBox::NoButtons</enum>
              </property>
-             <property name="correctionMode">
-              <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
-             </property>
-             <property name="minimum">
-              <number>0</number>
-             </property>
              <property name="maximum">
-              <number>999</number>
-             </property>
-             <property name="value">
-              <number>0</number>
+              <number>555</number>
              </property>
             </widget>
            </item>
@@ -580,7 +487,7 @@
          <item row="0" column="3" colspan="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QLabel" name="FileUploadText">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -615,7 +522,7 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="3" rowspan="2" colspan="2">
+         <item row="2" column="3" rowspan="2" colspan="2" alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="inputTemplate">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -640,7 +547,7 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="0" colspan="2" alignment="Qt::AlignTop">
+         <item row="1" column="0" colspan="2" alignment="Qt::AlignHCenter|Qt::AlignTop">
           <widget class="QLabel" name="label_2">
            <property name="text">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#aa0000;&quot;&gt;Simply input students per term to create cohort!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -951,22 +858,61 @@
       </layout>
      </widget>
      <widget class="QWidget" name="SchedulesTab">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <attribute name="title">
        <string>Schedule</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <widget class="QTabWidget" name="Schedules">
+       <item row="1" column="0">
+        <widget class="QPushButton" name="SaveAs3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>161</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>161</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <stylestrategy>PreferDefault</stylestrategy>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>Save as (.xlsx)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="4">
+        <widget class="QTabWidget" name="ScheduleTables">
          <property name="currentIndex">
           <number>0</number>
          </property>
-         <widget class="QWidget" name="room1">
+         <widget class="QWidget" name="Room1">
           <attribute name="title">
-           <string>Room 11-533 (36)</string>
+           <string>11-533 (36)</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_6">
            <item row="0" column="0">
-            <widget class="QTableWidget" name="room1schedule">
+            <widget class="QTableWidget" name="room1schedule_3">
              <row>
               <property name="text">
                <string>8:00AM</string>
@@ -1086,6 +1032,62 @@
            </item>
           </layout>
          </widget>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QPushButton" name="RevertButton3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>161</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>161</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Revert Changes</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="SaveAllButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>161</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>161</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Save ALL (.alsx)</string>
+         </property>
         </widget>
        </item>
       </layout>
