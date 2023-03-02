@@ -12,7 +12,7 @@ class Cohort:
         self._cohortName = name
         self._cohortSize = size
         self._isLab = lab
-        self._courseFinished = []
+        self._courseFinished = [] #change it pre req, also chagee to set
         self._courseNotFinished = []
         self._timeTable = None
     
