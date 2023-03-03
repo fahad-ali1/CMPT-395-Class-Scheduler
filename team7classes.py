@@ -210,28 +210,9 @@ def getAllPrograms():
         allPrograms.append(program)
     return allPrograms
 
-<<<<<<< HEAD
 # getProgramNumbers
 # Helper Function
 #
-=======
-'''
-Returns a list of lists. Inner list is the number of students per term for each program.
-List order is as follows:
-BCOM
-PCOM
-PM
-BA
-SCMT
-BK
-FS
-DXD
-Example: [[1,2,3],[4,5,6],[7,8,9]]
-index 0: BCOM term 1,2,3
-index 1: PCOM term 1,2,3
-index 3: PM term 1,2,3
-'''
->>>>>>> 4f9665050e8c8cb43dc581766b555dc4273310f9
 def getProgramNumbers(fileName):
     try:
         wb = load_workbook(fileName)
@@ -244,7 +225,6 @@ def getProgramNumbers(fileName):
     except:
         print("Error: File not found")
         return -1
-<<<<<<< HEAD
 
 # Expected input: String or None type value from cell F of Allcourse.xlsx
 # Expected output: If None type is found then return float indicating default lecture length is returned (1.5 hours)
@@ -295,5 +275,3 @@ Twice/Half = Class should be schedule twice a week half way through the term
 
 
 '''
-=======
->>>>>>> 4f9665050e8c8cb43dc581766b555dc4273310f9
