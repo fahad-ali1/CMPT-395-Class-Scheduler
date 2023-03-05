@@ -190,6 +190,7 @@ class Students:
             for room in rooms:
                 string = f"{program}{term:02d}{num:02d}: {room.name}, {room.current_students}/{room.cap}"
                 cohorts.append(string)
+                num += 1
             
         return cohorts
 
