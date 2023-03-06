@@ -1,11 +1,10 @@
 '''
-<<<<<<< HEAD
 Author: Fahad Ali, Schuyler Kelly
 Description: This program will create cohorts of the best size depending on
 the class space available, and suggest (if required) more class space
 '''
 
-import math, sys, itertools
+import math, itertools
 
 class Classroom:
 
