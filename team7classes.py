@@ -126,7 +126,9 @@ class Classroom:
         self.lab = lab
         self.isGhost = False
         self.schedule = None
-
+        self.currentStudents = 0 #will make a setter for it
+        self.inUse = False
+    #
     def setGhost(self):
         self.isGhost = True
 
@@ -147,6 +149,7 @@ class Cohort:
         self.size = size
         self.mainProgramCourses = []  # program class
         self.electiveProgramCourses = []  # program class
+        self.prereq = {}
 
     def getCohortName(self):
         return self.cohortName
@@ -213,7 +216,7 @@ class scheduleNode:
 #output: return the hour
 def convertLectureToHour(course):
     return course.lectureLength * 100
-
+#need a function to get start and end dates in 2400 hour format
 # start/end is for schedule node
 
 # getClassrooms:
@@ -349,4 +352,10 @@ Hours   # of sessiosn
 21      14
 35      24
 50      34
+
+WHAT TO WORK ON:
+return type = string cohort; float start hour; float end hour;
+Ideas:
 '''
+def returnStuff(data):
+    pass
