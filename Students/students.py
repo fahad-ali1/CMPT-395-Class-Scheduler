@@ -170,7 +170,6 @@ class Students:
         cohorts = []
         # Example entry: "PM0101: 11-533, 38/40
 
-        term = 1
         num = 1
 
         # If there are no students, return the cohorts, as no cohorts can
@@ -187,7 +186,7 @@ class Students:
 
         if rooms:
             for room in rooms:
-                string = f"{program}{term:02d}{num:02d}: {room.name}, {room.current_students}/{room.cap}"
+                string = f"{program}{self._term:02d}{num:02d}: {room.name}, {room.current_students}/{room.cap}"
                 cohorts.append(string)
                 num += 1
             
