@@ -10,6 +10,9 @@ import Students
 import sys
 import MikeCode
 
+# TODO: Save as (template, cohort, schedules), save ALL (schedule), upload bar, 
+# add classes to schedule,
+
 class MainMenu(QWidget):
     def __init__(self):
         super(MainMenu, self).__init__()
