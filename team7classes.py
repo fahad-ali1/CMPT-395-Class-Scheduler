@@ -16,19 +16,27 @@ from openpyxl.reader.excel import load_workbook
 # courseDescript = course description
 # lectureLength = length of each lecture
 # courseType = the type of each course(normal, online/virtual, lab)
+# schedulingInstructions a string indicating how to schedule a course, for example: NBOA = do not schedule before or
+#after another course
+# numberOfSessions = a string indicating n number of sessions. getNumOfSessions will return just the number
 class Course:
     def __init__(self, courseName="", courseDescript="", totalTranscriptHours=0):
         self.courseName = courseName
         self.courseDescript = courseDescript
         self.totalTranscriptHours = totalTranscriptHours
         self.lectureLength = 0.0
+        self.numberOfSessions = 0
         self.courseType = ""
+        self.schedulingInstructions = ""
 
     def setCourseName(self, courseName):
         self.courseName = courseName
 
     def setCourseDes(self, courseDes):
         self.courseDescript = courseDes
+
+    def setNumberOfSessions(self, sessions):
+        self.numberOfSessions = sessions
 
     def setTranscriptHours(self, transcriptHours):
         self.totalTranscriptHours = transcriptHours
@@ -38,6 +46,12 @@ class Course:
 
     def setLectureLength(self, lecLen):
         self.lectureLength = lecLen
+
+    def setschedulingInstructions(self, instructions):
+        self.schedulingInstructions = instructions
+
+    def getschedulingInstructions(self):
+        return self.schedulingInstructions
 
     def getcourseName(self):
         return self.courseName
@@ -51,6 +65,11 @@ class Course:
     def getLectureLength(self):
         return self.lectureLength
 
+    def getNumOfSessions(self):
+        splitStr = str(self.numberOfSessions).split(" ")
+        numVal = splitStr[0]
+        return numVal
+
     def printCourseDetails(self):
         print(self.courseName, " ", self.courseDescript, " ", self.totalTranscriptHours)
 
@@ -61,7 +80,6 @@ class Course:
 # term1 = list of all courses(course class) for term 1
 # term2 = list of all courses(course class) for term 2
 # term3 = list of all courses(course class) for term 3
-
 class Program:
     def __init__(self, programType=""):
         self.programType = programType
@@ -91,6 +109,8 @@ class Program:
         allTerms = [self.term1, self.term2, self.term3]
         return allTerms
 
+
+
 # Classroom:
 # Represents a physical classroom
 # Attributes include:
@@ -114,7 +134,7 @@ class Classroom:
         self.schedule = schedule
 
     def printClassroom(self):
-        print("Classroom #: ", self.classRoomNumber, "Normal Capacity: ", self.normalCapacity, \
+        print("Classroom #: ", self.classRoomNumber, "Normal Capacity: ", self.normalCapacity,
               "lab: ", self.lab, " isGhost: ", self.isGhost)
 
 # Cohort Class takes in a cohort name and size initially
@@ -128,27 +148,48 @@ class Cohort:
         self.mainProgramCourses = []  # program class
         self.electiveProgramCourses = []  # program class
 
+    def getCohortName(self):
+        return self.cohortName
+
 # ScheduleLinkedList:
 # Represents a schedule for a classroom object
 # Attributes include:
-# totalHours = the total hours in a day that the classroom is available for
+#time: time uses 2400 time format and starts at 8am. Each time a node is added the time will increase by that nodes
+#lecture length. The time starts at 8am and should not exceed 4pm
+#cohort: represents a cohort
+#startDate: represents the courses start date
+#endDate: repsrents the courses end date
 # head = head node of schedule (doubly linked list)
 class ScheduleLinkedList:
-    def __init__(self, totalHours=10):
+    def __init__(self, totalHours=800):
         self.totalHours = totalHours
         self.head = None
 
-    def addNodeEnd(self, time, cohort, start_date, end_date):
-        timeBlock = ScheduleNode(time, cohort, start_date, end_date)
-        if self.head is None:
-            self.head = timeBlock
-            return
+    def addNodeEnd(self, data):
+        newNode = scheduleNode(data)
+        if (self.head == None):
+            self.head = self.tail = newNode
+            self.head.previous = None
+            self.tail.next = None
         else:
-            currentLink = self.head
-            while currentLink.next:
-                currentLink = currentLink.next
-            timeBlock.prev = currentLink
-            timeBlock.next = None
+            self.tail.next = newNode
+            newNode.previous = self.tail
+            self.tail = newNode
+            self.tail.next = None
+
+    #checks to see if the schedule is full
+    #full = True; not full = False
+    def checkIfScheduleFull(self):
+        if self.totalHours == 1600:
+            return True
+        else:
+            return False
+
+    def updateTime(self, node):
+        if node.time + self.totalHours > 1600:
+            return -1 # -1 is an error indicating full
+        else:
+            self.totalHours += node.time
 
 # ScheduleNode:
 # Represents a lecture time block for a classroom's schedule
@@ -159,14 +200,19 @@ class ScheduleLinkedList:
 # endDate = course scheduled end date
 # prev = prev lecture block (node)
 # next = next lecture block (node)
-class ScheduleNode:
-    def __init__(self, time, cohort, start_date, end_date):
-        self.time = time  # 1.5 8 - 950
+class scheduleNode:
+    def __init__(self, time, cohort, startDate, endDate):
+        self.time = time #time should be 1.5 or 2.0, etc..
         self.cohort = cohort
-        self.startDate = start_date
-        self.endDate = end_date
+        self.startDate = startDate
+        self.endDate = endDate
         self.prev = None
         self.next = None
+
+#input: Convert the lecture time from a course object to it's time in hours.
+#output: return the hour
+def convertLectureToHour(course):
+    return course.lectureLength * 100
 
 # start/end is for schedule node
 
@@ -206,9 +252,17 @@ def getAllPrograms():
                                 totalTranscriptHours=ws1['C' + str(j)].value)
                 course.setCourseType(str(checkIfLab(ws1['E' + str(j)].value)))
                 course.setLectureLength(float(getMinimumTime(ws1['F' + str(j)].value)))
+                if ws1['G' + str(j)].value is None:
+                    course.setNumberOfSessions("")
+                else:
+                    course.setNumberOfSessions(ws1['G' + str(j)].value)
+
                 program.addToTerm(course, term)
         allPrograms.append(program)
     return allPrograms
+
+def calculateSessions(transcriptHours, lectureLen):
+    pass
 
 # getProgramNumbers
 # Helper Function
@@ -250,28 +304,49 @@ def checkIfLab(data):
     elif data == "Online":
         return "Online"
 
+#This function is a help function designed to help with assigning number of sessions to a course
+#If the number of course sessions do not divide evenly with the total transcript hours then add an extra hour
+#Else if evenly divided, return the number without any change.
+#Expected input: a number either an integer or a float
+#Expected output returns a number based on if the input had a decimal or not. If no decimal then return number unchanged
+#Else if input has a decimal, then return integer value + 1 of input
+def checkDecimal(num):
+    numToStr = str(num)
+    if numToStr.find(".") < 1:
+        return int(num) + 1
+    else:
+        return num
 
-'''
-some notes:
-1. make islab(method) - Course Class
-2. method to check if prereq/isfinished - Course/cohort
-3. make start/end date methods - course
-4. **maybe- add course to master course file method
-5. method for minimum timeslot(course) and number of sessiosn(default is 1.5)
-
-
-salah code:
-takes in a program name, cohort size, lecture/lab **24 hour format
-what to return:
-string of a course, string of a lecture/lab, timing(24 hr format)
-example for 1.5 hour courses: 9-10.5
-'''
 
 '''
 Legend for excel file codes:
 SA = Schedule after all classes are done, end of the term
 NBOA = Do not schedule immediately before or after other courses
 Twice/Half = Class should be schedule twice a week half way through the term
-
-
+'''
+'''
+ALLCOURSES.XLSX LEGEND:
+A:
+Term/course name
+B:
+Course Description
+C:
+Total Transcript Hours
+D:
+Prereqs
+E:
+Course Type(lab, normal, online/virtual, etc...)
+F:
+Timeslot
+G:
+Number of sessions
+H:
+Order classes should be scheduled(Twice a week halfway through a semester, etc..)
+'''
+'''
+Hours   # of sessiosn
+15      10
+21      14
+35      24
+50      34
 '''
