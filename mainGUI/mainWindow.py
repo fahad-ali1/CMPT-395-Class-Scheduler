@@ -6,7 +6,7 @@ Description: Create main GUI app, with multiple functionalities
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
-import Students
+from Students import students
 import sys
 import MikeCode
 
@@ -21,11 +21,11 @@ class MainMenu(QWidget):
         uic.loadUi("MainWindow.ui", self)
 
         # call students class from students module
-        self._studentCohort = Students.students()
-        
+        self._studentCohort = students.Students()
+
         # list to zero all the spin boxes quickly
         self.zero = [0,0,0,0,0,0,0,0]
-        
+
         # Define student inputs (in student input tab)
         self.terminput = self.findChild(QSpinBox, "TermInput")
         self.BCOMinput = self.findChild(QSpinBox, "BCOMinput")
