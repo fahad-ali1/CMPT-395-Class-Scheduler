@@ -10,6 +10,9 @@ import Students
 import sys
 import MikeCode
 
+# TODO: Save as (template, cohort, schedules), save ALL (schedule), upload bar, 
+# add classes to schedule,
+
 class MainMenu(QWidget):
     def __init__(self):
         super(MainMenu, self).__init__()
@@ -38,21 +41,26 @@ class MainMenu(QWidget):
         self.createCohort = self.findChild(QPushButton, "CreateCohort")
         self.revertButton = self.findChild(QPushButton, "RevertButton")
         self.revertButton2 = self.findChild(QPushButton, "RevertButton2")
+        self.revertButton3 = self.findChild(QPushButton, "RevertButton3")
+        
         self.uploadButton = self.findChild(QPushButton, "UploadFileButton")
         self.uploadButton2 = self.findChild(QPushButton, "UploadFileButton2")
         
-        # Define cohorts tables in cohort tab
+        # Define buttons
         self.cohortTable1 = self.findChild(QTableWidget, "CohortTable1")
         self.cohortTable2 = self.findChild(QTableWidget, "CohortTable2")
         self.cohortTable3 = self.findChild(QTableWidget, "CohortTable3")
-
-        # Define buttons in cohort tab 
         self.saveAs = self.findChild(QPushButton, "SaveAs")
         self.saveAs2 = self.findChild(QPushButton, "SaveAs2")
+        self.saveAs3 = self.findChild(QPushButton, "SaveAs3")
+        self.saveAll = self.findChild(QPushButton, "SaveAllButton")
+        
         
         # Call revert_changes function 
         self.revertButton.clicked.connect(self.revert_changes)
         self.revertButton2.clicked.connect(self.revert_changes)
+        self.revertButton3.clicked.connect(self.revert_changes)
+        
         
         # Open file browser if upload file clicked
         self.uploadButton.clicked.connect(self.upload_file)
@@ -62,10 +70,15 @@ class MainMenu(QWidget):
         self.createCohort.clicked.connect(self.create_cohorts)
         self.createCohort.clicked.connect(self.add_cohort_table)
     
-        # Save cohorts as .xlsc file
+        # Save cohorts/schedules as .xlsc file
         self.saveAs.clicked.connect(self.save_as)
         self.saveAs2.clicked.connect(self.save_as)
+        self.saveAs3.clicked.connect(self.save_as)
         
+        # Save ALL schedules for every room
+        self.saveAll.clicked.connect(self.save_all)
+        
+
     def spin_box_values(self, value, tables):
             '''
             Description: changes spinbox values
@@ -182,6 +195,13 @@ class MainMenu(QWidget):
         '''
         ###################### TODO: In development
         path = QFileDialog.getSaveFileName(self, 'Save File', '', ".xls(*.xls)")
+        
+    def save_all(self):
+        '''
+        Description: saves all schedules
+        '''
+        ###################### TODO: In development
+        pass
         
 # Initialize The App
 def main():
