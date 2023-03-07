@@ -12,7 +12,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>816</width>
+    <width>1003</width>
     <height>650</height>
    </rect>
   </property>
@@ -24,14 +24,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>777</width>
+    <width>1000</width>
     <height>650</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1300</width>
-    <height>1300</height>
+    <width>16777215</width>
+    <height>16777215</height>
    </size>
   </property>
   <property name="baseSize">
@@ -57,7 +57,8 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);</string>
+   <string notr="true">background-color: rgb(255, 255, 255);
+font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -81,408 +82,21 @@
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <layout class="QGridLayout" name="StudentInputGrid">
-         <item row="6" column="0">
-          <widget class="QPushButton" name="CreateCohort">
+         <item row="1" column="0" colspan="2" alignment="Qt::AlignHCenter|Qt::AlignTop">
+          <widget class="QLabel" name="label_2">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="maximumSize">
-            <size>
-             <width>200</width>
-             <height>30</height>
-            </size>
-           </property>
            <property name="text">
-            <string>Create Cohorts </string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;Manually input students per term to create perfect size cohort!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
            </property>
           </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QPushButton" name="RevertButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>200</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Revert Changes</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="4">
-          <widget class="QPushButton" name="UploadFileButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>200</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Upload File (.xlsx)</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0" colspan="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-          <widget class="QLabel" name="ManualInputText">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>10</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>250</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>10</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Manual Student Input (per term)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="3" colspan="2" alignment="Qt::AlignHCenter">
-          <widget class="QLabel" name="label">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#aa0000;&quot;&gt;Auto input students for &lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-style:italic; color:#aa0000;&quot;&gt;all &lt;/span&gt;&lt;span style=&quot; font-size:10pt; color:#aa0000;&quot;&gt;terms. Download template from button below!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#000000;&quot;&gt;Example File:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="3">
-          <widget class="QPushButton" name="SaveAs">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>200</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Download Template (.xlsx)</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="4">
-          <widget class="QProgressBar" name="progressBar">
-           <property name="minimumSize">
-            <size>
-             <width>180</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>180</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="value">
-            <number>0</number>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0" rowspan="2" colspan="2">
-          <layout class="QGridLayout" name="ManualInputLayout">
-           <item row="5" column="0">
-            <widget class="QLabel" name="SCMT">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-               <underline>false</underline>
-              </font>
-             </property>
-             <property name="text">
-              <string>Supply Chain Mangement &amp; Logisitics (SCMT)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="BA">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-               <underline>false</underline>
-              </font>
-             </property>
-             <property name="text">
-              <string>Business Analysis (BA)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="PM">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-               <underline>false</underline>
-              </font>
-             </property>
-             <property name="text">
-              <string>Project Management (PM)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="PCOM">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-               <underline>false</underline>
-              </font>
-             </property>
-             <property name="text">
-              <string>Professional Communication (PCOM)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="0">
-            <widget class="QLabel" name="FS">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-               <underline>false</underline>
-              </font>
-             </property>
-             <property name="text">
-              <string>Full Stack Web Development (FS)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="0">
-            <widget class="QLabel" name="DXD">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-               <underline>false</underline>
-              </font>
-             </property>
-             <property name="text">
-              <string>Digital Experience Design Foundation (DXD)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0">
-            <widget class="QLabel" name="BK">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-               <underline>false</underline>
-              </font>
-             </property>
-             <property name="text">
-              <string>Book Keeping Certificate (BK)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QSpinBox" name="TermInput">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="autoFillBackground">
-              <bool>false</bool>
-             </property>
-             <property name="minimum">
-              <number>1</number>
-             </property>
-             <property name="maximum">
-              <number>3</number>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="TermNum">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-               <underline>false</underline>
-              </font>
-             </property>
-             <property name="text">
-              <string>Select Term Number</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="BCOM">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-               <underline>false</underline>
-              </font>
-             </property>
-             <property name="text">
-              <string>Business Communications (BCOM)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QSpinBox" name="BCOMinput">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="buttonSymbols">
-              <enum>QAbstractSpinBox::NoButtons</enum>
-             </property>
-             <property name="maximum">
-              <number>555</number>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QSpinBox" name="PCOMinput">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="buttonSymbols">
-              <enum>QAbstractSpinBox::NoButtons</enum>
-             </property>
-             <property name="maximum">
-              <number>555</number>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QSpinBox" name="PMinput">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="buttonSymbols">
-              <enum>QAbstractSpinBox::NoButtons</enum>
-             </property>
-             <property name="maximum">
-              <number>555</number>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
-            <widget class="QSpinBox" name="BAinput">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="buttonSymbols">
-              <enum>QAbstractSpinBox::NoButtons</enum>
-             </property>
-             <property name="maximum">
-              <number>555</number>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1">
-            <widget class="QSpinBox" name="SCMTinput">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="buttonSymbols">
-              <enum>QAbstractSpinBox::NoButtons</enum>
-             </property>
-             <property name="maximum">
-              <number>555</number>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="1">
-            <widget class="QSpinBox" name="BKinput">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="buttonSymbols">
-              <enum>QAbstractSpinBox::NoButtons</enum>
-             </property>
-             <property name="maximum">
-              <number>555</number>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="1">
-            <widget class="QSpinBox" name="FSinput">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="buttonSymbols">
-              <enum>QAbstractSpinBox::NoButtons</enum>
-             </property>
-             <property name="maximum">
-              <number>555</number>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="1">
-            <widget class="QSpinBox" name="DXDinput">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="buttonSymbols">
-              <enum>QAbstractSpinBox::NoButtons</enum>
-             </property>
-             <property name="maximum">
-              <number>555</number>
-             </property>
-            </widget>
-           </item>
-          </layout>
          </item>
          <item row="0" column="3" colspan="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QLabel" name="FileUploadText">
@@ -509,48 +123,69 @@
            </property>
           </widget>
          </item>
-         <item row="4" column="0" colspan="2">
-          <widget class="QLabel" name="MacEwanLogo">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="pixmap">
-            <pixmap>Images/MacEwanLogo.jpg</pixmap>
-           </property>
-           <property name="scaledContents">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="3" rowspan="2" colspan="2" alignment="Qt::AlignHCenter">
-          <widget class="QLabel" name="inputTemplate">
+         <item row="6" column="1">
+          <widget class="QPushButton" name="RevertButton">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>MS Shell Dlg 2</family>
+             <pointsize>10</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
            <property name="text">
-            <string/>
-           </property>
-           <property name="pixmap">
-            <pixmap>Images/StudentInputExample.png</pixmap>
-           </property>
-           <property name="scaledContents">
-            <bool>false</bool>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-           </property>
-           <property name="wordWrap">
-            <bool>false</bool>
+            <string>Revert Changes</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="0" colspan="2" alignment="Qt::AlignHCenter|Qt::AlignTop">
-          <widget class="QLabel" name="label_2">
+         <item row="6" column="3">
+          <widget class="QPushButton" name="DownloadTemplate">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#aa0000;&quot;&gt;Simply input students per term to create cohort!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>Download Template (.xlsx)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QPushButton" name="CreateCohort">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Create Cohorts </string>
            </property>
           </widget>
          </item>
@@ -597,6 +232,506 @@
            </property>
           </widget>
          </item>
+         <item row="1" column="3" colspan="2" alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;Auto input students for &lt;/span&gt;&lt;span style=&quot; font-style:italic; color:#aa0000;&quot;&gt;all &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;terms. Download the required template from button below!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;Example File:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="4">
+          <widget class="QProgressBar" name="ProgressBarUpload">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="value">
+            <number>0</number>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+           <property name="textVisible">
+            <bool>true</bool>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="invertedAppearance">
+            <bool>false</bool>
+           </property>
+           <property name="format">
+            <string>Upload student input file ... %p%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3" rowspan="3" colspan="2">
+          <widget class="QLabel" name="inputTemplate">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap>Images/StudentInputExample.png</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignHCenter|Qt::AlignTop</set>
+           </property>
+           <property name="wordWrap">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="3">
+          <widget class="QProgressBar" name="ProgressBarDownload">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="value">
+            <number>0</number>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+           <property name="format">
+            <string>Download template ... %p%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+          <widget class="QLabel" name="ManualInputText">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>10</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>250</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>MS Shell Dlg 2</family>
+             <pointsize>10</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Manual Student Input (per term)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="4">
+          <widget class="QPushButton" name="UploadFileButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Upload File (.xlsx)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0" rowspan="2" colspan="2">
+          <layout class="QGridLayout" name="ManualInputLayout">
+           <item row="5" column="0">
+            <widget class="QLabel" name="SCMT">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+               <underline>false</underline>
+              </font>
+             </property>
+             <property name="text">
+              <string>Supply Chain Mangement &amp; Logisitics (SCMT)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="BA">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+               <underline>false</underline>
+              </font>
+             </property>
+             <property name="text">
+              <string>Business Analysis (BA)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="PM">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+               <underline>false</underline>
+              </font>
+             </property>
+             <property name="text">
+              <string>Project Management (PM)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="PCOM">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+               <underline>false</underline>
+              </font>
+             </property>
+             <property name="text">
+              <string>Professional Communication (PCOM)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="FS">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+               <underline>false</underline>
+              </font>
+             </property>
+             <property name="text">
+              <string>Full Stack Web Development (FS)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="DXD">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+               <underline>false</underline>
+              </font>
+             </property>
+             <property name="text">
+              <string>Digital Experience Design Foundation (DXD)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="BK">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+               <underline>false</underline>
+              </font>
+             </property>
+             <property name="text">
+              <string>Book Keeping Certificate (BK)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="TermInput">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="autoFillBackground">
+              <bool>false</bool>
+             </property>
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>3</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="TermNum">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+               <underline>false</underline>
+              </font>
+             </property>
+             <property name="text">
+              <string>Select Term Number</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="BCOM">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+               <underline>false</underline>
+              </font>
+             </property>
+             <property name="text">
+              <string>Business Communications (BCOM)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QSpinBox" name="BCOMinput">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="maximum">
+              <number>555</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QSpinBox" name="PCOMinput">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="maximum">
+              <number>555</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QSpinBox" name="PMinput">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="maximum">
+              <number>555</number>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QSpinBox" name="BAinput">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="maximum">
+              <number>555</number>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QSpinBox" name="SCMTinput">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="maximum">
+              <number>555</number>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QSpinBox" name="BKinput">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="maximum">
+              <number>555</number>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QSpinBox" name="FSinput">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="maximum">
+              <number>555</number>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1">
+            <widget class="QSpinBox" name="DXDinput">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="maximum">
+              <number>555</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="4" column="0" rowspan="2" colspan="2">
+          <widget class="QLabel" name="MacEwanLogo">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap>Images/MacEwanLogo.jpg</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
       </layout>
@@ -606,6 +741,103 @@
        <string>Cohorts</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_5">
+       <item row="2" column="0">
+        <widget class="QPushButton" name="SaveAllCohortButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>181</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>181</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Save ALL cohorts (.xlsx)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" alignment="Qt::AlignLeft">
+        <widget class="QPushButton" name="UploadFileButton2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>181</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>181</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>MS Shell Dlg 2</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+           <stylestrategy>PreferDefault</stylestrategy>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>Upload File (.xlsx)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2" alignment="Qt::AlignRight">
+        <widget class="QPushButton" name="RevertButton2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>181</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>181</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>MS Shell Dlg 2</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Revert Changes</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="0" colspan="3">
         <widget class="QTabWidget" name="CohortTables">
          <property name="currentIndex">
@@ -618,6 +850,15 @@
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="0" column="0">
             <widget class="QTableWidget" name="CohortTable1">
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>110</number>
+             </attribute>
+             <attribute name="verticalHeaderMinimumSectionSize">
+              <number>40</number>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>55</number>
+             </attribute>
              <column>
               <property name="text">
                <string>BCOM</string>
@@ -669,6 +910,15 @@
           <layout class="QGridLayout" name="gridLayout_3">
            <item row="0" column="0">
             <widget class="QTableWidget" name="CohortTable2">
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>110</number>
+             </attribute>
+             <attribute name="verticalHeaderMinimumSectionSize">
+              <number>40</number>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>55</number>
+             </attribute>
              <column>
               <property name="text">
                <string>BCOM</string>
@@ -720,6 +970,15 @@
           <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="0">
             <widget class="QTableWidget" name="CohortTable3">
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>110</number>
+             </attribute>
+             <attribute name="verticalHeaderMinimumSectionSize">
+              <number>40</number>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>55</number>
+             </attribute>
              <column>
               <property name="text">
                <string>BCOM</string>
@@ -766,8 +1025,45 @@
          </widget>
         </widget>
        </item>
+       <item row="1" column="1">
+        <widget class="QProgressBar" name="ProgressBarUpload2">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>181</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>181</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="value">
+          <number>0</number>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+         <property name="format">
+          <string>Upload student input file ... %p%</string>
+         </property>
+        </widget>
+       </item>
        <item row="1" column="0">
-        <widget class="QPushButton" name="SaveAs2">
+        <widget class="QProgressBar" name="ProgressBarSaveAllCohort">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -776,82 +1072,24 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>161</width>
+           <width>181</width>
            <height>23</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>161</width>
+           <width>181</width>
            <height>23</height>
           </size>
          </property>
-         <property name="text">
-          <string>Save as (.xlsx)</string>
+         <property name="value">
+          <number>0</number>
          </property>
-        </widget>
-       </item>
-       <item row="1" column="1" alignment="Qt::AlignLeft">
-        <widget class="QPushButton" name="UploadFileButton2">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
-         <property name="minimumSize">
-          <size>
-           <width>161</width>
-           <height>23</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>161</width>
-           <height>23</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <stylestrategy>PreferDefault</stylestrategy>
-          </font>
-         </property>
-         <property name="layoutDirection">
-          <enum>Qt::LeftToRight</enum>
-         </property>
-         <property name="text">
-          <string>Upload File (.xlsx)</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2" alignment="Qt::AlignRight">
-        <widget class="QPushButton" name="RevertButton2">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>161</width>
-           <height>23</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>161</width>
-           <height>23</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Revert Changes</string>
+         <property name="format">
+          <string>Save all cohorts ... %p%</string>
          </property>
         </widget>
        </item>
@@ -868,8 +1106,8 @@
        <string>Schedule</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="1" column="0">
-        <widget class="QPushButton" name="SaveAs3">
+       <item row="2" column="2">
+        <widget class="QPushButton" name="RevertButton3">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -878,18 +1116,57 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>161</width>
+           <width>181</width>
            <height>23</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>161</width>
+           <width>181</width>
            <height>23</height>
           </size>
          </property>
          <property name="font">
           <font>
+           <family>MS Shell Dlg 2</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Revert Changes</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="SaveAllScheduleButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>181</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>181</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>MS Shell Dlg 2</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
            <stylestrategy>PreferDefault</stylestrategy>
           </font>
          </property>
@@ -897,11 +1174,11 @@
           <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
-          <string>Save as (.xlsx)</string>
+          <string>Save ALL schedules (.xlsx)</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="0" colspan="4">
+       <item row="0" column="0" colspan="3">
         <widget class="QTabWidget" name="ScheduleTables">
          <property name="currentIndex">
           <number>0</number>
@@ -1105,6 +1382,55 @@ PCOM 0103 (930-1050)</string>
            </item>
           </layout>
          </widget>
+         <widget class="QWidget" name="Room1">
+          <attribute name="title">
+           <string>11-533 (36)</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QTableWidget" name="Room1Schedule">
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContents</enum>
+             </property>
+             <attribute name="horizontalHeaderMinimumSectionSize">
+              <number>100</number>
+             </attribute>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>160</number>
+             </attribute>
+             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>50</number>
+             </attribute>
+             <row>
+              <property name="text">
+               <string>Monday</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>Tuesday</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>Wednesday</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>Thursday</string>
+              </property>
+             </row>
+            </widget>
+           </item>
+          </layout>
+         </widget>
          <widget class="QWidget" name="Room2">
           <attribute name="title">
            <string>11-534 (36)</string>
@@ -1172,7 +1498,7 @@ PCOM 0103 (930-1050)</string>
              </column>
              <item row="0" column="0">
               <property name="text">
-               <string/>
+               <string>test</string>
               </property>
               <property name="background">
                <brush brushstyle="SolidPattern">
@@ -1296,59 +1622,13 @@ PCOM 0103 (930-1050)</string>
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="Room1">
-          <attribute name="title">
-           <string>11-533 (36)</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_6">
-           <item row="0" column="0">
-            <widget class="QTableWidget" name="Room1Schedule">
-             <property name="sizeAdjustPolicy">
-              <enum>QAbstractScrollArea::AdjustToContents</enum>
-             </property>
-             <attribute name="horizontalHeaderMinimumSectionSize">
-              <number>100</number>
-             </attribute>
-             <attribute name="horizontalHeaderDefaultSectionSize">
-              <number>160</number>
-             </attribute>
-             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-              <bool>false</bool>
-             </attribute>
-             <attribute name="horizontalHeaderStretchLastSection">
-              <bool>false</bool>
-             </attribute>
-             <attribute name="verticalHeaderDefaultSectionSize">
-              <number>50</number>
-             </attribute>
-             <row>
-              <property name="text">
-               <string>Monday</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Tuesday</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Wednesday</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Thursday</string>
-              </property>
-             </row>
-            </widget>
-           </item>
-          </layout>
-         </widget>
         </widget>
        </item>
-       <item row="1" column="3">
-        <widget class="QPushButton" name="RevertButton3">
+       <item row="1" column="0">
+        <widget class="QProgressBar" name="ScheduleSaveBar">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -1357,49 +1637,27 @@ PCOM 0103 (930-1050)</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>161</width>
+           <width>181</width>
            <height>23</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>161</width>
+           <width>181</width>
            <height>23</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
+         <property name="value">
+          <number>0</number>
          </property>
-         <property name="text">
-          <string>Revert Changes</string>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="SaveAllButton">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+         <property name="textVisible">
+          <bool>true</bool>
          </property>
-         <property name="minimumSize">
-          <size>
-           <width>161</width>
-           <height>23</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>161</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Save ALL (.alsx)</string>
+         <property name="format">
+          <string notr="true">%p%</string>
          </property>
         </widget>
        </item>
