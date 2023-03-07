@@ -1,7 +1,7 @@
 """
 Author: Mike Lee, Sankalp Shrivastav
 ID: 3067768, 3106374
-Date: 06/03/2023
+Date: 
 Purpose: Collection of classes and methods needed for the project
 """
 
@@ -110,7 +110,6 @@ class Program:
         return allTerms
 
 
-
 # Classroom:
 # Represents a physical classroom
 # Attributes include:
@@ -126,9 +125,13 @@ class Classroom:
         self.lab = lab
         self.isGhost = False
         self.schedule = None
-        self.currentStudents = 0 #will make a setter for it
-        self.inUse = False
-    #
+
+        """
+        self.cap = max limit
+        self.currentstudemnts = cap
+        self.inuse = False
+        """
+
     def setGhost(self):
         self.isGhost = True
 
@@ -136,8 +139,8 @@ class Classroom:
         self.schedule = schedule
 
     def printClassroom(self):
-        print("Classroom #: ", self.classRoomNumber, "Normal Capacity: ", self.normalCapacity,
-              "lab: ", self.lab, " isGhost: ", self.isGhost)
+        print("Classroom #: ", self.classRoomNumber, "Normal Capacity: ", \
+            self.normalCapacity, "lab: ", self.lab, " isGhost: ", self.isGhost)
 
 # Cohort Class takes in a cohort name and size initially
 # Methods will be created to add a programs to mainProgramCourses
@@ -149,10 +152,13 @@ class Cohort:
         self.size = size
         self.mainProgramCourses = []  # program class
         self.electiveProgramCourses = []  # program class
-        self.prereq = {}
 
     def getCohortName(self):
         return self.cohortName
+    
+    def updateCohortSize(self, newSize):
+        self.size = newSize
+    
 
 # ScheduleLinkedList:
 # Represents a schedule for a classroom object
@@ -182,48 +188,58 @@ class ScheduleLinkedList:
     
     def getCohort(self, node):
 
-        # if is empty return none
+        # if 
         if self.head is None: return None
 
-        cohortName = node.cohort # name of the searching cohort
-        currentCohort = self.head # first item
+        cohortName = node.cohort
+
+        currentCohort = self.head
 
         while self.tail.next is not None:
-            # while not at the end keep going
 
-            if currentCohort.cohort is cohortName: # FOUND!!!
+            if currentCohort.cohort is cohortName:
                 
-                # add time management for returning it
+                # add time management
                 return currentCohort.cohort.cohortName
 
-            currentCohort = currentCohort.next # swap to next node
+            currentCohort = currentCohort.next
         
-        return None # when not found
+        return None
+
+
+    
+    """
+    function returns, cohort, start and end time.
+    """
 
     #checks to see if the schedule is full
     #full = True; not full = False
     def checkIfScheduleFull(self):
-        if self.totalHours == 1600:
-            return True
-        else:
-            return False
+        if self.totalHours == 1600: return True
+        else: return False
 
     def updateTime(self, node):
+
+        ## returning 1 for true/ 0 for false?
+
         if node.time + self.totalHours > 1600:
             return -1 # -1 is an error indicating full
         else:
             self.totalHours += node.time
 
-# ScheduleNode:
-# Represents a lecture time block for a classroom's schedule
-# Attributes include:
-# time = lecture length
-# cohort = cohort
-# startDate = course scheduled start date
-# endDate = course scheduled end date
-# prev = prev lecture block (node)
-# next = next lecture block (node)
+
 class scheduleNode:
+    """
+    ScheduleNode:
+    Represents a lecture time block for a classroom's schedule
+    Attributes include:
+    time = lecture length
+    cohort = cohort
+    startDate = course scheduled start date
+    endDate = course scheduled end date
+    prev = prev lecture block (node)
+    next = next lecture block (node)
+    """
     def __init__(self, time, cohort, startDate, endDate):
         self.time = time #time should be 1.5 or 2.0, etc..
         self.cohort = cohort
@@ -231,34 +247,58 @@ class scheduleNode:
         self.endDate = endDate
         self.prev = None
         self.next = None
+    
+    # def addDates(self, start, end):
+
+    #     self.startDate = start
+    #     self.endDate = end
 
 #input: Convert the lecture time from a course object to it's time in hours.
 #output: return the hour
 def convertLectureToHour(course):
     return course.lectureLength * 100
-#need a function to get start and end dates in 2400 hour format
+
+
+
 # start/end is for schedule node
 
-# getClassrooms:
-# Helper Fucntion
-# Purpose: Used to gather list of classroom objects representing all available classrooms
+
 def getClassrooms():
+    """
+    getClassrooms:
+    Helper Fucntion
+    Purpose:    Used to gather list of classroom objects representing all 
+                available classrooms
+    """
     wb = load_workbook('AllCourses.xlsx')
     allClassrooms = []
-    ws = wb.worksheets[8]
+    ws = wb.worksheets[8] #worksheet number
     for i in range(2, ws.max_row + 1):
+        """
+        Will cycle through coloums adding Classroom objects to an array that, 
+        will be returned. if a its a lab it will mark it true.
+        """
         if "Lab" in ws['A' + str(i)].value:
-            classroom = Classroom(ws['A' + str(i)].value, ws['B' + str(i)].value, True)
+
+            ## Classroom().init = Room number, Capicity, IsLab
+            classroom = Classroom(ws['A' + str(i)].value, \
+                                  ws['B' + str(i)].value, True)
             allClassrooms.append(classroom)
         else:
-            classroom = Classroom(ws['A' + str(i)].value, ws['B' + str(i)].value)
+            classroom = Classroom(ws['A' + str(i)].value, \
+                                  ws['B' + str(i)].value)
             allClassrooms.append(classroom)
+            
     return allClassrooms
 
-# getAllPrograms
-# Helper Function
-# Purpose: Used to gather a list of program objects representing all available programs at macewan
+
 def getAllPrograms():
+    """
+    getAllPrograms
+    Helper Function
+    Purpose:    Used to gather a list of program objects representing all 
+                available programs at macewan
+    """
     wb = load_workbook('AllCourses.xlsx')
     term = None
     allPrograms = []
@@ -271,8 +311,10 @@ def getAllPrograms():
                 pass
 
             elif ws1['B' + str(j)].value is not None:
-                course = Course(courseName=ws1['A' + str(j)].value, courseDescript=ws1['B' + str(j)].value,
+                course = Course(courseName=ws1['A' + str(j)].value, 
+                                courseDescript=ws1['B' + str(j)].value,
                                 totalTranscriptHours=ws1['C' + str(j)].value)
+                
                 course.setCourseType(str(checkIfLab(ws1['E' + str(j)].value)))
                 course.setLectureLength(float(getMinimumTime(ws1['F' + str(j)].value)))
                 if ws1['G' + str(j)].value is None:
@@ -372,10 +414,4 @@ Hours   # of sessiosn
 21      14
 35      24
 50      34
-
-WHAT TO WORK ON:
-return type = string cohort; float start hour; float end hour;
-Ideas:
 '''
-def returnStuff(data):
-    pass

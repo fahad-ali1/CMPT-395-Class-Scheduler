@@ -1,3 +1,9 @@
 1. documenting team7classes.py
 2. make start/end date methods
 3. maybe - add courde to master coure file method
+
+-_________________
+
+
+ScheduleLinkedList method:
+    take in a node as an aguument, and return it cohort as string, start and end time as 24000.
