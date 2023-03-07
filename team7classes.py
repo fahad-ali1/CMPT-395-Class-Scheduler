@@ -53,6 +53,9 @@ class Course:
     def getschedulingInstructions(self):
         return self.schedulingInstructions
 
+    def getTotalTranscriptHours(self):
+        return self.totalTranscriptHours
+
     def getcourseName(self):
         return self.courseName
 
@@ -66,9 +69,10 @@ class Course:
         return self.lectureLength
 
     def getNumOfSessions(self):
-        splitStr = str(self.numberOfSessions).split(" ")
-        numVal = splitStr[0]
-        return numVal
+        return self.numberOfSessions
+
+    def getLecTime100(self):
+        return self.lectureLength * 100
 
     def printCourseDetails(self):
         print(self.courseName, " ", self.courseDescript, " ", self.totalTranscriptHours)
@@ -109,6 +113,14 @@ class Program:
         allTerms = [self.term1, self.term2, self.term3]
         return allTerms
 
+    def getTerm1(self):
+        return self.term1
+
+    def getTerm2(self):
+        return self.term2
+
+    def getTerm3(self):
+        return self.term3
 
 
 # Classroom:
@@ -147,12 +159,24 @@ class Cohort:
     def __init__(self, cohortName="", size=0):
         self.cohortName = cohortName
         self.size = size
-        self.mainProgramCourses = []  # program class
-        self.electiveProgramCourses = []  # program class
+        self.mainProgramCourses = None # program class
+        self.electiveProgramCourses = None  # program class
         self.prereq = {}
+
+    def setmainProgram(self, program):
+        self.mainProgramCourses = program
+
+    def setElectiveProgram(self, program):
+        self.electiveProgramCourses = program
 
     def getCohortName(self):
         return self.cohortName
+
+    def getMain(self):
+        return self.mainProgramCourses
+
+    def getElective(self):
+        return self.electiveProgramCourses
 
 # ScheduleLinkedList:
 # Represents a schedule for a classroom object
@@ -168,17 +192,12 @@ class ScheduleLinkedList:
         self.totalHours = totalHours
         self.head = None
 
-    def addNodeEnd(self, data):
-        newNode = scheduleNode(data)
-        if (self.head == None):
-            self.head = self.tail = newNode
-            self.head.previous = None
-            self.tail.next = None
-        else:
-            self.tail.next = newNode
-            newNode.previous = self.tail
-            self.tail = newNode
-            self.tail.next = None
+    def addNodePush(self, time, cohort, startDate, endDate):
+        newNode = scheduleNode(time, cohort, startDate, endDate)
+        newNode.next = self.head
+        if self.head is not None:
+            self.head.prev = newNode
+        self.head = newNode
 
     #checks to see if the schedule is full
     #full = True; not full = False
@@ -189,10 +208,18 @@ class ScheduleLinkedList:
             return False
 
     def updateTime(self, node):
-        if node.time + self.totalHours > 1600:
-            return -1 # -1 is an error indicating full
+        hours = self.totalHours
+        if node is not None:
+            if (node.time * 100) + hours > 1600:
+                return -1 # -1 is an error indicating full
+            else:
+                self.totalHours = hours + (node.time * 100)
         else:
-            self.totalHours += node.time
+            return hours
+        return int(self.totalHours)
+
+    def getTotalHours(self):
+        return int(self.totalHours)
 
 # ScheduleNode:
 # Represents a lecture time block for a classroom's schedule
@@ -204,18 +231,27 @@ class ScheduleLinkedList:
 # prev = prev lecture block (node)
 # next = next lecture block (node)
 class scheduleNode:
-    def __init__(self, time, cohort, startDate, endDate):
+    def __init__(self, time, cohort, startHour, endHour):
         self.time = time #time should be 1.5 or 2.0, etc..
         self.cohort = cohort
-        self.startDate = startDate
-        self.endDate = endDate
+        self.startHour = startHour
+        self.endHour = endHour
+        self.startDate = 0
+        self.endDate = 0
         self.prev = None
         self.next = None
 
-#input: Convert the lecture time from a course object to it's time in hours.
-#output: return the hour
-def convertLectureToHour(course):
-    return course.lectureLength * 100
+    #input: Convert the lecture time from a course object to it's time in hours.
+    #output: return the hour
+    def convertLectureToHour(self):
+        return self.time * 100
+
+    def setStartDate(self, StartDate):
+        self.startDate = StartDate
+
+    def setEndDate(self, EndDate):
+        self.endDate = EndDate
+
 #need a function to get start and end dates in 2400 hour format
 # start/end is for schedule node
 
@@ -254,9 +290,9 @@ def getAllPrograms():
                 course = Course(courseName=ws1['A' + str(j)].value, courseDescript=ws1['B' + str(j)].value,
                                 totalTranscriptHours=ws1['C' + str(j)].value)
                 course.setCourseType(str(checkIfLab(ws1['E' + str(j)].value)))
-                course.setLectureLength(float(getMinimumTime(ws1['F' + str(j)].value)))
+                course.setLectureLength(getMinimumTime(ws1['F' + str(j)].value))
                 if ws1['G' + str(j)].value is None:
-                    course.setNumberOfSessions("")
+                    course.setNumberOfSessions(calcNumberOfSessions(course))
                 else:
                     course.setNumberOfSessions(ws1['G' + str(j)].value)
 
@@ -292,6 +328,25 @@ def getMinimumTime(data):
     else:
         return float(data[0])
 
+
+
+
+
+
+def checkIntOrDec(num):
+    if num.is_integer():
+        return int(num)
+    else:
+        return int(num) + 1
+
+# prototype
+# Expected input:
+#
+#
+def calcNumberOfSessions(course):
+    testVar = 0.0
+    testVar = float(course.getTotalTranscriptHours()) / course.getLectureLength()
+    return checkIntOrDec(testVar)
 
 # Expected input: value from cell E of AllCourse.xlsx
 # Expected output: returns a string indicating the lab status of a course
