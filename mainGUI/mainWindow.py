@@ -25,7 +25,7 @@ class MainMenu(QWidget):
         uic.loadUi("MainWindow.ui", self)
 
         # call students class from students module
-        self._studentCohort = students.students()
+        self._studentCohort = students.Students()
 
         # list to zero all the spin boxes quickly
         self.zero = [0,0,0,0,0,0,0,0]
@@ -334,7 +334,6 @@ class MainMenu(QWidget):
                             cohortValue = self.scheduleTables[i].item(r,c).text()
                             ws = wb.get_sheet_by_name(wsList[i])\
                                 .cell(row=r+1, column=c+1).value = cohortValue
-
             wb.save(savepath)
             
             for i in range(101):
