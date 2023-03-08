@@ -192,19 +192,19 @@ class Students:
             
         return cohorts
 
-if __name__ == "__main__":
-    students = Students()
-    students._PCOMStudents = 210
-    students._BCOMStudents = 25
-    students._BAStudents = 74
-    students._PMStudents = 102
-    students._SCMTStudents = 41
-    students._FSStudents = 18
-    students._DXDStudents = 0
-    students._BKStudents = 0
-    students._term = 1
+# if __name__ == "__main__":
+#     students = Students()
+#     students._PCOMStudents = 210
+#     students._BCOMStudents = 25
+#     students._BAStudents = 74
+#     students._PMStudents = 102
+#     students._SCMTStudents = 41
+#     students._FSStudents = 18
+#     students._DXDStudents = 0
+#     students._BKStudents = 0
+#     students._term = 1
 
     
-    cohorts = students.cohorts_final()
-    for cohort in cohorts:
-        print(cohort)
+#     cohorts = students.cohorts_final()
+#     for cohort in cohorts:
+#         print(cohort)
