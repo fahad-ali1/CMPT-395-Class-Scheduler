@@ -9,17 +9,20 @@ import re
 
 from openpyxl.reader.excel import load_workbook
 
-# Course Class:
-# Represents a course
-# Attributes include:
-# courseName = name of the course
-# courseDescript = course description
-# lectureLength = length of each lecture
-# courseType = the type of each course(normal, online/virtual, lab)
-# schedulingInstructions a string indicating how to schedule a course, for example: NBOA = do not schedule before or
-#after another course
-# numberOfSessions = a string indicating n number of sessions. getNumOfSessions will return just the number
+
 class Course:
+    """
+    Course Class:
+    Represents a course
+    Attributes include:
+    courseName = name of the course
+    courseDescript = course description
+    lectureLength = length of each lecture
+    courseType = the type of each course(normal, online/virtual, lab)
+    schedulingInstructions a string indicating how to schedule a course, for example: NBOA = do not schedule before or
+    after another course
+    numberOfSessions = a string indicating n number of sessions. getNumOfSessions will return just the number
+    """
     def __init__(self, courseName="", courseDescript="", totalTranscriptHours=0):
         self.courseName = courseName
         self.courseDescript = courseDescript
@@ -161,9 +164,24 @@ class Cohort:
     def getCohortName(self):
         return self.cohortName
     
-    def displayCohort(self):
+    # need to tuch base on default size
+    def updateCohortSize(self, size=0):
+        self.size = size
 
-        print(f"Name: {self.cohortName}\tSize: {self.size}")
+    #type = M:main, E:elective, P:preReq
+    def addProgCourse(self, type="M"):
+
+        pass
+
+    def displayCohort(self, type="M"):
+
+        requirnments = self.mainProgramCourses
+        if type is not "M": requirnments = self.electiveProgramCourses
+
+        print(  f"Name: {self.cohortName}\n"\
+                f"Size: {self.size}\n"\
+                f"Requirnments: {requirnments}\n"\
+                f"Pre-Reqs: {self.prereq}")
 
 # ScheduleLinkedList:
 # Represents a schedule for a classroom object
