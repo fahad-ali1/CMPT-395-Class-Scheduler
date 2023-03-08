@@ -12,8 +12,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1003</width>
-    <height>650</height>
+    <width>1000</width>
+    <height>588</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -25,7 +25,7 @@
   <property name="minimumSize">
    <size>
     <width>1000</width>
-    <height>650</height>
+    <height>0</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -57,8 +57,7 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);
-font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -68,6 +67,17 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>1000</width>
+       <height>570</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
      </property>
      <property name="tabShape">
       <enum>QTabWidget::Triangular</enum>
@@ -90,6 +100,11 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;Manually input students per term to create perfect size cohort!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
@@ -109,7 +124,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>10</height>
+             <height>40</height>
             </size>
            </property>
            <property name="maximumSize">
@@ -117,6 +132,11 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
              <width>250</width>
              <height>40</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
            </property>
            <property name="text">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; text-decoration: underline;&quot;&gt;Upload Excel File (all terms)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -141,13 +161,44 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
             <font>
              <family>MS Shell Dlg 2</family>
              <pointsize>10</pointsize>
-             <weight>50</weight>
+             <weight>75</weight>
              <italic>false</italic>
-             <bold>false</bold>
+             <bold>true</bold>
+             <underline>false</underline>
             </font>
+           </property>
+           <property name="toolTip">
+            <string notr="true"/>
+           </property>
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="whatsThis">
+            <string comment="Revert changes" extracomment="Revert changes"/>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
            </property>
            <property name="text">
             <string>Revert Changes</string>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <property name="autoRepeat">
+            <bool>false</bool>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+           <property name="default">
+            <bool>false</bool>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -164,6 +215,11 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
              <width>200</width>
              <height>30</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
            </property>
            <property name="text">
             <string>Download Template (.xlsx)</string>
@@ -183,6 +239,11 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
              <width>200</width>
              <height>30</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
            </property>
            <property name="text">
             <string>Create Cohorts </string>
@@ -215,6 +276,11 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
              <height>10000</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
            <property name="layoutDirection">
             <enum>Qt::LeftToRight</enum>
            </property>
@@ -240,8 +306,13 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;Auto input students for &lt;/span&gt;&lt;span style=&quot; font-style:italic; color:#aa0000;&quot;&gt;all &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;terms. Download the required template from button below!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;Example File:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;Auto input students for &lt;/span&gt;&lt;span style=&quot; font-style:italic; color:#aa0000;&quot;&gt;all &lt;/span&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;terms with file upload. Download the required template from button below!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;Example File:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
@@ -262,6 +333,15 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
              <height>20</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+             <underline>false</underline>
+            </font>
+           </property>
            <property name="value">
             <number>0</number>
            </property>
@@ -269,7 +349,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
            </property>
            <property name="textVisible">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -278,7 +358,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
             <bool>false</bool>
            </property>
            <property name="format">
-            <string>Upload student input file ... %p%</string>
+            <string>Uploading student input file ... %p%</string>
            </property>
           </widget>
          </item>
@@ -289,6 +369,11 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
            </property>
            <property name="text">
             <string/>
@@ -324,14 +409,22 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
              <height>20</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
            <property name="value">
             <number>0</number>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
            </property>
+           <property name="textVisible">
+            <bool>false</bool>
+           </property>
            <property name="format">
-            <string>Download template ... %p%</string>
+            <string>Downloading template ... %p%</string>
            </property>
           </widget>
          </item>
@@ -346,7 +439,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>10</height>
+             <height>40</height>
             </size>
            </property>
            <property name="maximumSize">
@@ -382,6 +475,12 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
              <width>200</width>
              <height>30</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+             <italic>false</italic>
+            </font>
            </property>
            <property name="text">
             <string>Upload File (.xlsx)</string>
@@ -721,6 +820,11 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
          </item>
          <item row="4" column="0" rowspan="2" colspan="2">
           <widget class="QLabel" name="MacEwanLogo">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -760,6 +864,11 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
            <width>181</width>
            <height>23</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
          </property>
          <property name="text">
           <string>Save ALL cohorts (.xlsx)</string>
@@ -828,9 +937,9 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
           <font>
            <family>MS Shell Dlg 2</family>
            <pointsize>10</pointsize>
-           <weight>50</weight>
+           <weight>75</weight>
            <italic>false</italic>
-           <bold>false</bold>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
@@ -840,6 +949,11 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
        </item>
        <item row="0" column="0" colspan="3">
         <widget class="QTabWidget" name="CohortTables">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="currentIndex">
           <number>0</number>
          </property>
@@ -850,6 +964,11 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="0" column="0">
             <widget class="QTableWidget" name="CohortTable1">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
              <attribute name="horizontalHeaderDefaultSectionSize">
               <number>110</number>
              </attribute>
@@ -1048,14 +1167,22 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
            <height>23</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="value">
           <number>0</number>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
+         <property name="textVisible">
+          <bool>false</bool>
+         </property>
          <property name="format">
-          <string>Upload student input file ... %p%</string>
+          <string>Uploading student input file ... %p%</string>
          </property>
         </widget>
        </item>
@@ -1082,14 +1209,22 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
            <height>23</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="value">
           <number>0</number>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
+         <property name="textVisible">
+          <bool>false</bool>
+         </property>
          <property name="format">
-          <string>Save all cohorts ... %p%</string>
+          <string>Saving all cohorts ... %p%</string>
          </property>
         </widget>
        </item>
@@ -1130,9 +1265,9 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
           <font>
            <family>MS Shell Dlg 2</family>
            <pointsize>10</pointsize>
-           <weight>50</weight>
+           <weight>75</weight>
            <italic>false</italic>
-           <bold>false</bold>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
@@ -1180,6 +1315,11 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
        </item>
        <item row="0" column="0" colspan="3">
         <widget class="QTabWidget" name="ScheduleTables">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="currentIndex">
           <number>0</number>
          </property>
@@ -1389,6 +1529,11 @@ PCOM 0103 (930-1050)</string>
           <layout class="QGridLayout" name="gridLayout_6">
            <item row="0" column="0">
             <widget class="QTableWidget" name="Room1Schedule">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
              <property name="sizeAdjustPolicy">
               <enum>QAbstractScrollArea::AdjustToContents</enum>
              </property>
@@ -1476,148 +1621,6 @@ PCOM 0103 (930-1050)</string>
                <string>Thursday</string>
               </property>
              </row>
-             <column>
-              <property name="text">
-               <string>PCOM 0101</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>PCOM 0301</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>BA 0301</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>PCOM 0304</string>
-              </property>
-             </column>
-             <item row="0" column="0">
-              <property name="text">
-               <string>test</string>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>0</red>
-                 <green>255</green>
-                 <blue>0</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="0" column="1">
-              <property name="text">
-               <string/>
-              </property>
-             </item>
-             <item row="0" column="2">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>255</red>
-                 <green>170</green>
-                 <blue>255</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="1" column="1">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>170</red>
-                 <green>255</green>
-                 <blue>255</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="1" column="3">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>255</red>
-                 <green>170</green>
-                 <blue>127</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="2" column="0">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>0</red>
-                 <green>255</green>
-                 <blue>0</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="2" column="1">
-              <property name="text">
-               <string/>
-              </property>
-             </item>
-             <item row="2" column="2">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>255</red>
-                 <green>170</green>
-                 <blue>255</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="3" column="1">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>170</red>
-                 <green>255</green>
-                 <blue>255</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="3" column="3">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>255</red>
-                 <green>170</green>
-                 <blue>127</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
             </widget>
            </item>
           </layout>
@@ -1647,6 +1650,11 @@ PCOM 0103 (930-1050)</string>
            <height>23</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="value">
           <number>0</number>
          </property>
@@ -1654,7 +1662,7 @@ PCOM 0103 (930-1050)</string>
           <set>Qt::AlignCenter</set>
          </property>
          <property name="textVisible">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
          <property name="format">
           <string notr="true">%p%</string>
