@@ -29,22 +29,22 @@ class Course:
         self.courseType = ""
         self.schedulingInstructions = ""
 
-    def setCourseName(self, courseName):
+    def setCourseName(self, courseName): #change course name
         self.courseName = courseName
 
-    def setCourseDes(self, courseDes):
+    def setCourseDes(self, courseDes): #add a description
         self.courseDescript = courseDes
 
-    def setNumberOfSessions(self, sessions):
+    def setNumberOfSessions(self, sessions): #number of sessions
         self.numberOfSessions = sessions
 
-    def setTranscriptHours(self, transcriptHours):
+    def setTranscriptHours(self, transcriptHours): #total class time
         self.totalTranscriptHours = transcriptHours
 
-    def setCourseType(self, status):
+    def setCourseType(self, status): 
         self.courseType = status
 
-    def setLectureLength(self, lecLen):
+    def setLectureLength(self, lecLen): # time block for each lecture
         self.lectureLength = lecLen
 
     def setschedulingInstructions(self, instructions):
@@ -73,14 +73,20 @@ class Course:
     def printCourseDetails(self):
         print(self.courseName, " ", self.courseDescript, " ", self.totalTranscriptHours)
 
-# Program:
-# Represents a program at macewan
-# Attributes include:
-# programType = the type(name) of the program
-# term1 = list of all courses(course class) for term 1
-# term2 = list of all courses(course class) for term 2
-# term3 = list of all courses(course class) for term 3
+
 class Program:
+
+    """
+    Program: Represents a program at macewan
+        i.e.: BCOM, Bachelor of something
+    Attributes include:
+    programType = the type(name) of the program
+
+    three academic terms
+    term1 = list of all courses(course class) for term 1
+    term2 = list of all courses(course class) for term 2
+    term3 = list of all courses(course class) for term 3
+    """
     def __init__(self, programType=""):
         self.programType = programType
         self.term1 = []
@@ -109,17 +115,17 @@ class Program:
         allTerms = [self.term1, self.term2, self.term3]
         return allTerms
 
-
-
-# Classroom:
-# Represents a physical classroom
-# Attributes include:
-# classRoomNumber = classroom number/name
-# normalCapacity = capacity
-# lab = is it a lab
-# isGhost = is it a ghost room (room that would be needed for extra students)
-# schedule = schedule linked list representing the schedule
 class Classroom:
+    """
+    Classroom:
+    Represents a physical classroom
+    Attributes include:
+    classRoomNumber = classroom number/name
+    normalCapacity = capacity
+    lab = is it a lab
+    isGhost = is it a ghost room (room that would be needed for extra students)
+    schedule = schedule linked list representing the schedule
+    """
     def __init__(self, classRoomNumber='', normalCapacity=0, lab=False):
         self.classRoomNumber = classRoomNumber
         self.normalCapacity = normalCapacity
@@ -128,7 +134,7 @@ class Classroom:
         self.schedule = None
         self.currentStudents = 0 #will make a setter for it
         self.inUse = False
-    #
+
     def setGhost(self):
         self.isGhost = True
 
@@ -136,14 +142,15 @@ class Classroom:
         self.schedule = schedule
 
     def printClassroom(self):
-        print("Classroom #: ", self.classRoomNumber, "Normal Capacity: ", self.normalCapacity,
-              "lab: ", self.lab, " isGhost: ", self.isGhost)
-
-# Cohort Class takes in a cohort name and size initially
-# Methods will be created to add a programs to mainProgramCourses
-# and electiveProgramCourses
+        print("Classroom #: ", self.classRoomNumber, "Normal Capacity: ", 
+              self.normalCapacity, "lab: ", self.lab, " isGhost: ", self.isGhost)
 
 class Cohort:
+    """
+    Cohort Class takes in a cohort name and size initially
+    Methods will be created to add a programs to mainProgramCourses
+    and electiveProgramCourses
+    """
     def __init__(self, cohortName="", size=0):
         self.cohortName = cohortName
         self.size = size
@@ -153,6 +160,10 @@ class Cohort:
 
     def getCohortName(self):
         return self.cohortName
+    
+    def displayCohort(self):
+
+        print(f"Name: {self.cohortName}\tSize: {self.size}")
 
 # ScheduleLinkedList:
 # Represents a schedule for a classroom object
@@ -168,51 +179,55 @@ class ScheduleLinkedList:
         self.totalHours = totalHours
         self.head = None
 
-    def addNodeEnd(self, data):
-        newNode = scheduleNode(data)
-        if (self.head == None):
-            self.head = self.tail = newNode
-            self.head.previous = None
-            self.tail.next = None
-        else:
-            self.tail.next = newNode
-            newNode.previous = self.tail
-            self.tail = newNode
-            self.tail.next = None
+    def addNodePush(self, time, cohort, startDate, endDate):
+        newNode = scheduleNode(time, cohort, startDate, endDate)
+        newNode.next = self.head
+        if self.head is not None:
+            self.head.prev = newNode
+        self.head = newNode
     
     def getCohort(self, node):
 
         # if is empty return none
         if self.head is None: return None
 
-        cohortName = node.cohort # name of the searching cohort
+        cohortName = node.cohortName # name of the searching cohort
         currentCohort = self.head # first item
 
-        while self.tail.next is not None:
-            # while not at the end keep going
+        while True: # while not at the end keep going
 
-            if currentCohort.cohort is cohortName: # FOUND!!!
+            # currentCohort.cohort.displayCohort()
+
+            if currentCohort.cohort.cohortName is cohortName: # FOUND!!!
                 
                 # add time management for returning it
-                return currentCohort.cohort.cohortName
+                return currentCohort.cohort.cohortName, currentCohort.startHour, currentCohort.endHour
 
             currentCohort = currentCohort.next # swap to next node
-        
+
+            if currentCohort is None: break
+
         return None # when not found
 
-    #checks to see if the schedule is full
+     #checks to see if the schedule is full
     #full = True; not full = False
     def checkIfScheduleFull(self):
-        if self.totalHours == 1600:
-            return True
-        else:
-            return False
+        if self.totalHours == 1600: return True
+        return False
 
     def updateTime(self, node):
-        if node.time + self.totalHours > 1600:
-            return -1 # -1 is an error indicating full
+        hours = self.totalHours
+        if node is not None:
+            if (node.time * 100) + hours > 1600:
+                return -1 # -1 is an error indicating full
+            else:
+                self.totalHours = hours + (node.time * 100)
         else:
-            self.totalHours += node.time
+            return hours
+        return int(self.totalHours)
+
+    def getTotalHours(self):
+        return int(self.totalHours)
 
 # ScheduleNode:
 # Represents a lecture time block for a classroom's schedule
@@ -224,13 +239,27 @@ class ScheduleLinkedList:
 # prev = prev lecture block (node)
 # next = next lecture block (node)
 class scheduleNode:
-    def __init__(self, time, cohort, startDate, endDate):
+    def __init__(self, time, cohort, startHour, endHour):
         self.time = time #time should be 1.5 or 2.0, etc..
         self.cohort = cohort
-        self.startDate = startDate
-        self.endDate = endDate
+        self.startHour = startHour
+        self.endHour = endHour
+        self.startDate = 0
+        self.endDate = 0
         self.prev = None
         self.next = None
+
+    #input: Convert the lecture time from a course object to it's time in hours.
+    #output: return the hour
+    def convertLectureToHour(self):
+        return self.time * 100
+
+    def setStartDate(self, StartDate):
+        self.startDate = StartDate
+
+    def setEndDate(self, EndDate):
+        self.endDate = EndDate
+
 
 #input: Convert the lecture time from a course object to it's time in hours.
 #output: return the hour
