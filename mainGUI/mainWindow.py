@@ -10,6 +10,7 @@ from PyQt5 import uic
 
 from Students import students
 import sys
+import time
 import openpyxl
 from openpyxl.styles import PatternFill, Border, Side
 import MikeCode
@@ -46,7 +47,7 @@ class MainMenu(QWidget):
         self.revertButton = self.findChild(QPushButton, "RevertButton")
         self.revertButton2 = self.findChild(QPushButton, "RevertButton2")
         self.revertButton3 = self.findChild(QPushButton, "RevertButton3")
-        
+
         self.uploadButton = self.findChild(QPushButton, "UploadFileButton")
         self.uploadButton2 = self.findChild(QPushButton, "UploadFileButton2")
         
@@ -55,7 +56,8 @@ class MainMenu(QWidget):
         self.progressBarUpload2 = self.findChild(QProgressBar, "ProgressBarUpload2")
         
         self.progressBarDownload = self.findChild(QProgressBar, "ProgressBarDownload")
-        self.progressBarSaveAllCohort = self.findChild(QProgressBar, "ProgressBarSaveAllCohort")
+        self.progressBarSaveAllCohort = self.findChild(QProgressBar,
+                                                       "ProgressBarSaveAllCohort")
         
         self.progressBarSaveSchedule = self.findChild(QProgressBar, "ScheduleSaveBar")
         
@@ -131,18 +133,23 @@ class MainMenu(QWidget):
         
         self.progressBarUpload.setValue(0)
         self.progressBarUpload2.setValue(0)
-        self.progressBarUpload.setFormat("Upload student input file ... %p%")
-        self.progressBarUpload2.setFormat("Upload student input file ... %p%")
-        
+        self.progressBarUpload.setFormat("")
+        self.progressBarUpload2.setFormat("")
+        self.progressBarUpload.setTextVisible(False)
+        self.progressBarUpload2.setTextVisible(False)
+            
         self.progressBarDownload.setValue(0)
-        self.progressBarDownload.setFormat("Download template ... %p%")
+        self.progressBarDownload.setFormat("")
+        self.progressBarDownload.setTextVisible(False)
         
         self.progressBarSaveAllCohort.setValue(0)
-        self.progressBarSaveAllCohort.setFormat("Save all cohorts ... %p%")
+        self.progressBarSaveAllCohort.setFormat("")
+        self.progressBarSaveAllCohort.setTextVisible(False)
         
         self.progressBarSaveSchedule.setValue(0)
-        self.progressBarSaveSchedule.setFormat("%p%")
-
+        self.progressBarSaveSchedule.setFormat("")
+        self.progressBarSaveSchedule.setTextVisible(False)
+        
     def create_cohorts(self):
         '''
         Description: assign input to students class to create cohorts
@@ -167,14 +174,16 @@ class MainMenu(QWidget):
         '''
         # assign variables
         self.tables = [self.cohortTable1, self.cohortTable2, self.cohortTable3]
-        self.tables[int(self.terminput.text())-1].setRowCount(len(max(self._cohortFinal,key=len)))
+        self.tables[int(self.terminput.text())-1].\
+            setRowCount(len(max(self._cohortFinal,key=len)))
         j = 0
         
         # create cells for each table and add information
         for cohortLists in self._cohortFinal:
             i = 0
             for cohorts in cohortLists:
-                self.tables[int(self.terminput.text())-1].setItem(i, j, QTableWidgetItem(cohorts))
+                self.tables[int(self.terminput.text())-1]\
+                    .setItem(i, j, QTableWidgetItem(cohorts))
                 i += 1
             j += 1
             
@@ -196,9 +205,7 @@ class MainMenu(QWidget):
                                 "PM":fileinput[2], "BA":fileinput[3], 
                                 "SCMT":fileinput[4], "BK":fileinput[5],
                                 "FS":fileinput[6], "DXD":fileinput[7]}
-            term1=[]
-            term2=[]
-            term3=[]
+            term1, term2, term3 = [], [], []
             inputs = [term1, term2, term3]
             # loop through dictionary values
             for studentInputs in studentsByProgarm.values():
@@ -216,13 +223,14 @@ class MainMenu(QWidget):
                 self.create_cohorts()
                 self.add_cohort_table()
             
-            for i in range(101):
-                # Set value to progress bar
-                self.progressBarUpload.setValue(i)
-                self.progressBarUpload2.setValue(i)
+            # Set value to progress bar
+            self.progressBarUpload.setValue(100)
+            self.progressBarUpload2.setValue(100)
             self.progressBarUpload.setFormat('Upload Complete! (Cohort Tab)')
+            self.progressBarUpload.setTextVisible(True)
             self.progressBarUpload2.setFormat('Upload Complete!')
-
+            self.progressBarUpload2.setTextVisible(True)
+            
             # set values 
             self.spin_box_values(self.zero, tables)
             self.terminput.setValue(1)
@@ -252,19 +260,23 @@ class MainMenu(QWidget):
             # apply background colors and borders
             for row in sheet ["A2":"A9"]:
                 for cell in row:
-                    cell.fill = PatternFill(start_color='FFFF00', end_color='FFFF00', fill_type="solid")
+                    cell.fill = PatternFill(start_color='FFFF00', 
+                                            end_color='FFFF00', fill_type="solid")
                     cell.border = thin_border
             for row in sheet ["B1":"B9"]:
                 for cell in row:
-                    cell.fill = PatternFill(start_color='FFD580', end_color='FFD580', fill_type="solid")
+                    cell.fill = PatternFill(start_color='FFD580', 
+                                            end_color='FFD580', fill_type="solid")
                     cell.border = thin_border
             for row in sheet ["C1":"C9"]:
                 for cell in row:
-                    cell.fill = PatternFill(start_color='81B622', end_color='81B622', fill_type="solid")
+                    cell.fill = PatternFill(start_color='81B622', 
+                                            end_color='81B622', fill_type="solid")
                     cell.border = thin_border
             for row in sheet ["D1":"D9"]:
                 for cell in row:
-                    cell.fill = PatternFill(start_color='ADD8E6', end_color='ADD8E6', fill_type="solid")
+                    cell.fill = PatternFill(start_color='ADD8E6', 
+                                            end_color='ADD8E6', fill_type="solid")
                     cell.border = thin_border
                     
             # create term cells
@@ -296,11 +308,12 @@ class MainMenu(QWidget):
             # save workbook to path
             wb.save(savepath)
             
-            for i in range(101):
-            # Set value to progress bar
-                self.progressBarDownload.setValue(i)
+
+        # Set value to progress bar
+        self.progressBarDownload.setValue(100)
         self.progressBarDownload.setFormat("Download complete!")
-        
+        self.progressBarDownload.setTextVisible(True)
+            
     def save_all_schedule(self):
         '''
         Description: saves all schedules into one excel sheet
@@ -337,7 +350,10 @@ class MainMenu(QWidget):
             wb.save(savepath)
             
             for i in range(101):
-            # Set value to progress bar
+                # Set value to progress bar to create a download animation
+                time.sleep(0.011)
+                self.progressBarSaveSchedule.setTextVisible(True)
+                self.progressBarSaveSchedule.setFormat(f"One moment ... %{i}")
                 self.progressBarSaveSchedule.setValue(i)
         self.progressBarSaveSchedule.setFormat("Download complete!")
         
@@ -373,14 +389,12 @@ class MainMenu(QWidget):
                             cohortValue = self.tables[i].item(r,c).text()
                             ws = wb.get_sheet_by_name(wsList[i])\
                                 .cell(row=r+1, column=c+1).value = cohortValue
-
             wb.save(savepath)
             
-            for i in range(101):
-            # Set value to progress bar
-                self.progressBarSaveAllCohort.setValue(i)
+        self.progressBarSaveAllCohort.setValue(100)
         self.progressBarSaveAllCohort.setFormat("Download complete!")
-
+        self.progressBarSaveAllCohort.setTextVisible(True)
+        
 # Initialize The App
 def main():
     app = QApplication(sys.argv)
