@@ -60,7 +60,6 @@ class Students:
 
         self._reset_classrooms(self._rooms)
 
-        
         cohortList.append(self.divide_to_cohorts(self._PMStudents, "PM"))
         cohortList.append(self.divide_to_cohorts(self._BAStudents, "BA"))
         cohortList.append(self.divide_to_cohorts(self._SCMTStudents, "SCMT"))
@@ -68,13 +67,15 @@ class Students:
         cohortList.append(self.divide_to_cohorts(self._FSStudents, "FS"))
         cohortList.append(self.divide_to_cohorts(self._DXDStudents, "DXD"))
 
+        self._reset_classrooms(self._rooms)
+
         return cohortList
-    
+
     def _reset_classrooms(self, classroom_list):
         for room in classroom_list:
             room.current_students = room.cap
             room.in_use = False
-    
+
     def _check_room_combo(self, temp, combo, percent, wiggle_percent):
 
         # Iterate through each room in the combo
@@ -86,10 +87,10 @@ class Students:
             # this combination simply will not work.
             if temp - wiggle_room < 0:
                 return None
-            
             # Handle if the remaining students can reasonably fit into the room.
+
             if temp - wiggle_room >= 0:
-                
+
                 # Check conditions for if this room combo is acceptable.
                 if room == combo[-1] and wiggle_room <= temp <= room.cap:
                     room.current_students = temp
@@ -110,7 +111,7 @@ class Students:
 
         if not empty_classrooms:
             return f"Need room for {students} students"
-        
+
         percent = 0.05
         wiggle_room = 0.05
         result_found = False
@@ -134,9 +135,9 @@ class Students:
                     for result in combo_result:
                         result.in_use = True
                     return combo_result
-                
+
             being_compared += 1
-            
+
             # If being compared is 5, increase percent and reset combo value
             if being_compared == len(empty_classrooms) + 1:
 
@@ -156,9 +157,9 @@ class Students:
                     percent -= 0.01
                     if percent < 0:
                         percent = 0
-                
+
                 being_compared = 1
-        
+
 
     def divide_to_cohorts(self, students, program):
         '''
@@ -176,7 +177,6 @@ class Students:
         # be created.
         if students == 0:
             return cohorts
-        
 
         rooms = self.most_even_rooms(students)
 
@@ -186,25 +186,9 @@ class Students:
 
         if rooms:
             for room in rooms:
-                string = f"{program}{self._term:02d}{num:02d}: {room.name}, {room.current_students}/{room.cap}"
+                string = f"{program}{self._term:02d}{num:02d} ({room.current_students}/{room.cap}), {room.name}"
                 cohorts.append(string)
                 num += 1
-            
+
         return cohorts
 
-# if __name__ == "__main__":
-#     students = Students()
-#     students._PCOMStudents = 210
-#     students._BCOMStudents = 25
-#     students._BAStudents = 74
-#     students._PMStudents = 102
-#     students._SCMTStudents = 41
-#     students._FSStudents = 18
-#     students._DXDStudents = 0
-#     students._BKStudents = 0
-#     students._term = 1
-
-    
-#     cohorts = students.cohorts_final()
-#     for cohort in cohorts:
-#         print(cohort)
