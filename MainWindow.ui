@@ -12,8 +12,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>588</height>
+    <width>1027</width>
+    <height>594</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -24,7 +24,7 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>1000</width>
+    <width>1027</width>
     <height>0</height>
    </size>
   </property>
@@ -1527,8 +1527,8 @@ PCOM 0103 (930-1050)</string>
            <string>11-533 (36)</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_6">
-           <item row="0" column="0">
-            <widget class="QTableWidget" name="Room1Schedule">
+           <item row="1" column="0" colspan="3">
+            <widget class="QTableWidget" name="ScheduleR1">
              <property name="font">
               <font>
                <pointsize>10</pointsize>
@@ -1552,75 +1552,71 @@ PCOM 0103 (930-1050)</string>
              <attribute name="verticalHeaderDefaultSectionSize">
               <number>50</number>
              </attribute>
-             <row>
-              <property name="text">
-               <string>Monday</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Tuesday</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Wednesday</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Thursday</string>
-              </property>
-             </row>
             </widget>
            </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="Room2">
-          <attribute name="title">
-           <string>11-534 (36)</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_8">
-           <item row="0" column="0">
-            <widget class="QTableWidget" name="Room2Schedule">
-             <property name="sizeAdjustPolicy">
-              <enum>QAbstractScrollArea::AdjustToContents</enum>
+           <item row="0" column="1">
+            <widget class="QLabel" name="WeekNumR1">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
              </property>
-             <attribute name="horizontalHeaderMinimumSectionSize">
-              <number>100</number>
-             </attribute>
-             <attribute name="horizontalHeaderDefaultSectionSize">
-              <number>160</number>
-             </attribute>
-             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-              <bool>false</bool>
-             </attribute>
-             <attribute name="horizontalHeaderStretchLastSection">
-              <bool>false</bool>
-             </attribute>
-             <attribute name="verticalHeaderDefaultSectionSize">
-              <number>50</number>
-             </attribute>
-             <row>
-              <property name="text">
-               <string>Monday</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Tuesday</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Wednesday</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Thursday</string>
-              </property>
-             </row>
+             <property name="text">
+              <string>Week Num</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="PrevWeekR1">
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Previous Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Previous.png</normaloff>Images/Previous.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="NextWeekR1">
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>Next Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Next.png</normaloff>Images/Next.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
             </widget>
            </item>
           </layout>
