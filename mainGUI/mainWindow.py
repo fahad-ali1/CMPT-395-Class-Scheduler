@@ -11,6 +11,7 @@ from PyQt5 import uic
 from Students import students
 import sys
 import time
+import  calendar
 import openpyxl
 from openpyxl.styles import PatternFill, Border, Side
 import MikeCode
@@ -67,10 +68,16 @@ class MainMenu(QWidget):
         self.cohortTable3 = self.findChild(QTableWidget, "CohortTable3")
 
         # Set schedule tables
+        # DELETE LATER ****************************************************
         self.exampleTable = self.findChild(QTableWidget, "ExampleScheduleTable")
-        self.room1 = self.findChild(QTableWidget, "Room1Schedule")
-        self.room2 = self.findChild(QTableWidget, "Room2Schedule")
-        self.scheduleTables = [self.exampleTable, self.room1, self.room2]
+        
+        self.room1 = self.findChild(QTableWidget, "ScheduleR1")
+        self.room1week = self.findChild(QLabel, "WeekNumR1")
+        self.room1prev = self.findChild(QPushButton, "PrevWeekR1")
+        self.room1next = self.findChild(QPushButton, "NextWeekR1")
+        
+        # List of schedules per room
+        self.scheduleTables = [self.exampleTable, self.room1]
 
         # Define buttons for schedule saving
         self.saveCurrent1 = self.findChild(QPushButton, "SaveCurrentSchedule1")
@@ -394,6 +401,18 @@ class MainMenu(QWidget):
         self.progressBarSaveAllCohort.setValue(100)
         self.progressBarSaveAllCohort.setFormat("Download complete!")
         self.progressBarSaveAllCohort.setTextVisible(True)
+
+    def week_schedule(self):
+        '''
+        Description: set schedule for current week
+        '''
+        self.room1week.setText("Hello")
+    
+    def week_next(self):
+        pass
+    
+    def week_prev(self):
+        pass
 
 # Initialize The App
 def main():
