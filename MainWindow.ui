@@ -958,6 +958,11 @@
           <number>0</number>
          </property>
          <widget class="QWidget" name="term1Cohort">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <attribute name="title">
            <string>Term 1</string>
           </attribute>
@@ -1023,12 +1028,22 @@
           </layout>
          </widget>
          <widget class="QWidget" name="term2Cohort">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <attribute name="title">
            <string>Term 2</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_3">
            <item row="0" column="0">
             <widget class="QTableWidget" name="CohortTable2">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
              <attribute name="horizontalHeaderDefaultSectionSize">
               <number>110</number>
              </attribute>
@@ -1083,12 +1098,22 @@
           </layout>
          </widget>
          <widget class="QWidget" name="term3Cohort">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <attribute name="title">
            <string>Term 3</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="0">
             <widget class="QTableWidget" name="CohortTable3">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
              <attribute name="horizontalHeaderDefaultSectionSize">
               <number>110</number>
              </attribute>
