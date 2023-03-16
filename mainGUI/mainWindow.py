@@ -19,9 +19,6 @@ import sys
 import time
 import calendar
 
-# TODO: Save as (template, cohort, schedules), save ALL (schedule), upload bar, 
-# add classes to schedule,
-
 class MainMenu(QWidget):
     def __init__(self):
         super(MainMenu, self).__init__()
@@ -32,17 +29,12 @@ class MainMenu(QWidget):
         # call students class from students module
         self._studentCohort = students.Students()
 
-        # create a calender object
-        self.calender = calendar.Calendar(firstweekday = 0)
-        for i in range(12):
-            for week in self.calender.yeardatescalendar(2023, 12)[0][i]:
-                # prints weeks for the year, week[0] = Mon, week[1] = Tue, etc
-                print(week[0])
-                                  
         # list to zero all the spin boxes quickly
         self.zero = [0,0,0,0,0,0,0,0]
 
-        # Define student inputs (in student input tab)
+        #------------------------- Inputs Tab-----------------------------
+        
+        # Define student inputs 
         self.terminput = self.findChild(QSpinBox, "TermInput")
         self.BCOMinput = self.findChild(QSpinBox, "BCOMinput")
         self.PCOMinput = self.findChild(QSpinBox, "PCOMinput")
@@ -52,8 +44,8 @@ class MainMenu(QWidget):
         self.BKinput = self.findChild(QSpinBox, "BKinput")
         self.FSinput = self.findChild(QSpinBox, "FSinput")
         self.DXDinput = self.findChild(QSpinBox, "DXDinput")
-
-        # Define buttons in input tab
+        
+        # Define buttons
         self.createCohort = self.findChild(QPushButton, "CreateCohort")
         self.revertButton = self.findChild(QPushButton, "RevertButton")
         self.revertButton2 = self.findChild(QPushButton, "RevertButton2")
@@ -62,7 +54,8 @@ class MainMenu(QWidget):
         self.uploadButton = self.findChild(QPushButton, "UploadFileButton")
         self.uploadButton2 = self.findChild(QPushButton, "UploadFileButton2")
 
-        # Set progress bars
+
+        #------------------------- Progress bars ------------------------------
         self.progressBarUpload = self.findChild(QProgressBar, "ProgressBarUpload")
         self.progressBarUpload2 = self.findChild(QProgressBar, "ProgressBarUpload2")
 
@@ -72,19 +65,31 @@ class MainMenu(QWidget):
 
         self.progressBarSaveSchedule = self.findChild(QProgressBar, "ScheduleSaveBar")
 
+        #-------------------------  Cohort Tab --------------------------------
         # Set cohort tables
         self.cohortTable1 = self.findChild(QTableWidget, "CohortTable1")
         self.cohortTable2 = self.findChild(QTableWidget, "CohortTable2")
         self.cohortTable3 = self.findChild(QTableWidget, "CohortTable3")
 
+        #------------------------- Schedules Tab -----------------------------
+        
         # Set schedule tables per room        
         self.room1 = self.findChild(QTableWidget, "ScheduleR1")
         self.room1week = self.findChild(QLabel, "WeekNumR1")
+        
+        # buttons
         self.room1prev = self.findChild(QPushButton, "PrevWeekR1")
         self.room1next = self.findChild(QPushButton, "NextWeekR1")
         
         # List of schedules per room
         self.scheduleTables = [self.room1]
+                
+        # call method and create schedules for all rooms
+        self.daysIterator = 0
+        self.week = 1
+        self.create_weeks()            
+
+        #------------- Buttons for Saving and Downloading template ------------
 
         # Define buttons for schedule saving
         self.saveCurrent1 = self.findChild(QPushButton, "SaveCurrentSchedule1")
@@ -92,6 +97,8 @@ class MainMenu(QWidget):
         self.saveAllSchedule = self.findChild(QPushButton, "SaveAllScheduleButton")
 
         self.downloadTemplate = self.findChild(QPushButton, "DownloadTemplate")
+
+        #------------------------- Connect Buttons -----------------------------
 
         # Call revert_changes function 
         self.revertButton.clicked.connect(self.revert_changes)
@@ -114,6 +121,13 @@ class MainMenu(QWidget):
 
         # Download/save all schedules as .xlsx
         self.saveAllSchedule.clicked.connect(self.save_all_schedule)
+
+        # Create next week schedule
+        self.room1next.clicked.connect(self.week_next)
+        
+        # Create previous week schedule
+        self.room1prev.clicked.connect(self.week_prev)
+        
 
     def spin_box_values(self, value, tables):
             '''
@@ -409,40 +423,53 @@ class MainMenu(QWidget):
         self.progressBarSaveAllCohort.setFormat("Download complete!")
         self.progressBarSaveAllCohort.setTextVisible(True)
 
+    def format_calendar(self):
+        '''
+        Description: formats calender to useable format
+        '''        
+        self.weeksInYear = []
+        year = 2023
+        
+        # create a calender object
+        self.calendar = calendar.Calendar(firstweekday = 0)
+        for i in range(12):
+            for week in self.calendar.yeardatescalendar(year, 12)[0][i]:
+                # prints weeks for the year, week[0] = Mon, week[1] = Tue, etc
+                for day in range(7):
+                    self.weeksInYear.append(week[day].strftime("%x"))
+
     def create_weeks(self):
         '''
         Description: set proper dates and days for year as table
-        '''
-        # assign variables
-        self.scheduleTables[0].setRowCount(7)
-        j = 0
+        '''        
+        self.format_calendar()
+        
+        # loop through every room
+        for room in self.scheduleTables:
+            # set dates
+            days = self.daysIterator
+            for col in range(7):
+                self.room1week.setText(f"Week {self.week}")
+                room.setItem(0, col, QTableWidgetItem(self.weeksInYear[days]))
+                days += 1
+                # set schedules (TODO: need to implement schedules per cohort here)
+                for row in range(1, 20):
+                    room.setItem(row, col, QTableWidgetItem("ScHeDuLe"))
 
-        # TODO: convert this to create week dates
-        for cohortLists in self._cohortFinal:
-            i = 0
-            for cohorts in cohortLists:
-                self.tables[int(self.terminput.text())-1]\
-                    .setItem(i, j, QTableWidgetItem(cohorts))
-                i += 1
-            j += 1
-
-    def week_schedule(self):
-        '''
-        Description: set schedule for current week
-        '''
-        pass
-    
     def week_next(self):
         '''
         Description: set schedule to week after current
         '''
-        pass
-    
+        self.daysIterator += 7
+        self.week += 1
+        self.create_weeks()
     def week_prev(self):
         '''
         Description: set schedule to week before current
         '''
-        pass
+        self.daysIterator -= 7
+        self.week -= 1
+        self.create_weeks()
 
 # Initialize The App
 def main():
