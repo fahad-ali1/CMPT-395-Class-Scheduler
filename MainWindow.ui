@@ -1338,23 +1338,135 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0" colspan="3">
-        <widget class="QTabWidget" name="ScheduleTables">
+       <item row="1" column="0">
+        <widget class="QProgressBar" name="ScheduleSaveBar">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>181</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>181</width>
+           <height>23</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <pointsize>10</pointsize>
           </font>
          </property>
+         <property name="value">
+          <number>0</number>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="textVisible">
+          <bool>false</bool>
+         </property>
+         <property name="format">
+          <string notr="true">%p%</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="3">
+        <widget class="QTabWidget" name="ScheduleTables">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="font">
+          <font>
+           <family>MS Shell Dlg 2</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+         </property>
          <property name="currentIndex">
           <number>0</number>
          </property>
-         <widget class="QWidget" name="ExampleSchedule">
+         <widget class="QWidget" name="Room1">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+          </property>
           <attribute name="title">
-           <string>Example (11-533)</string>
+           <string>Room1</string>
           </attribute>
-          <layout class="QGridLayout" name="gridLayout_7">
+          <layout class="QGridLayout" name="gridLayout_6">
            <item row="0" column="0">
-            <widget class="QTableWidget" name="ExampleScheduleTable">
+            <widget class="QPushButton" name="PrevWeekR1">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Previous Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Previous.png</normaloff>Images/Previous.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="WeekNumR1">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Week Num</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="QTableWidget" name="ScheduleR1">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
              <property name="sizeAdjustPolicy">
               <enum>QAbstractScrollArea::AdjustToContents</enum>
              </property>
@@ -1375,183 +1487,141 @@
              </attribute>
              <row>
               <property name="text">
-               <string>Monday</string>
+               <string/>
               </property>
              </row>
              <row>
+              <property name="text">
+               <string>8:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>5:00 PM</string>
+              </property>
+             </row>
+             <column>
+              <property name="text">
+               <string>Monday</string>
+              </property>
+             </column>
+             <column>
               <property name="text">
                <string>Tuesday</string>
               </property>
-             </row>
-             <row>
+             </column>
+             <column>
               <property name="text">
                <string>Wednesday</string>
               </property>
-             </row>
-             <row>
+             </column>
+             <column>
               <property name="text">
                <string>Thursday</string>
               </property>
-             </row>
+             </column>
              <column>
               <property name="text">
-               <string>PCOM 0101</string>
+               <string>Friday</string>
               </property>
              </column>
              <column>
               <property name="text">
-               <string>PCOM 0301</string>
+               <string>Saturday</string>
               </property>
              </column>
              <column>
               <property name="text">
-               <string>BA 0301</string>
+               <string>Sunday</string>
               </property>
              </column>
-             <column>
-              <property name="text">
-               <string>PCOM 0304</string>
-              </property>
-             </column>
-             <item row="0" column="0">
-              <property name="text">
-               <string>PCOM 0101 (8-920)
-PCOM 0105 (930-1050)</string>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>0</red>
-                 <green>255</green>
-                 <blue>0</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="0" column="1">
-              <property name="text">
-               <string/>
-              </property>
-             </item>
-             <item row="0" column="2">
-              <property name="text">
-               <string>PRDV 0646 (1230-320)</string>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>255</red>
-                 <green>170</green>
-                 <blue>255</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="1" column="1">
-              <property name="text">
-               <string>PCOM 0202 (8-920)
-PCOM 0103 (930-1050)
-</string>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>170</red>
-                 <green>255</green>
-                 <blue>255</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="1" column="3">
-              <property name="text">
-               <string>PCOM 0202 (8-920)
-PCOM 0103 (930-1050)</string>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>255</red>
-                 <green>170</green>
-                 <blue>127</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="2" column="0">
-              <property name="text">
-               <string>PCOM 0101 (8-920)
-PCOM 0105 (930-1050)</string>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>0</red>
-                 <green>255</green>
-                 <blue>0</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="2" column="1">
-              <property name="text">
-               <string/>
-              </property>
-             </item>
-             <item row="2" column="2">
-              <property name="text">
-               <string>PCOM 141 (1230-320)</string>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>255</red>
-                 <green>170</green>
-                 <blue>255</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="3" column="1">
-              <property name="text">
-               <string>PCOM 0202 (8-920)
-PCOM 0103 (930-1050)
-</string>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>170</red>
-                 <green>255</green>
-                 <blue>255</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
-             <item row="3" column="3">
-              <property name="text">
-               <string>PCOM 0202 (8-920)
-PCOM 0103 (930-1050)</string>
-              </property>
-              <property name="background">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>255</red>
-                 <green>170</green>
-                 <blue>127</blue>
-                </color>
-               </brush>
-              </property>
-             </item>
             </widget>
            </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="Room1">
-          <attribute name="title">
-           <string>11-533 (36)</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_6">
            <item row="0" column="2">
             <widget class="QPushButton" name="NextWeekR1">
              <property name="minimumSize">
@@ -1584,24 +1654,21 @@ PCOM 0103 (930-1050)</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="1">
-            <widget class="QLabel" name="WeekNumR1">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Week Num</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="Room2">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+          </property>
+          <attribute name="title">
+           <string>Extra Room</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_7">
            <item row="0" column="0">
-            <widget class="QPushButton" name="PrevWeekR1">
+            <widget class="QPushButton" name="PrevWeekR2">
              <property name="minimumSize">
               <size>
                <width>150</width>
@@ -1629,11 +1696,63 @@ PCOM 0103 (930-1050)</string>
              </property>
             </widget>
            </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="WeekNumR2">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Week Num</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="NextWeekR2">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>Next Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Next.png</normaloff>Images/Next.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
            <item row="1" column="0" colspan="3">
-            <widget class="QTableWidget" name="ScheduleR1">
+            <widget class="QTableWidget" name="ScheduleR2">
              <property name="font">
               <font>
+               <family>MS Shell Dlg 2</family>
                <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
               </font>
              </property>
              <property name="sizeAdjustPolicy">
@@ -1793,48 +1912,2033 @@ PCOM 0103 (930-1050)</string>
            </item>
           </layout>
          </widget>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QProgressBar" name="ScheduleSaveBar">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>181</width>
-           <height>23</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>181</width>
-           <height>23</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="value">
-          <number>0</number>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-         <property name="textVisible">
-          <bool>false</bool>
-         </property>
-         <property name="format">
-          <string notr="true">%p%</string>
-         </property>
+         <widget class="QWidget" name="Room3">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+          </property>
+          <attribute name="title">
+           <string>Extra Room</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="PrevWeekR3">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Previous Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Previous.png</normaloff>Images/Previous.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="WeekNumR3">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Week Num</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="NextWeekR3">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>Next Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Next.png</normaloff>Images/Next.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="QTableWidget" name="ScheduleR3">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContents</enum>
+             </property>
+             <attribute name="horizontalHeaderMinimumSectionSize">
+              <number>100</number>
+             </attribute>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>160</number>
+             </attribute>
+             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>50</number>
+             </attribute>
+             <row>
+              <property name="text">
+               <string/>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>5:00 PM</string>
+              </property>
+             </row>
+             <column>
+              <property name="text">
+               <string>Monday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Tuesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Wednesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Thursday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Friday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Saturday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Sunday</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="Room4">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <attribute name="title">
+           <string>Extra Room</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="PrevWeekR4">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Previous Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Previous.png</normaloff>Images/Previous.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="WeekNumR4">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Week Num</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="NextWeekR4">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>Next Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Next.png</normaloff>Images/Next.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="QTableWidget" name="ScheduleR4">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContents</enum>
+             </property>
+             <attribute name="horizontalHeaderMinimumSectionSize">
+              <number>100</number>
+             </attribute>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>160</number>
+             </attribute>
+             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>50</number>
+             </attribute>
+             <row>
+              <property name="text">
+               <string/>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>5:00 PM</string>
+              </property>
+             </row>
+             <column>
+              <property name="text">
+               <string>Monday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Tuesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Wednesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Thursday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Friday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Saturday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Sunday</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="Room5">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <attribute name="title">
+           <string>Extra Room</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_10">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="PrevWeekR5">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Previous Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Previous.png</normaloff>Images/Previous.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="WeekNumR5">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Week Num</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="NextWeekR5">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>Next Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Next.png</normaloff>Images/Next.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="QTableWidget" name="ScheduleR5">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContents</enum>
+             </property>
+             <attribute name="horizontalHeaderMinimumSectionSize">
+              <number>100</number>
+             </attribute>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>160</number>
+             </attribute>
+             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>50</number>
+             </attribute>
+             <row>
+              <property name="text">
+               <string/>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>5:00 PM</string>
+              </property>
+             </row>
+             <column>
+              <property name="text">
+               <string>Monday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Tuesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Wednesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Thursday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Friday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Saturday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Sunday</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="Room6">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <attribute name="title">
+           <string>Extra Room</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_11">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="PrevWeekR6">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Previous Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Previous.png</normaloff>Images/Previous.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="WeekNumR6">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Week Num</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="NextWeekR6">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>Next Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Next.png</normaloff>Images/Next.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="QTableWidget" name="ScheduleR6">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContents</enum>
+             </property>
+             <attribute name="horizontalHeaderMinimumSectionSize">
+              <number>100</number>
+             </attribute>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>160</number>
+             </attribute>
+             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>50</number>
+             </attribute>
+             <row>
+              <property name="text">
+               <string/>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>5:00 PM</string>
+              </property>
+             </row>
+             <column>
+              <property name="text">
+               <string>Monday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Tuesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Wednesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Thursday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Friday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Saturday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Sunday</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="Room7">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <attribute name="title">
+           <string>Extra Room</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_12">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="PrevWeekR7">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Previous Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Previous.png</normaloff>Images/Previous.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="WeekNumR7">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Week Num</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="NextWeekR7">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>Next Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Next.png</normaloff>Images/Next.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="QTableWidget" name="ScheduleR7">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContents</enum>
+             </property>
+             <attribute name="horizontalHeaderMinimumSectionSize">
+              <number>100</number>
+             </attribute>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>160</number>
+             </attribute>
+             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>50</number>
+             </attribute>
+             <row>
+              <property name="text">
+               <string/>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>5:00 PM</string>
+              </property>
+             </row>
+             <column>
+              <property name="text">
+               <string>Monday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Tuesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Wednesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Thursday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Friday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Saturday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Sunday</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="Room8">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <attribute name="title">
+           <string>Extra Room</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_13">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="PrevWeekR8">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Previous Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Previous.png</normaloff>Images/Previous.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="WeekNumR8">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Week Num</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="NextWeekR8">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>Next Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Next.png</normaloff>Images/Next.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="QTableWidget" name="ScheduleR8">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContents</enum>
+             </property>
+             <attribute name="horizontalHeaderMinimumSectionSize">
+              <number>100</number>
+             </attribute>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>160</number>
+             </attribute>
+             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>50</number>
+             </attribute>
+             <row>
+              <property name="text">
+               <string/>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>5:00 PM</string>
+              </property>
+             </row>
+             <column>
+              <property name="text">
+               <string>Monday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Tuesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Wednesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Thursday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Friday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Saturday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Sunday</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="Room9">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <attribute name="title">
+           <string>Extra Room</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_14">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="PrevWeekR9">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Previous Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Previous.png</normaloff>Images/Previous.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="WeekNumR9">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Week Num</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="NextWeekR9">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>Next Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Next.png</normaloff>Images/Next.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="QTableWidget" name="ScheduleR9">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContents</enum>
+             </property>
+             <attribute name="horizontalHeaderMinimumSectionSize">
+              <number>100</number>
+             </attribute>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>160</number>
+             </attribute>
+             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>50</number>
+             </attribute>
+             <row>
+              <property name="text">
+               <string/>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>5:00 PM</string>
+              </property>
+             </row>
+             <column>
+              <property name="text">
+               <string>Monday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Tuesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Wednesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Thursday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Friday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Saturday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Sunday</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="Room10">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <attribute name="title">
+           <string>Extra Room</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_15">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="PrevWeekR10">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Previous Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Previous.png</normaloff>Images/Previous.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="WeekNumR10">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Week Num</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="NextWeekR10">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>Next Week</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>Images/Next.png</normaloff>Images/Next.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="QTableWidget" name="ScheduleR10">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContents</enum>
+             </property>
+             <attribute name="horizontalHeaderMinimumSectionSize">
+              <number>100</number>
+             </attribute>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>160</number>
+             </attribute>
+             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>50</number>
+             </attribute>
+             <row>
+              <property name="text">
+               <string/>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>8:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>9:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>10:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:00 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>11:30 AM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>12:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>1:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>2:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>3:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:00 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>4:30 PM</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>5:00 PM</string>
+              </property>
+             </row>
+             <column>
+              <property name="text">
+               <string>Monday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Tuesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Wednesday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Thursday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Friday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Saturday</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Sunday</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
       </layout>
