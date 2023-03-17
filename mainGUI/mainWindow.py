@@ -73,21 +73,93 @@ class MainMenu(QWidget):
 
         #------------------------- Schedules Tab -----------------------------
         
-        # Set schedule tables per room        
+        # Set schedule tables per room   
+        self.scheduleTab = self.findChild(QTabWidget, "ScheduleTables")
+
         self.room1 = self.findChild(QTableWidget, "ScheduleR1")
         self.room1week = self.findChild(QLabel, "WeekNumR1")
         
+        self.room2 = self.findChild(QTableWidget, "ScheduleR2")
+        self.room2week = self.findChild(QLabel, "WeekNumR2")
+        
+        self.room3 = self.findChild(QTableWidget, "ScheduleR3")
+        self.room3week = self.findChild(QLabel, "WeekNumR3")
+        
+        self.room4 = self.findChild(QTableWidget, "ScheduleR4")
+        self.room4week = self.findChild(QLabel, "WeekNumR4")
+
+        self.room5 = self.findChild(QTableWidget, "ScheduleR5")
+        self.room5week = self.findChild(QLabel, "WeekNumR5")
+        
+        self.room6 = self.findChild(QTableWidget, "ScheduleR6")
+        self.room6week = self.findChild(QLabel, "WeekNumR6")
+
+        self.room7 = self.findChild(QTableWidget, "ScheduleR7")
+        self.room7week = self.findChild(QLabel, "WeekNumR7")
+        
+        self.room8 = self.findChild(QTableWidget, "ScheduleR8")
+        self.room8week = self.findChild(QLabel, "WeekNumR8")
+
+        self.room9 = self.findChild(QTableWidget, "ScheduleR9")
+        self.room9week = self.findChild(QLabel, "WeekNumR9")
+        
+        self.room10 = self.findChild(QTableWidget, "ScheduleR10")
+        self.room10week = self.findChild(QLabel, "WeekNumR10")
+
+
         # buttons
         self.room1prev = self.findChild(QPushButton, "PrevWeekR1")
         self.room1next = self.findChild(QPushButton, "NextWeekR1")
         
+        self.room2prev = self.findChild(QPushButton, "PrevWeekR2")
+        self.room2next = self.findChild(QPushButton, "NextWeekR2")
+        
+        self.room3prev = self.findChild(QPushButton, "PrevWeekR3")
+        self.room3next = self.findChild(QPushButton, "NextWeekR3")
+        
+        self.room4prev = self.findChild(QPushButton, "PrevWeekR4")
+        self.room4next = self.findChild(QPushButton, "NextWeekR4")
+
+        self.room5prev = self.findChild(QPushButton, "PrevWeekR5")
+        self.room5next = self.findChild(QPushButton, "NextWeekR5")
+        
+        self.room6prev = self.findChild(QPushButton, "PrevWeekR6")
+        self.room6next = self.findChild(QPushButton, "NextWeekR6")
+        
+        self.room7prev = self.findChild(QPushButton, "PrevWeekR7")
+        self.room7next = self.findChild(QPushButton, "NextWeekR7")
+        
+        self.room8prev = self.findChild(QPushButton, "PrevWeekR8")
+        self.room8next = self.findChild(QPushButton, "NextWeekR8")
+        
+        self.room9prev = self.findChild(QPushButton, "PrevWeekR9")
+        self.room9next = self.findChild(QPushButton, "NextWeekR9")
+
+        self.room10prev = self.findChild(QPushButton, "PrevWeekR10")
+        self.room10next = self.findChild(QPushButton, "NextWeekR10")
+
         # List of schedules per room
-        self.scheduleTables = [self.room1]
-                
+        self.scheduleTables = [self.room1, self.room2, self.room3, self.room4,\
+            self.room5, self.room6, self.room7, self.room8, self.room9, \
+                self.room10]
+        
+        # List of week num of schedule tables 
+        self.weekNum = [self.room1week, self.room2week, self.room3week, \
+            self.room4week, self.room5week, self.room6week, self.room7week,\
+                self.room8week, self.room9week, self.room10week]
+
         # call method and create schedules for all rooms
         self.daysIterator = 0
         self.week = 1
-        self.create_weeks()            
+        self.weeksInYear = []
+        self.year = 2023
+
+        # format calender to year
+        self.format_calendar(self.year)
+        self.create_weeks()     
+        
+        # create proper room names and enable the correct room
+        self.enable_room()       
 
         #------------- Buttons for Saving and Downloading template ------------
 
@@ -124,11 +196,26 @@ class MainMenu(QWidget):
 
         # Create next week schedule
         self.room1next.clicked.connect(self.week_next)
+        self.room2next.clicked.connect(self.week_next)
+        self.room3next.clicked.connect(self.week_next)
+        self.room4next.clicked.connect(self.week_next)
+        self.room5next.clicked.connect(self.week_next)
+        self.room6next.clicked.connect(self.week_next)
+        self.room7next.clicked.connect(self.week_next)
+        self.room8next.clicked.connect(self.week_next)
+        self.room9next.clicked.connect(self.week_next)
         
         # Create previous week schedule
         self.room1prev.clicked.connect(self.week_prev)
+        self.room2prev.clicked.connect(self.week_prev)
+        self.room3prev.clicked.connect(self.week_prev)
+        self.room4prev.clicked.connect(self.week_prev)
+        self.room5prev.clicked.connect(self.week_prev)
+        self.room6prev.clicked.connect(self.week_prev)
+        self.room7prev.clicked.connect(self.week_prev)
+        self.room8prev.clicked.connect(self.week_prev)
+        self.room9prev.clicked.connect(self.week_prev)
         
-
     def spin_box_values(self, value, tables):
             '''
             Description: changes spinbox values
@@ -423,39 +510,66 @@ class MainMenu(QWidget):
         self.progressBarSaveAllCohort.setFormat("Download complete!")
         self.progressBarSaveAllCohort.setTextVisible(True)
 
-    def format_calendar(self):
+    def format_calendar(self, year):
         '''
         Description: formats calender to useable format
         '''        
-        self.weeksInYear = []
-        year = 2023
-        
         # create a calender object
         self.calendar = calendar.Calendar(firstweekday = 0)
+        # loop through every month in year (0-11)
         for i in range(12):
+            # loop through every week in year (0 - num of weeks)
             for week in self.calendar.yeardatescalendar(year, 12)[0][i]:
-                # prints weeks for the year, week[0] = Mon, week[1] = Tue, etc
+                # loop through each day in a week (0-6)
                 for day in range(7):
-                    self.weeksInYear.append(week[day].strftime("%x"))
-
+                    # CHANGE: for some reason duplicates exist, so this ensures 
+                    # none happen
+                    if week[day].strftime("%x") not in self.weeksInYear:
+                        self.weeksInYear.append(week[day].strftime("%x"))
+        
     def create_weeks(self):
         '''
         Description: set proper dates and days for year as table
-        '''        
-        self.format_calendar()
-        
+        '''
         # loop through every room
+        i = 0
         for room in self.scheduleTables:
             # set dates
             days = self.daysIterator
+            self.weekNum[i].setText(f"Week {self.week}")
             for col in range(7):
-                self.room1week.setText(f"Week {self.week}")
                 room.setItem(0, col, QTableWidgetItem(self.weeksInYear[days]))
                 days += 1
-                # set schedules (TODO: need to implement schedules per cohort here)
-                for row in range(1, 20):
-                    room.setItem(row, col, QTableWidgetItem("ScHeDuLe"))
-
+            # set schedules (TODO: need to implement schedules per cohort here)
+            
+            # row is hours, so index 1 = 8:00AM, index 2 = 8:30AM... 20 = 5:00PM
+            # col is days, 0 = Mon, 1 = Tue ... 6 = Sun
+            
+            # schedule data should include hours as increments of 30 min
+            # and should include what weekday they are 
+            
+            # the ranges here will be replaced with "for row in time" (for row)
+            # and "for col in day" (for col)
+            
+            # wherever a blank is required, a "None" should be present
+            for row in range(1, 20):
+                for col in range(7):
+                    room.setItem(row, col, QTableWidgetItem("testScHedule"))
+            i += 1
+    
+    def enable_room(self):
+        '''
+        Description: gets the room name from file and enables room 
+        '''
+        classrooms = MikeCode.getClassrooms()
+        tabIndex = 0
+        
+        for classroom in classrooms:
+            self.scheduleTab.setTabText(tabIndex, \
+                f"{classroom.classRoomNumber} ({classroom.normalCapacity})")
+            self.scheduleTab.setTabEnabled(tabIndex, True)
+            tabIndex += 1
+            
     def week_next(self):
         '''
         Description: set schedule to week after current
@@ -463,6 +577,7 @@ class MainMenu(QWidget):
         self.daysIterator += 7
         self.week += 1
         self.create_weeks()
+
     def week_prev(self):
         '''
         Description: set schedule to week before current
