@@ -123,7 +123,7 @@ class ScheduleNode:
 
 
 def getClassrooms():
-    wb = load_workbook('AllCourses.xlsx')
+    wb = load_workbook('MikeCode\AllCourses.xlsx')
     allClassrooms = []
     ws = wb.worksheets[8]
     for i in range(2, ws.max_row + 1):
