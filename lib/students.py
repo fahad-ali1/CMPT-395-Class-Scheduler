@@ -5,7 +5,7 @@ the class space available, and suggest (if required) more class space
 '''
 
 import math, itertools
-from MikeCode.team7classes import *
+from lib.courses_data import *
 
 
 class Students:

@@ -3,17 +3,16 @@ Author: Fahad Ali
 Description: Create main GUI app, with multiple functionalities
 '''
 
+import sys, time, openpyxl
+from openpyxl.styles import PatternFill, Border, Side
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5 import uic
 
-from Students import students
-import sys
-import time
-import openpyxl
-from openpyxl.styles import PatternFill, Border, Side
-import MikeCode
+# Import local code
+from lib.courses_data import *
+from lib.students import *
 
 # TODO: Save as (template, cohort, schedules), save ALL (schedule), upload bar, 
 # add classes to schedule,
@@ -26,7 +25,7 @@ class MainMenu(QWidget):
         uic.loadUi("MainWindow.ui", self)
 
         # call students class from students module
-        self._studentCohort = students.Students()
+        self._studentCohort = Students()
 
         # list to zero all the spin boxes quickly
         self.zero = [0,0,0,0,0,0,0,0]
@@ -199,7 +198,7 @@ class MainMenu(QWidget):
         if path != ("", ""):
             filename = path[0]
             # input file and extract student inputs
-            fileinput = MikeCode.getProgramNumbers(filename)
+            fileinput = getProgramNumbers(filename)
 
             studentsByProgarm = {"BCOM":fileinput[0], "PCOM":fileinput[1],
                                 "PM":fileinput[2], "BA":fileinput[3],
