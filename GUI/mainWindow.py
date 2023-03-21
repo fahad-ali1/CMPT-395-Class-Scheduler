@@ -3,17 +3,15 @@ Author: Fahad Ali
 Description: Create main GUI app, with multiple functionalities
 '''
 
+import sys, time, openpyxl, datetime, time, calendar, random
+from openpyxl.styles import PatternFill, Border, Side
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5 import QtGui, uic
 
-import openpyxl
-from openpyxl.styles import PatternFill, Border, Side
-
-import MikeCode
-from Students import students
-
-import sys, datetime, time, calendar, random
+# Import local code
+from lib.fileio import getProgramNumbers, getClassrooms
+from lib.cohorts import Students 
 
 class MainMenu(QWidget):
     def __init__(self):
@@ -23,7 +21,7 @@ class MainMenu(QWidget):
         uic.loadUi("MainWindow.ui", self)
 
         # call students class from students module
-        self._studentCohort = students.Students()
+        self._studentCohort = Students()
 
         # list to zero all the spin boxes quickly
         self.zero = [0,0,0,0,0,0,0,0]
@@ -315,7 +313,7 @@ class MainMenu(QWidget):
             i = 0
             for cohorts in cohortLists:
                 self.tables[int(self.terminput.text())-1]\
-                    .setItem(i, j, QTableWidgetItem(cohorts))
+                    .setItem(i, j, QTableWidgetItem(str(cohorts)))
                 self.tables[int(self.terminput.text())-1]\
                     .item(i, j).setBackground(QtGui.QColor(color[0],color[1],color[2]))
                 i += 1
@@ -333,7 +331,7 @@ class MainMenu(QWidget):
         if path != ("", ""):
             filename = path[0]
             # input file and extract student inputs
-            fileinput = MikeCode.getProgramNumbers(filename)
+            fileinput = getProgramNumbers(filename)
 
             studentsByProgarm = {"BCOM":fileinput[0], "PCOM":fileinput[1],
                                 "PM":fileinput[2], "BA":fileinput[3],
@@ -595,7 +593,7 @@ class MainMenu(QWidget):
         Description: gets the room name from file and make the room visible as 
         tab
         '''
-        classrooms = MikeCode.getClassrooms()
+        classrooms = getClassrooms()
         tabIndex = 0
         
         # make appropriate tab names according to room num and size
