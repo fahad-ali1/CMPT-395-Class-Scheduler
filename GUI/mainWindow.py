@@ -3,19 +3,15 @@ Author: Fahad Ali
 Description: Create main GUI app, with multiple functionalities
 '''
 
-import sys, time, openpyxl
+import sys, time, openpyxl, datetime, time, calendar, random
 from openpyxl.styles import PatternFill, Border, Side
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from PyQt5 import uic
+from PyQt5 import QtGui, uic
 
 # Import local code
-from lib.fileio import getProgramNumbers
+from lib.fileio import getProgramNumbers, getClassrooms
 from lib.cohorts import Students 
-
-# TODO: Save as (template, cohort, schedules), save ALL (schedule), upload bar, 
-# add classes to schedule,
 
 class MainMenu(QWidget):
     def __init__(self):
@@ -30,7 +26,9 @@ class MainMenu(QWidget):
         # list to zero all the spin boxes quickly
         self.zero = [0,0,0,0,0,0,0,0]
 
-        # Define student inputs (in student input tab)
+        #------------------------- Inputs Tab-----------------------------
+        
+        # Define student inputs 
         self.terminput = self.findChild(QSpinBox, "TermInput")
         self.BCOMinput = self.findChild(QSpinBox, "BCOMinput")
         self.PCOMinput = self.findChild(QSpinBox, "PCOMinput")
@@ -40,8 +38,8 @@ class MainMenu(QWidget):
         self.BKinput = self.findChild(QSpinBox, "BKinput")
         self.FSinput = self.findChild(QSpinBox, "FSinput")
         self.DXDinput = self.findChild(QSpinBox, "DXDinput")
-
-        # Define buttons in input tab
+        
+        # Define buttons
         self.createCohort = self.findChild(QPushButton, "CreateCohort")
         self.revertButton = self.findChild(QPushButton, "RevertButton")
         self.revertButton2 = self.findChild(QPushButton, "RevertButton2")
@@ -50,7 +48,8 @@ class MainMenu(QWidget):
         self.uploadButton = self.findChild(QPushButton, "UploadFileButton")
         self.uploadButton2 = self.findChild(QPushButton, "UploadFileButton2")
 
-        # Set progress bars
+
+        #------------------------- Progress bars ------------------------------
         self.progressBarUpload = self.findChild(QProgressBar, "ProgressBarUpload")
         self.progressBarUpload2 = self.findChild(QProgressBar, "ProgressBarUpload2")
 
@@ -60,16 +59,117 @@ class MainMenu(QWidget):
 
         self.progressBarSaveSchedule = self.findChild(QProgressBar, "ScheduleSaveBar")
 
+        #-------------------------  Cohort Tab --------------------------------
         # Set cohort tables
         self.cohortTable1 = self.findChild(QTableWidget, "CohortTable1")
         self.cohortTable2 = self.findChild(QTableWidget, "CohortTable2")
         self.cohortTable3 = self.findChild(QTableWidget, "CohortTable3")
 
-        # Set schedule tables
-        self.exampleTable = self.findChild(QTableWidget, "ExampleScheduleTable")
-        self.room1 = self.findChild(QTableWidget, "Room1Schedule")
-        self.room2 = self.findChild(QTableWidget, "Room2Schedule")
-        self.scheduleTables = [self.exampleTable, self.room1, self.room2]
+        #------------------------- Schedules Tab -----------------------------
+        self.roomNums = []
+        
+        # Set schedule tables per room   
+        self.scheduleTab = self.findChild(QTabWidget, "ScheduleTables")
+
+        self.room1 = self.findChild(QTableWidget, "ScheduleR1")
+        self.room1week = self.findChild(QLabel, "WeekNumR1")
+        
+        self.room2 = self.findChild(QTableWidget, "ScheduleR2")
+        self.room2week = self.findChild(QLabel, "WeekNumR2")
+        
+        self.room3 = self.findChild(QTableWidget, "ScheduleR3")
+        self.room3week = self.findChild(QLabel, "WeekNumR3")
+        
+        self.room4 = self.findChild(QTableWidget, "ScheduleR4")
+        self.room4week = self.findChild(QLabel, "WeekNumR4")
+
+        self.room5 = self.findChild(QTableWidget, "ScheduleR5")
+        self.room5week = self.findChild(QLabel, "WeekNumR5")
+        
+        self.room6 = self.findChild(QTableWidget, "ScheduleR6")
+        self.room6week = self.findChild(QLabel, "WeekNumR6")
+
+        self.room7 = self.findChild(QTableWidget, "ScheduleR7")
+        self.room7week = self.findChild(QLabel, "WeekNumR7")
+        
+        self.room8 = self.findChild(QTableWidget, "ScheduleR8")
+        self.room8week = self.findChild(QLabel, "WeekNumR8")
+
+        self.room9 = self.findChild(QTableWidget, "ScheduleR9")
+        self.room9week = self.findChild(QLabel, "WeekNumR9")
+        
+        self.room10 = self.findChild(QTableWidget, "ScheduleR10")
+        self.room10week = self.findChild(QLabel, "WeekNumR10")
+
+        self.room11 = self.findChild(QTableWidget, "ScheduleR11")
+        self.room11week = self.findChild(QLabel, "WeekNumR11")
+
+        self.room12 = self.findChild(QTableWidget, "ScheduleR12")
+        self.room12week = self.findChild(QLabel, "WeekNumR12")
+
+        # buttons
+        self.room1prev = self.findChild(QPushButton, "PrevWeekR1")
+        self.room1next = self.findChild(QPushButton, "NextWeekR1")
+        
+        self.room2prev = self.findChild(QPushButton, "PrevWeekR2")
+        self.room2next = self.findChild(QPushButton, "NextWeekR2")
+        
+        self.room3prev = self.findChild(QPushButton, "PrevWeekR3")
+        self.room3next = self.findChild(QPushButton, "NextWeekR3")
+        
+        self.room4prev = self.findChild(QPushButton, "PrevWeekR4")
+        self.room4next = self.findChild(QPushButton, "NextWeekR4")
+
+        self.room5prev = self.findChild(QPushButton, "PrevWeekR5")
+        self.room5next = self.findChild(QPushButton, "NextWeekR5")
+        
+        self.room6prev = self.findChild(QPushButton, "PrevWeekR6")
+        self.room6next = self.findChild(QPushButton, "NextWeekR6")
+        
+        self.room7prev = self.findChild(QPushButton, "PrevWeekR7")
+        self.room7next = self.findChild(QPushButton, "NextWeekR7")
+        
+        self.room8prev = self.findChild(QPushButton, "PrevWeekR8")
+        self.room8next = self.findChild(QPushButton, "NextWeekR8")
+        
+        self.room9prev = self.findChild(QPushButton, "PrevWeekR9")
+        self.room9next = self.findChild(QPushButton, "NextWeekR9")
+
+        self.room10prev = self.findChild(QPushButton, "PrevWeekR10")
+        self.room10next = self.findChild(QPushButton, "NextWeekR10")
+
+        self.room11prev = self.findChild(QPushButton, "PrevWeekR11")
+        self.room11next = self.findChild(QPushButton, "NextWeekR11")
+        
+        self.room12prev = self.findChild(QPushButton, "PrevWeekR12")
+        self.room12next = self.findChild(QPushButton, "NextWeekR12")
+
+        # List of schedules per room
+        self.rooms = [self.room1, self.room2, self.room3, self.room4,\
+            self.room5, self.room6, self.room7, self.room8, self.room9, \
+                self.room10, self.room11, self.room12]
+        
+        # List of week number for each room tab
+        self.weekNum = [self.room1week, self.room2week, self.room3week, \
+            self.room4week, self.room5week, self.room6week, self.room7week,\
+                self.room8week, self.room9week, self.room10week, \
+                    self.room11week, self.room12week]
+
+        # call method and create schedules for all rooms
+        self.daysIterator = 0
+        self.week = 1
+        self.weeksInYear = []
+        self.year = datetime.date.today().year
+
+        # format calender to year
+        self.format_calendar(self.year)
+        self.create_dates()
+        self.create_schedule()     
+        
+        # create proper room names and enable the correct room
+        self.enable_room()       
+
+        #------------- Buttons for Saving and Downloading template ------------
 
         # Define buttons for schedule saving
         self.saveCurrent1 = self.findChild(QPushButton, "SaveCurrentSchedule1")
@@ -77,6 +177,8 @@ class MainMenu(QWidget):
         self.saveAllSchedule = self.findChild(QPushButton, "SaveAllScheduleButton")
 
         self.downloadTemplate = self.findChild(QPushButton, "DownloadTemplate")
+
+        #------------------------- Connect Buttons -----------------------------
 
         # Call revert_changes function 
         self.revertButton.clicked.connect(self.revert_changes)
@@ -100,6 +202,34 @@ class MainMenu(QWidget):
         # Download/save all schedules as .xlsx
         self.saveAllSchedule.clicked.connect(self.save_all_schedule)
 
+        # Create next week schedule
+        self.room1next.clicked.connect(self.week_next)
+        self.room2next.clicked.connect(self.week_next)
+        self.room3next.clicked.connect(self.week_next)
+        self.room4next.clicked.connect(self.week_next)
+        self.room5next.clicked.connect(self.week_next)
+        self.room6next.clicked.connect(self.week_next)
+        self.room7next.clicked.connect(self.week_next)
+        self.room8next.clicked.connect(self.week_next)
+        self.room9next.clicked.connect(self.week_next)
+        self.room10next.clicked.connect(self.week_next)
+        self.room11next.clicked.connect(self.week_next)
+        self.room12next.clicked.connect(self.week_next)
+        
+        # Create previous week schedule
+        self.room1prev.clicked.connect(self.week_prev)
+        self.room2prev.clicked.connect(self.week_prev)
+        self.room3prev.clicked.connect(self.week_prev)
+        self.room4prev.clicked.connect(self.week_prev)
+        self.room5prev.clicked.connect(self.week_prev)
+        self.room6prev.clicked.connect(self.week_prev)
+        self.room7prev.clicked.connect(self.week_prev)
+        self.room8prev.clicked.connect(self.week_prev)
+        self.room9prev.clicked.connect(self.week_prev)
+        self.room10prev.clicked.connect(self.week_prev)
+        self.room11prev.clicked.connect(self.week_prev)
+        self.room12prev.clicked.connect(self.week_prev)
+    
     def spin_box_values(self, value, tables):
             '''
             Description: changes spinbox values
@@ -175,14 +305,17 @@ class MainMenu(QWidget):
         self.tables = [self.cohortTable1, self.cohortTable2, self.cohortTable3]
         self.tables[int(self.terminput.text())-1].\
             setRowCount(len(max(self._cohortFinal,key=len)))
+            
         j = 0
-
         # create cells for each table and add information
         for cohortLists in self._cohortFinal:
+            color = self.random_background_color()
             i = 0
             for cohorts in cohortLists:
                 self.tables[int(self.terminput.text())-1]\
                     .setItem(i, j, QTableWidgetItem(str(cohorts)))
+                self.tables[int(self.terminput.text())-1]\
+                    .item(i, j).setBackground(QtGui.QColor(color[0],color[1],color[2]))
                 i += 1
             j += 1
 
@@ -307,7 +440,6 @@ class MainMenu(QWidget):
             # save workbook to path
             wb.save(savepath)
 
-
         # Set value to progress bar
         self.progressBarDownload.setValue(100)
         self.progressBarDownload.setFormat("Download complete!")
@@ -326,26 +458,20 @@ class MainMenu(QWidget):
 
             # create workbook
             wb = openpyxl.Workbook()
-
+            
             # create all sheets
-            ws = wb.active
-            ws.title = "Example Room Demo"
-            ws2 = wb.create_sheet("11-533 (36)")
-            ws2.title = "11-533 (36)"
-            ws3 = wb.create_sheet("11-534 (36)")
-            ws3.title = "11-534 (36)"
-
-            wsList = ["Example Room Demo", "11-533 (36)", "11-534 (36)"]
+            for worksheet in self.roomNums:
+                wb.create_sheet(worksheet)
 
             # save schedules to a .xlsx file
-            for i in range(len(self.scheduleTables)):
-                for c in range(self.scheduleTables[i].columnCount()):
-                    for r in range(self.scheduleTables[i].rowCount()):
+            for i in range(len(self.roomNums)):
+                for c in range(self.rooms[i].columnCount()):
+                    for r in range(self.rooms[i].rowCount()):
                         # if an item is in the cell
-                        if self.scheduleTables[i].item(r,c):
-                            cohortValue = self.scheduleTables[i].item(r,c).text()
-                            ws = wb.get_sheet_by_name(wsList[i])\
-                                .cell(row=r+1, column=c+1).value = cohortValue
+                        if self.rooms[i].item(r,c):
+                            value = self.rooms[i].item(r,c).text()
+                            wb.get_sheet_by_name(self.roomNums[i])\
+                                .cell(row=r+1, column=c+1).value = value
             wb.save(savepath)
 
             for i in range(101):
@@ -393,6 +519,127 @@ class MainMenu(QWidget):
         self.progressBarSaveAllCohort.setValue(100)
         self.progressBarSaveAllCohort.setFormat("Download complete!")
         self.progressBarSaveAllCohort.setTextVisible(True)
+
+    def format_calendar(self, year):
+        '''
+        Description: formats calender to useable format
+        '''        
+        # create a calender object
+        self.calendar = calendar.Calendar(firstweekday = 0)
+        # loop through every month in year (0-11)
+        for i in range(12):
+            # loop through every week in year (0 - num of weeks)
+            for week in self.calendar.yeardatescalendar(year, 12)[0][i]:
+                # loop through each day in a week (0-6)
+                for day in range(7):
+                    # NOTE: for some reason duplicates exist, so this ensures 
+                    # duplicates are removed 
+                    if week[day].strftime("%x") not in self.weeksInYear:
+                        self.weeksInYear.append(week[day].strftime("%x"))
+        
+    def create_dates(self):
+        '''
+        Description: set date into every room
+        '''
+        # loop through every room
+        i = 0
+        for room in self.rooms:
+            # set dates
+            days = self.daysIterator
+            self.weekNum[i].setText(f"Week {self.week}")
+            for col in range(7):
+                room.setItem(0, col, QTableWidgetItem(self.weeksInYear[days]))
+                room.item(0, col).setBackground(QtGui.QColor(220,220,220))
+                days += 1
+            i += 1
+    
+    def random_background_color(self):
+        '''
+        Description: get random background color for the schedule. Makes it 
+        easier to read
+        '''
+        r = random.randint(70,210)
+        g = random.randint(100,200)
+        b = random.randint(100,220)
+        rgb = [r,g,b]
+        return (rgb)
+    
+    def create_schedule(self):
+        '''
+        Description: set schedule into proper room
+        '''
+        # set schedules (TODO: need to implement schedules per cohort here)
+        
+        # row is hours, so index 1 = 8:00AM, index 2 = 8:30AM... 20 = 5:00PM
+        # col is days, 0 = Mon, 1 = Tue ... 6 = Sun
+        
+        # schedule data should include hours as increments of 30 min
+        # and should include what weekday they are 
+        
+        # the ranges here will be replaced with "for row in time" (for row)
+        # and "for col in day" (for col)
+        
+        # wherever a blank is required, a "None" should be present
+        
+        # 1 = 8:00AM, 2 = 8:30AM... 20 = 5:00PM        
+        for hour in range(1, 20):
+            # 0 = Mon, 1 = Tue ... 6 = Sun
+            for day in range(7):
+                # self.rooms[0] = 1st room, self.rooms[1] = 2nd room ... etc
+                self.rooms[0].setItem(hour, day, QTableWidgetItem("testScHedule"))
+    
+    def enable_room(self):
+        '''
+        Description: gets the room name from file and make the room visible as 
+        tab
+        '''
+        classrooms = getClassrooms()
+        tabIndex = 0
+        
+        # make appropriate tab names according to room num and size
+        for classroom in classrooms:
+            self.scheduleTab.setTabText(tabIndex, \
+                f"{classroom.classRoomNumber} ({classroom.normalCapacity})")
+            self.roomNums.append\
+                (f"{classroom.classRoomNumber} ({classroom.normalCapacity})")
+            tabIndex += 1
+        
+        # disable every other room tab that is not in use
+        for i in range (tabIndex, self.scheduleTab.count()):
+            self.scheduleTab.setTabVisible(i, False)
+    
+    def week_next(self):
+        '''
+        Description: set schedule to week after current
+        '''
+        # TODO: catch error if trying to access next year
+        if self.daysIterator >= 365:
+            self.daysIterator = 0
+        self.daysIterator += 7
+        
+        if self.week >= 53:
+            self.week = 53
+            
+        self.week += 1
+        
+        self.create_dates()
+        self.create_schedule()
+
+    def week_prev(self):
+        '''
+        Description: set schedule to week before current
+        '''
+        if self.daysIterator <= 0:
+            self.daysIterator = 7
+        self.daysIterator -= 7
+        
+        if self.week <= 1:
+            self.week = 2
+            
+        self.week -= 1
+        
+        self.create_dates()
+        self.create_schedule()
 
 # Initialize The App
 def main():

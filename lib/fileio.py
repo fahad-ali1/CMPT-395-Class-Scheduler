@@ -6,6 +6,9 @@ Purpose: Handle file input/output
 import csv, re, openpyxl
 from openpyxl.reader.excel import load_workbook
 
+# Import local code
+from lib.cohorts import Classroom
+
 
 """
 Purpose: Reads classroom info from an excel file
@@ -13,7 +16,7 @@ Parameters: None
 Returns: list of classrooms
 """
 def getClassrooms():
-    wb = load_workbook('AllCourses.xlsx')
+    wb = load_workbook('data/AllCourses.xlsx')
     allClassrooms = []
     ws = wb.worksheets[8]
     for i in range(2, ws.max_row + 1):
