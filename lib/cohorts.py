@@ -22,10 +22,24 @@ class Cohort:
         self.cohortName = cohortName
         self.classroom = classroom
         self.size = size
-        self.programCourses = []  # program class
+        self.programCourses = None  # program class
+        self.currentCourses = None
+        self.prereq = {}
 
     def __repr__(self):
         return f"{self.cohortName} - {self.classroom.classRoomNumber}, {self.size}/{self.classroom.normalCapacity}"
+
+    def setmainProgram(self, program):
+        self.programCourses = program
+
+    def setClassroom(self, classroom):
+        self.classroom = classroom
+
+    def getCohortName(self):
+        return self.cohortName
+
+    def getMain(self):
+        return self.mainProgramCourses 
 
 
 """

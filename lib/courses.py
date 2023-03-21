@@ -4,16 +4,20 @@ Date: 01/02/2023
 Purpose: Rough idea of a course structure
 """
 
+import re
+from openpyxl.reader.excel import load_workbook
+from datetime import datetime, timedelta
+
 
 class Course:
     def __init__(self, courseName="", courseDescript="", totalTranscriptHours=0, lectureLength=0, isLab=False):
         self.courseName = courseName
         self.courseDescript = courseDescript
         self.totalTranscriptHours = totalTranscriptHours
-        self.lectureLength = lectureLength
-        self.isLab = isLab
-        self.startDate = "functionality coming soon"
-        self.endDate = "functionality coming soon"
+        self.lectureLength = 0.0
+        self.numberOfSessions = 0
+        self.courseType = ""
+        self.schedulingInstructions = ""
 
     def printCourseDetails(self):
         print(self.courseName, " ", self.courseDescript, " ", self.totalTranscriptHours)
@@ -34,6 +38,42 @@ class Course:
 
     def setTranscriptHours(self, transcriptHours):
         self.totalTranscriptHours = transcriptHours
+
+    def setCourseType(self, status):
+        self.courseType = status
+
+    def setLectureLength(self, lecLen):
+        self.LectureLength = lecLen
+
+    def setScheduleingInstructions(self, instructions):
+        self.schedulingInstructions = instructions
+
+    def getSchedulingInstructions(self):
+        return self.schedulingInstructions
+
+    def getTotalTranscriptHours(self):
+        return self.totalTranscriptHours
+
+    def getCourseName(self):
+        return self.courseName
+
+    def getDescription(self):
+        return self.courseDescript
+
+    def getCourseType(self):
+        return self.courseType
+
+    def getLectureLength(self):
+        return self.lectureLength
+
+    def getNumOfSessions(self):
+        return self.numberOfSessions
+
+    def getLecTime100(self):
+        return self.lectureLength * 100
+
+    def printCourseDetails(self):
+        print(self.courseName, " ", self.courseDescript, " ", self.totalTranscriptHours)
 
 
 class Program:
@@ -63,6 +103,15 @@ class Program:
     def getAllTerms(self):
         allTerms = [self.term1, self.term2, self.term3]
         return allTerms
+
+    def getTerm1(self):
+        return self.term1
+
+    def getTerm2(self):
+        return self.term2
+
+    def getTerm3(self):
+        return self.term3
 
 
 class Schedule:
