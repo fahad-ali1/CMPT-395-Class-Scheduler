@@ -7,7 +7,7 @@ import csv, re, openpyxl
 from openpyxl.reader.excel import load_workbook
 
 # Import local code
-from lib.cohorts import Classroom
+from lib.classrooms import Classroom
 
 
 """
