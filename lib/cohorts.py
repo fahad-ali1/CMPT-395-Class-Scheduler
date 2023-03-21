@@ -5,6 +5,10 @@ Purpose: Module centerd around creating cohorts, based on existing classrooms.
 
 import math, itertools
 
+# Import local code
+from lib.fileio import getClassrooms
+from lib.classrooms import Classroom
+
 
 """
 COHORT
@@ -40,42 +44,6 @@ class Cohort:
 
     def getMain(self):
         return self.mainProgramCourses 
-
-
-"""
-CLASSROOM
----------
-
-ATTRIBUTES
-----------
-classRoomNumber - Number of room (i.e. 11-533)
-normalCapacity  - Capacity of classroom
-currentStudents - Current students occupying classroom.
-                  NOTE: Set to max capacity at first, and is modified later
-lab             - Boolean representing whether room is a lab or not
-inUse           - Boolean representing whether room is in use or not
-isGhost         - Boolean representing whether or not room is a ghost room
-
-METHODS
--------
-setGhost() - Changes a room into a ghost room
-printClassroom() - Prints the classroom data
-"""
-class Classroom:
-    def __init__(self, classRoomNumber='', normalCapacity=0, lab=False):
-        self.classRoomNumber = classRoomNumber
-        self.normalCapacity = normalCapacity
-        self.currentStudents = normalCapacity
-        self.lab = lab
-        self.inUse = False
-        self.isGhost = False
-
-    def setGhost(self):
-        self.isGhost = True
-
-    def printClassroom(self):
-        print("Classroom #: ", self.classRoomNumber, "Normal Capacity: ", self.normalCapacity, \
-              "lab: ", self.lab, " isGhost: ", self.isGhost)
 
 
 """
@@ -127,7 +95,9 @@ class Students:
 
         self._term = 0
 
-        self._rooms = []
+        self._rooms = getClassrooms()
+ 
+        """
         with open("data/classrooms.csv", "r") as file:
             # Read each line into a list with no newline character
             rooms_data = [l.strip() for l in file if "sep=" not in l]
@@ -135,6 +105,7 @@ class Students:
                 name, cap = room.split(",")[0], int(room.split(",")[1])
                 self._rooms.append(Classroom(name, cap))
 
+        """
         # sort rooms by largest to smallest
         self._rooms = sorted(self._rooms, key=lambda x:x.normalCapacity, reverse=True)
 
