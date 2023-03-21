@@ -6,6 +6,10 @@ courseLocation = []
 newInfo = ["DXDI 9901",	"DXD Capstone", "45", "Lab", "", "", "", ""]
 oldInfo = ["PCOM 0204", "Business Persuasion and Research", "35", "", "", "", "", ""]
 
+def pause():
+
+    input("Press Enter...")
+
 if __name__ == "__main__":
 
     print("\nSankalp Testing\n")
@@ -22,5 +26,6 @@ if __name__ == "__main__":
     #showcase changeFunction
     print("Change info")
     changeCourseInfo(courseLocation[0], newInfo, fileNameTester)
+    pause()
     print("Revert info")
     changeCourseInfo(courseLocation[0], oldInfo, fileNameTester)
