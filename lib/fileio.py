@@ -1,5 +1,5 @@
 """
-Author: Mike
+Author: Mike Lee
 Purpose: Handle file input/output
 """
 

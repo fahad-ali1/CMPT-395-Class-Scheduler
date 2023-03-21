@@ -1,7 +1,7 @@
-# Authors: Mike, Schuyler
-# Purpose:
-#   Module centerd around creating cohorts, based on existing classrooms.
-
+"""
+Authors: Mike Lee, Schuyler Kelly
+Purpose: Module centerd around creating cohorts, based on existing classrooms.
+"""
 
 import math, itertools
 
