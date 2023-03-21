@@ -8,6 +8,8 @@ Purpose: Collection of classes and methods needed for the project
 import re
 
 from openpyxl.reader.excel import load_workbook
+from datetime import datetime, timedelta
+
 
 # Course Class:
 # Represents a course
@@ -17,7 +19,7 @@ from openpyxl.reader.excel import load_workbook
 # lectureLength = length of each lecture
 # courseType = the type of each course(normal, online/virtual, lab)
 # schedulingInstructions a string indicating how to schedule a course, for example: NBOA = do not schedule before or
-#after another course
+# after another course
 # numberOfSessions = a string indicating n number of sessions. getNumOfSessions will return just the number
 class Course:
     def __init__(self, courseName="", courseDescript="", totalTranscriptHours=0):
@@ -77,6 +79,7 @@ class Course:
     def printCourseDetails(self):
         print(self.courseName, " ", self.courseDescript, " ", self.totalTranscriptHours)
 
+
 # Program:
 # Represents a program at macewan
 # Attributes include:
@@ -132,14 +135,16 @@ class Program:
 # isGhost = is it a ghost room (room that would be needed for extra students)
 # schedule = schedule linked list representing the schedule
 class Classroom:
-    def __init__(self, classRoomNumber='', normalCapacity=0, lab=False):
+    def __init__(self, cohort, classRoomNumber='', normalCapacity=0, lab=False):
         self.classRoomNumber = classRoomNumber
         self.normalCapacity = normalCapacity
         self.lab = lab
         self.isGhost = False
         self.schedule = None
-        self.currentStudents = 0 #will make a setter for it
+        self.currentStudents = 0  # will make a setter for it
         self.inUse = False
+        self.cohort = cohort
+
     #
     def setGhost(self):
         self.isGhost = True
@@ -151,23 +156,25 @@ class Classroom:
         print("Classroom #: ", self.classRoomNumber, "Normal Capacity: ", self.normalCapacity,
               "lab: ", self.lab, " isGhost: ", self.isGhost)
 
+
 # Cohort Class takes in a cohort name and size initially
 # Methods will be created to add a programs to mainProgramCourses
 # and electiveProgramCourses
 
 class Cohort:
-    def __init__(self, cohortName="", size=0):
+    def __init__(self, classroom, cohortName="", size=0):
         self.cohortName = cohortName
         self.size = size
-        self.mainProgramCourses = None # program class
-        self.electiveProgramCourses = None  # program class
+        self.ProgramCourses = None  # program class
         self.prereq = {}
+        self.currentCourse = None
+        self.classroom = classroom
 
     def setmainProgram(self, program):
-        self.mainProgramCourses = program
+        self.ProgramCourses = program
 
-    def setElectiveProgram(self, program):
-        self.electiveProgramCourses = program
+    def setClassrom(self, classroom):
+        self.classroom = classroom
 
     def getCohortName(self):
         return self.cohortName
@@ -175,84 +182,75 @@ class Cohort:
     def getMain(self):
         return self.mainProgramCourses
 
-    def getElective(self):
-        return self.electiveProgramCourses
+# time block object.
+# Attributes: startTime(dateTime hour), endTime(dateTime hour), cohortName(string), startDate(dateTime date),
+# endTime(dateTime date)
 
-# ScheduleLinkedList:
-# Represents a schedule for a classroom object
-# Attributes include:
-#time: time uses 2400 time format and starts at 8am. Each time a node is added the time will increase by that nodes
-#lecture length. The time starts at 8am and should not exceed 4pm
-#cohort: represents a cohort
-#startDate: represents the courses start date
-#endDate: repsrents the courses end date
-# head = head node of schedule (doubly linked list)
-class ScheduleLinkedList:
-    def __init__(self, totalHours=800):
-        self.totalHours = totalHours
-        self.head = None
+class timeBlock:
+    def __init__(self, startTime, endTime, cohortName, courseName, startDate, endDate):
+        self.startTime = startTime  # course start time
+        self.endTime = endTime  # course end time
+        self.cohortName = cohortName  # cohort name (string)
+        self.courseName = courseName  # course name (string)
+        self.startDate = startDate  # courses start date
+        self.endDate = endDate  # courses end date
 
-    def addNodePush(self, time, cohort, startDate, endDate):
-        newNode = scheduleNode(time, cohort, startDate, endDate)
-        newNode.next = self.head
-        if self.head is not None:
-            self.head.prev = newNode
-        self.head = newNode
+# day object.
+# Attributes: dayName(string), timeBlocks(list of time block objects)
 
-    #checks to see if the schedule is full
-    #full = True; not full = False
-    def checkIfScheduleFull(self):
-        if self.totalHours == 1600:
-            return True
-        else:
-            return False
+class day:
+    def __init__(self, dayName):
+        self.dayName = dayName  # day name (mon,wed,tues,thurs)
+        self.timeBlocks = []  # list of time block objects see above empty to start with
 
-    def updateTime(self, node):
-        hours = self.totalHours
-        if node is not None:
-            if (node.time * 100) + hours > 1600:
-                return -1 # -1 is an error indicating full
-            else:
-                self.totalHours = hours + (node.time * 100)
-        else:
-            return hours
-        return int(self.totalHours)
+    def getDayName(self):
+        return self.dayName
 
-    def getTotalHours(self):
-        return int(self.totalHours)
+    def getTimeBlocks(self):
+        return self.timeBlocks
 
-# ScheduleNode:
-# Represents a lecture time block for a classroom's schedule
-# Attributes include:
-# time = lecture length
-# cohort = cohort
-# startDate = course scheduled start date
-# endDate = course scheduled end date
-# prev = prev lecture block (node)
-# next = next lecture block (node)
-class scheduleNode:
-    def __init__(self, time, cohort, startHour, endHour):
-        self.time = time #time should be 1.5 or 2.0, etc..
-        self.cohort = cohort
-        self.startHour = startHour
-        self.endHour = endHour
-        self.startDate = 0
-        self.endDate = 0
-        self.prev = None
-        self.next = None
+    def addTimeBlock(self, newTimeBlock):
+        self.timeBlocks.append(newTimeBlock)
 
-    #input: Convert the lecture time from a course object to it's time in hours.
-    #output: return the hour
-    def convertLectureToHour(self):
-        return self.time * 100
 
-    def setStartDate(self, StartDate):
-        self.startDate = StartDate
+# week object.
+# Attributes: weekNumber(integer), weekDays(list of day objects)
 
-    def setEndDate(self, EndDate):
-        self.endDate = EndDate
+class week:
+    def __init__(self, weekNumber, weekDays):
+        self.weekNumber = weekNumber  # int to represent n/14 weeks
+        self.weekDays = weekDays  # list of day objects
 
-#need a function to get start and end dates in 2400 hour format
+    def getWeekDays(self):
+        return self.weekDays  # list of day objects
+
+
+def scheduleLecture(lectureLength, lastEndTime=None):
+    if lectureLength not in [1.5, 2, 3]:
+        raise ValueError("Invalid lecture length. Lecture lengths can be 1.5, 2, or 3 hours.")
+
+    startTime = datetime.strptime('08:00:00', '%H:%M:%S')
+    endTime = datetime.strptime('17:00:00', '%H:%M:%S')
+    lecture_minutes = int(lectureLength * 60)
+
+    if lastEndTime is None:
+        startTime = datetime.strptime('08:00:00', '%H:%M:%S')
+    else:
+        startTime = datetime.strptime(lastEndTime, '%I:%M %p') + timedelta(minutes=10)
+
+    # Round up to the nearest 30-minute interval if the lecture is scheduled within the 10-minute window
+    if startTime.minute % 30 != 0:
+        minutes_to_round = 30 - (startTime.minute % 30)
+        startTime += timedelta(minutes=minutes_to_round)
+
+    if startTime + timedelta(minutes=lecture_minutes) > endTime:
+        raise ValueError("Course cannot be booked after 5pm.")
+
+    endTime = startTime + timedelta(minutes=lecture_minutes) - timedelta(minutes=10)
+
+    return startTime.strftime('%I:%M %p'), endTime.strftime('%I:%M %p')
+
+# need a function to get start and end dates in 2400 hour format
 # start/end is for schedule node
 
 # getClassrooms:
@@ -270,6 +268,7 @@ def getClassrooms():
             classroom = Classroom(ws['A' + str(i)].value, ws['B' + str(i)].value)
             allClassrooms.append(classroom)
     return allClassrooms
+
 
 # getAllPrograms
 # Helper Function
@@ -300,8 +299,10 @@ def getAllPrograms():
         allPrograms.append(program)
     return allPrograms
 
+
 def calculateSessions(transcriptHours, lectureLen):
     pass
+
 
 # getProgramNumbers
 # Helper Function
@@ -319,6 +320,7 @@ def getProgramNumbers(fileName):
         print("Error: File not found")
         return -1
 
+
 # Expected input: String or None type value from cell F of Allcourse.xlsx
 # Expected output: If None type is found then return float indicating default lecture length is returned (1.5 hours)
 # Else if value is found then return float indicating minimum lecture length
@@ -329,15 +331,12 @@ def getMinimumTime(data):
         return float(data[0])
 
 
-
-
-
-
 def checkIntOrDec(num):
     if num.is_integer():
         return int(num)
     else:
         return int(num) + 1
+
 
 # prototype
 # Expected input:
@@ -347,6 +346,7 @@ def calcNumberOfSessions(course):
     testVar = 0.0
     testVar = float(course.getTotalTranscriptHours()) / course.getLectureLength()
     return checkIntOrDec(testVar)
+
 
 # Expected input: value from cell E of AllCourse.xlsx
 # Expected output: returns a string indicating the lab status of a course
@@ -362,12 +362,13 @@ def checkIfLab(data):
     elif data == "Online":
         return "Online"
 
-#This function is a help function designed to help with assigning number of sessions to a course
-#If the number of course sessions do not divide evenly with the total transcript hours then add an extra hour
-#Else if evenly divided, return the number without any change.
-#Expected input: a number either an integer or a float
-#Expected output returns a number based on if the input had a decimal or not. If no decimal then return number unchanged
-#Else if input has a decimal, then return integer value + 1 of input
+
+# This function is a help function designed to help with assigning number of sessions to a course
+# If the number of course sessions do not divide evenly with the total transcript hours then add an extra hour
+# Else if evenly divided, return the number without any change.
+# Expected input: a number either an integer or a float
+# Expected output returns a number based on if the input had a decimal or not. If no decimal then return number unchanged
+# Else if input has a decimal, then return integer value + 1 of input
 def checkDecimal(num):
     numToStr = str(num)
     if numToStr.find(".") < 1:
@@ -411,6 +412,17 @@ Hours   # of sessiosn
 WHAT TO WORK ON:
 return type = string cohort; float start hour; float end hour;
 Ideas:
+
+make a class called term object which encapsulates days, weeks.
+
+self.weeky(days)
+
+week object is a list of 7 day objects
+
+The list of weeks which is a copy of the week object above, which changes made for each week.
+
+make a day object
+
+
+
 '''
-def returnStuff(data):
-    pass
