@@ -7,7 +7,6 @@ the class space available, and suggest (if required) more class space
 import math, itertools
 from lib.courses_data import *
 
-
 class Students:
     '''
     Description: this class will input students for each program and create
@@ -33,7 +32,6 @@ class Students:
             rooms_data = [l.strip() for l in file if "sep=" not in l]
             for room in rooms_data:
                 name, cap = room.split(",")[0], int(room.split(",")[1])
-                #if "Lab" not in name:
                 self._rooms.append(Classroom(name, cap))
 
         # sort rooms by largest to smallest
@@ -124,7 +122,7 @@ class Students:
                     combo_result = list(combo_result)
 
                     for result in combo_result:
-                        result.inUse = True
+                        result.in_use = True
                     return combo_result
 
             being_compared += 1
@@ -177,9 +175,8 @@ class Students:
 
         if rooms:
             for room in rooms:
-                temp_cohort = Cohort(room, f"{program}{self._term:02d}{num:02d}", room.currentStudents)
-                string = f"{program}{self._term:02d}{num:02d} ({room.currentStudents}/{room.normalCapacity}), {room.classRoomNumber}"
-                cohorts.append(temp_cohort)
+                temp = Cohort(room, f"{program}{self._term:02d}{num:02d}", room.currentStudents)
+                cohorts.append(temp)
                 num += 1
 
         return cohorts
