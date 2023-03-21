@@ -11,8 +11,8 @@ from PyQt5.QtCore import *
 from PyQt5 import uic
 
 # Import local code
-from lib.courses_data import *
-from lib.students import *
+from lib.fileio import getProgramNumbers
+from lib.cohorts import Students 
 
 # TODO: Save as (template, cohort, schedules), save ALL (schedule), upload bar, 
 # add classes to schedule,
