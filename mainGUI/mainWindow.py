@@ -183,7 +183,7 @@ class MainMenu(QWidget):
             i = 0
             for cohorts in cohortLists:
                 self.tables[int(self.terminput.text())-1]\
-                    .setItem(i, j, QTableWidgetItem(cohorts))
+                    .setItem(i, j, QTableWidgetItem(str(cohorts)))
                 i += 1
             j += 1
 
