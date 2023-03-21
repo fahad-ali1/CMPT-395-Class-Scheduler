@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 import mainGUI
 
 if __name__ == "__main__":

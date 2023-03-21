@@ -5,7 +5,17 @@ the class space available, and suggest (if required) more class space
 '''
 
 import math, itertools
-from MikeCode.team7classes import *
+
+class Classroom:
+
+    def __init__(self, name, cap):
+        self.name = name
+        self.cap = cap
+        self.current_students = cap
+        self.in_use = False
+
+    def __repr__(self):
+        return f"'Name: {self.name}, Cap: {self.cap}, Current: {self.current_students}, Used: {self.in_use}'"
 
 
 class Students:
@@ -33,11 +43,10 @@ class Students:
             rooms_data = [l.strip() for l in file if "sep=" not in l]
             for room in rooms_data:
                 name, cap = room.split(",")[0], int(room.split(",")[1])
-                #if "Lab" not in name:
                 self._rooms.append(Classroom(name, cap))
 
         # sort rooms by largest to smallest
-        self._rooms = sorted(self._rooms, key=lambda x:x.normalCapacity, reverse=True)
+        self._rooms = sorted(self._rooms, key=lambda x:x.cap, reverse=True)
 
     def cohorts_final(self):
         '''
@@ -64,15 +73,15 @@ class Students:
 
     def _reset_classrooms(self, classroom_list):
         for room in classroom_list:
-            room.currentStudents = room.normalCapacity
-            room.inUse = False
+            room.current_students = room.cap
+            room.in_use = False
 
     def _check_room_combo(self, temp, combo, percent, wiggle_percent):
 
         # Iterate through each room in the combo
         for room in combo:
-            wiggle_room = math.floor(room.normalCapacity - (room.normalCapacity * wiggle_percent))
-            allowed_total = math.floor(room.normalCapacity - (room.normalCapacity * percent))
+            wiggle_room = math.floor(room.cap - (room.cap * wiggle_percent))
+            allowed_total = math.floor(room.cap - (room.cap * percent))
 
             # If the remaining students is less than the allowed total, return, as
             # this combination simply will not work.
@@ -83,12 +92,12 @@ class Students:
             if temp - wiggle_room >= 0:
 
                 # Check conditions for if this room combo is acceptable.
-                if room == combo[-1] and wiggle_room <= temp <= room.normalCapacity:
-                    room.currentStudents = temp
+                if room == combo[-1] and wiggle_room <= temp <= room.cap:
+                    room.current_students = temp
                     return combo
 
                 # Convert to int, as allowed total will be a float with ?.0 in it
-                room.currentStudents = int(allowed_total)
+                room.current_students = int(allowed_total)
                 temp -= allowed_total
                 if temp == 0:
                     return combo
@@ -97,7 +106,7 @@ class Students:
 
         empty_classrooms = []
         for room in self._rooms:
-            if not room.inUse:
+            if not room.in_use:
                 empty_classrooms.append(room)
 
         if not empty_classrooms:
@@ -124,7 +133,7 @@ class Students:
                     combo_result = list(combo_result)
 
                     for result in combo_result:
-                        result.inUse = True
+                        result.in_use = True
                     return combo_result
 
             being_compared += 1
@@ -177,9 +186,8 @@ class Students:
 
         if rooms:
             for room in rooms:
-                temp_cohort = Cohort(room, f"{program}{self._term:02d}{num:02d}", room.currentStudents)
-                string = f"{program}{self._term:02d}{num:02d} ({room.currentStudents}/{room.normalCapacity}), {room.classRoomNumber}"
-                cohorts.append(temp_cohort)
+                string = f"{program}{self._term:02d}{num:02d} ({room.current_students}/{room.cap}), {room.name}"
+                cohorts.append(string)
                 num += 1
 
         return cohorts

@@ -77,15 +77,11 @@ class Program:
 
 
 class Cohort:
-    def __init__(self, classroom, cohortName="", size=0):
+    def __init__(self, cohortName="", size=0):
         self.cohortName = cohortName
-        self.classroom = classroom
         self.size = size
         self.mainProgramCourses = []  # program class
         self.electiveProgramCourses = []  # program class
-
-    def __str__(self):
-        return f"{self.classroom.classRoomNumber} - {self.size}/{self.classroom.normalCapacity}"
 
 
 class Schedule:
@@ -101,14 +97,9 @@ class Classroom:
     def __init__(self, classRoomNumber='', normalCapacity=0, lab=False):
         self.classRoomNumber = classRoomNumber
         self.normalCapacity = normalCapacity
-        self.currentStudents = normalCapacity
         self.lab = lab
         self.isGhost = False
-        self.inUse = False
         self.schedule = None
-
-    def __repr__(self):
-        return f"{self.classRoomNumber}"
 
     def setGhost(self):
         self.isGhost = True
