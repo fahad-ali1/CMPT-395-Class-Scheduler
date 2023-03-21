@@ -1,7 +1,7 @@
 """
 Author: Mike Lee, Sankalp Shrivastav
 ID: 3067768, 3106374
-Date: 06/03/2023
+Date: 20/03/2023
 Purpose: Collection of classes and methods needed for the project
 """
 
@@ -386,6 +386,41 @@ def checkDecimal(num):
         return int(num) + 1
     else:
         return num
+
+
+def getCourse(fileName, courseName):
+
+    wb = load_workbook(fileName)
+
+    for sheet in range(8):
+
+        ws = wb.worksheets[sheet]
+        
+        for row in range(2, ws.max_row + 1):
+
+            #look for the course name if found return the location [row, col]
+
+            if re.search("^Term", ws["A" + str(row)].value): continue
+            # print(ws["A" + str(row)].value)
+            if re.search(courseName, ws["A" + str(row)].value): return [sheet, row]
+
+    return None
+
+def changeCourseInfo(courseLocation, courseInfo, fileName):
+
+    sheet, cRow = courseLocation[0], courseLocation[1]
+    wb = load_workbook(fileName)
+
+    ws = wb.worksheets[sheet]
+    count = 0
+    
+    for cells in ws[str(cRow)]:
+        #swap the info from courseInfo
+
+        cells.value = courseInfo[count]
+        # print(cells.value, end="\t") #comment this when demo is done
+        count += 1
+    wb.save(fileName) #saving the edited file as 
 
 
 '''
