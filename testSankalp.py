@@ -1,4 +1,4 @@
-from team7classes import *
+from lib.courses import *
 
 fileNameTester = "CourseTester.xlsx"
 courseNameTester = ["PCOM 0204", "SUPR 0841", "PCOM 0t04"]
