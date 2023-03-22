@@ -1,5 +1,5 @@
 """
-Author: Mike Lee
+Author: Mike Lee, Sankalp Shrivastav
 Date: 01/02/2023
 Purpose: Rough idea of a course structure
 """
