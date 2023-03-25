@@ -195,6 +195,7 @@ class Students:
             final_combo_choice = min(classrooms_with_remaining_space, key=lambda x: x[-1])
         else:
             final_combo_choice = [max_remainder_combo, max_remainder]
+            
         return final_combo_choice
         
     def divide_to_cohorts(self, students, program):
@@ -206,23 +207,51 @@ class Students:
         """
         
         available_rooms, remainder = self._iterate_classrooms(students)
-        uses_ghost_rooms = remainder < 0
+        if remainder is None:
+            any_rooms_available_in_the_first_place = False
+        else:
+            any_rooms_available_in_the_first_place = True
+            
+        if not any_rooms_available_in_the_first_place:
+            uses_ghost_rooms = True
+        else:   
+            uses_ghost_rooms = remainder < 0
         
         cohorts = []
         
         if not uses_ghost_rooms:
-            print(available_rooms, remainder)
-            if remainder % 2 == 0:
+            for i, room in enumerate(available_rooms):
+                if students - room.normalCapacity >= 0:
+                    room.currentStudents = room.normalCapacity
+                    students -= room.normalCapacity
+                else:
+                    room.currentStudents = students
+                room.inUse = True
+                cohorts.append(Cohort(room, f"{program}{self._term:02d}{(i + 1):02d}", room.currentStudents))
+        else:
+            cohort_num = 0
+            if any_rooms_available_in_the_first_place:
+                cohorts_num = 1
                 for i, room in enumerate(available_rooms):
-                    if students - room.normalCapacity >= 0:
-                        room.currentStudents = room.normalCapacity
-                        students -= room.normalCapacity
-                    else:
-                        room.currentStudents = students
+                    cohort_num = i + 1
+                    room.currentStudents = room.normalCapacity
+                    students -= room.normalCapacity
                     room.inUse = True
                     cohorts.append(Cohort(room, f"{program}{self._term:02d}{(i + 1):02d}", room.currentStudents))
-        else:
-            pass
+                
+            # Begin appending ghost rooms here:
+            cohort_num += 1
+            room = min(self._rooms, key=lambda x: x.normalCapacity)
+            room = Classroom("??-???", room.normalCapacity)
+            while students - room.normalCapacity > 0:
+                cohorts.append(Cohort(room, f"{program}{self._term:02d}{cohort_num:02d}", room.currentStudents))
+                cohort_num += 1
+                students -= room.normalCapacity
+            room.currentStudents = students
+            cohorts.append(Cohort(room, f"{program}{self._term:02d}{cohort_num:02d}", room.currentStudents))
+            
+        return cohorts
+        
 
     """ 
     def divide_to_cohorts(self, students, program):

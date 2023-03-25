@@ -94,10 +94,20 @@ class TestStudents(unittest.TestCase):
             
     def test_givenStudentCount_thenCohortsAreCreatedCorrectly(self):
         
-        self.students1.divide_to_cohorts(40, "PC")
-        self.students1.divide_to_cohorts(50, "BC")
-        self.students1.divide_to_cohorts(80, "PM")
-        self.students1.divide_to_cohorts(400, "DXD")
+        standard_stdout = sys.stdout
+        with open("Tests/logs/create_cohorts_test.log", "w") as file:
+            sys.stdout = file
+            print(self.students1.divide_to_cohorts(40, "PC"))
+            print(self.students1.divide_to_cohorts(50, "BC"))
+            print(self.students1.divide_to_cohorts(80, "PM"))
+            print(self.students1.divide_to_cohorts(400, "DXD"))
+            print(self.students1.divide_to_cohorts(30, "FS"))
+            self.students1._reset_classrooms(self.students1._rooms)
+            print("======== CLASSROOMS RESET =========")
+            print(self.students1.divide_to_cohorts(200, "PC"))
+            print(self.students1.divide_to_cohorts(400, "BC"))
+            print(self.students1.divide_to_cohorts(80, "PM"))
+            sys.stdout = standard_stdout
 
 
 if __name__ == "__main__":
