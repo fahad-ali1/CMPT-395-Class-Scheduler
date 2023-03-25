@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from openpyxl.reader.excel import load_workbook
 from lib.classrooms import Classroom
 from collections import deque
+from lib.fileio import getClassrooms
 import copy
 
 from collections import deque
@@ -123,13 +124,8 @@ METHODS
 getWeekDays - getters
 """
 class Week:
-    def __init__(self, weekNumber, days):
+    def __init__(self, weekNumber):
         self.weekNumber = weekNumber # int to represent n/14 weeks
-<<<<<<< HEAD
-        self.days = [
-
-        ]   # list of day objects
-=======
         self.days = [       # list of day objects
             Day("Monday"),
             Day("Tuesday"),
@@ -142,7 +138,6 @@ class Week:
         
         for day in self.days:
             day.classrooms = getClassrooms()
->>>>>>> d5e05befe5ce6f61951220f4801d270e27382308
 
     def getWeekNumber(self):
         return self.weekNumber
