@@ -7,8 +7,8 @@ import csv, re, openpyxl
 from openpyxl.reader.excel import load_workbook
 
 # Import local code
-from lib.cohorts import Classroom
-
+from lib.classrooms import Classroom
+from lib.courses import Program, Course
 
 """
 Purpose: Reads classroom info from an excel file
@@ -35,7 +35,7 @@ Parameters: None
 Returns: List of programs
 """
 def getAllPrograms():
-    wb = load_workbook('AllCourses.xlsx')
+    wb = load_workbook('data/AllCourses.xlsx')
     term = None
     allPrograms = []
     for i in range(0, 8):
