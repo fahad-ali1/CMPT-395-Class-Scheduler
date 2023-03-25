@@ -61,6 +61,9 @@ class timeBlock:
         self.courseName = courseName
         self.startDate = startDate
         self.endDate = endDate
+        
+    def __repr__(self):
+        return f"{self.cohortName} - {self.courseName}: {self.startTime} to {self.endTime}"
 
     def isAvailable(self, proposed_start_time, proposed_end_time, cohort):
         if self.cohort is not None:
@@ -99,6 +102,13 @@ class Day:
     def __init__(self, dayName):
         self.dayName = dayName # dayName (mon, tues, wed, thurs)
         self.classrooms = []    # list of classroom objects
+        
+    def __repr__(self):
+        string = ""
+        for classroom in self.classrooms:
+            string += f"{classroom.timeBlocks}"
+        string.strip("\n")
+        return string
 
     def getDayName(self):
         return self.dayName
@@ -138,6 +148,15 @@ class Week:
         
         for day in self.days:
             day.classrooms = getClassrooms()
+            
+    def __repr__(self):
+        return f"""{self.days[0]}
+{self.days[1]}
+{self.days[2]}
+{self.days[3]}
+{self.days[4]}
+{self.days[5]}
+{self.days[6]}"""
 
     def getWeekNumber(self):
         return self.weekNumber
@@ -160,8 +179,8 @@ Parameters: lecture length, end time
 Returns: start time and end time
 """
 def scheduleLecture(lectureLength, lastEndTime=None):
-    if lectureLength not in [1.5, 2, 3]:
-        raise ValueError("Invalid lecture length. Lecture lengths can be 1.5, 2, or 3 hours.")
+    #if lectureLength not in [1.5, 2, 3]:
+    #    raise ValueError("Invalid lecture length. Lecture lengths can be 1.5, 2, or 3 hours.")
 
     startTime = datetime.strptime('08:00:00', '%H:%M:%S')
     endTime = datetime.strptime('17:00:00', '%H:%M:%S')
