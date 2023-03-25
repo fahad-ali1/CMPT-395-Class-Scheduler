@@ -5,10 +5,10 @@
  - Sankalp (Changing course info in xlsx file)
  
  ## Installation
- If you have python3 installed (you can install python [here.](https://www.python.org/downloads/)\\) Otherwise, download the `.exe` file under the releases section (W.I.P.).
+ If you have python3 installed (you can install python [here.](https://www.python.org/downloads/)\) Otherwise, download the `.exe` file under the releases section (W.I.P.).
  
  ## Dependencies
- Currently, the project is dependent on [PyQt5](https://pypi.org/project/PyQt5/) and [openpyxl](https://pypi.org/project/openpyxl/)\\. You can install these by running:
+ Currently, the project is dependent on [PyQt5](https://pypi.org/project/PyQt5/) and [openpyxl](https://pypi.org/project/openpyxl/)\. You can install these by running:
  ```
  pip install PyQt5 openpyxl
  ```
