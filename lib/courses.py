@@ -151,6 +151,7 @@ def getCourse(fileName, courseName):
 
     return None
 
+
 def changeCourseInfo(courseLocation, courseInfo, fileName):
 
     sheet, cRow = courseLocation[0], courseLocation[1]
@@ -166,3 +167,4 @@ def changeCourseInfo(courseLocation, courseInfo, fileName):
         # print(cells.value, end="\t") #comment this when demo is done
         count += 1
     wb.save(fileName) #saving the edited file as 
+
