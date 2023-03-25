@@ -136,91 +136,33 @@ class Students:
         for room in classroom_list:
             room.currentStudents = room.normalCapacity
             room.inUse = False
-
-
-    def _check_room_combo(self, temp, combo, percent, wiggle_percent):
-
-        # Iterate through each room in the combo
-        for room in combo:
-            wiggle_room = math.floor(room.normalCapacity - (room.normalCapacity * wiggle_percent))
-            allowed_total = math.floor(room.normalCapacity - (room.normalCapacity * percent))
-
-            # If the remaining students is less than the allowed total, return, as
-            # this combination simply will not work.
-            if temp - wiggle_room < 0:
-                return None
-            # Handle if the remaining students can reasonably fit into the room.
-
-            if temp - wiggle_room >= 0:
-
-                # Check conditions for if this room combo is acceptable.
-                if room == combo[-1] and wiggle_room <= temp <= room.normalCapacity:
-                    room.currentStudents = temp
-                    return combo
-
-                # Convert to int, as allowed total will be a float with ?.0 in it
-                room.currentStudents = int(allowed_total)
-                temp -= allowed_total
-                if temp == 0:
-                    return combo
-
-    def most_even_rooms(self, students):
-
-        empty_classrooms = []
-        for room in self._rooms:
-            if not room.inUse:
-                empty_classrooms.append(room)
-
-        if not empty_classrooms:
-            return f"Need room for {students} students"
-
-        percent = 0.05
-        wiggle_room = 0.05
-        result_found = False
-        being_compared = 1
-        while not result_found:
-            for combo in itertools.combinations(empty_classrooms, being_compared):
-                combo = list(combo)
-                temp = students
-
-                # Reset classrooms so that the state of classrooms is
-                # identical for each check.
-                # NOTE: I really don't know if this is necessary, it just
-                #       eliminates the possibility of bugs.
-                self._reset_classrooms(combo)
-                combo_result = self._check_room_combo(temp, combo, percent, wiggle_room)
-
-                if combo_result:
-                    # Make the result mutable
-                    combo_result = list(combo_result)
-
-                    for result in combo_result:
-                        result.in_use = True
-                    return combo_result
-
-            being_compared += 1
-
-            # If being compared is 5, increase percent and reset combo value
-            if being_compared == len(empty_classrooms) + 1:
-
-                # Set conditions as a series of gates
-
-                # If the percent is zero, start adjusting the wiggle room
-                # that the final classroom can fit within
-                if percent == 0:
-                    if wiggle_room < 1:
-                        wiggle_room += 0.01
-                    else:
-                        wiggle_room = 1
-
-                # If the percentage isn't zero, reduce how much room should
-                # remain in the classrooms
-                if percent != 0:
-                    percent -= 0.01
-                    if percent < 0:
-                        percent = 0
-
-                being_compared = 1
+    
+    def _check_space(self, combo, students):
+        
+        # If there are more students than space, this will return a negative
+        # representing space needed, and if more space than students will
+        # return space in room
+        total_space = sum(classroom.normalCapacity for classroom in combo)
+        return total_space - students
+        
+    def iterate_classrooms(self, students):
+        
+        empty_classrooms = [room for room in self._rooms if not room.inUse]
+        
+        # This variable name is a bit misleading, so it deserves
+        # an explanation. 
+        # We will be iterating through every combination of classrooms
+        # using itertools.combination, and room_count represents
+        # how many rooms are being added to the combination.
+        room_count = 2
+        classrooms_with_remaining_space = []
+        for combo in itertools.combinations(empty_classrooms, room_count):
+            students_copy = students
+            smallest = min(combo, key=lambda x:x.normalCapacity)
+            
+            # Fits in room in this scenario
+            if (value := self._check_space(combo, students_copy)) <= 0:
+                classrooms_with_remaining_space.append([combo, value])
 
     def divide_to_cohorts(self, students, program):
         '''
@@ -252,4 +194,3 @@ class Students:
                 num += 1
 
         return cohorts
-
