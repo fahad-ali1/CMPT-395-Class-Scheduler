@@ -14,7 +14,7 @@ class Course:
         self.courseName = courseName
         self.courseDescript = courseDescript
         self.totalTranscriptHours = totalTranscriptHours
-        self.lectureLength = 0.0
+        self.lectureLength = 1.5
         self.numberOfSessions = 0
         self.courseType = ""
         self.schedulingInstructions = ""
@@ -68,6 +68,9 @@ class Course:
 
     def getNumOfSessions(self):
         return self.numberOfSessions
+        
+    def setNumberOfSessions(self, sessions):
+        self.numberOfSessions = sessions
 
     def getLecTime100(self):
         return self.lectureLength * 100
