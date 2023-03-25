@@ -177,12 +177,11 @@ class Students:
                 smallest = min(combo, key=lambda x:x.normalCapacity)
                 remainder = self._check_space(combo, students)
                 
-                # Number 
                 if max_remainder is None or remainder > max_remainder:
                     max_remainder = remainder
                     max_remainder_combo = combo
                 
-                # If one class is completely empy, set the flag
+                # If one class is completely empty, set the flag
                 if remainder > smallest.normalCapacity:
                     not_one_class_totally_empty = False
                 
@@ -191,11 +190,13 @@ class Students:
                     classrooms_with_remaining_space.append([combo, remainder])
                     
             room_count += 1
-            
-        # Set max remainder to abs value because it now represents
-        # number of students that we need to accomodate for and it's negative value
-        # holds no meaning
-        max_remainder = abs(max_remainder)
+        
+        if ghost_rooms_not_needed:
+            final_combo_choice = min(classrooms_with_remaining_space, key=lambda x: x[1])
+        else:
+            final_combo_choice = [max_remainder_combo, max_remainder]
+        print(final_combo_choice)
+        return final_combo_choice
         
     def divide_to_cohorts(self, students, program):
         '''
