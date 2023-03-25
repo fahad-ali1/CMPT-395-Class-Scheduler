@@ -1,4 +1,4 @@
-#Author(s)
+# Author(s)
  - Fahad Ali (GUI)
  - Schuy (Cohorts)
  - Mike (Scheduling and related data structures)
