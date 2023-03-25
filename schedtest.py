@@ -37,6 +37,8 @@ def scheduleCourses(week, cohorts):
                     newBlock = timeBlock(startTime, endTime, cohort.cohortName, currentCourse.courseName, 0, 0)
                     day1.classrooms[i].timeBlocks.append(newBlock)
                     day2.classrooms[i].timeBlocks.append(newBlock)
+
+
     return copy.deepcopy(week)
 
 

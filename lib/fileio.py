@@ -51,7 +51,6 @@ def getAllPrograms():
         allPrograms.append(program)
     return allPrograms
 
-
 '''
 Returns a list of lists. Inner list is the number of students per term for each program.
 List order is as follows:
