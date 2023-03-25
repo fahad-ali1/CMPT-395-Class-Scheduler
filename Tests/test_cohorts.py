@@ -3,7 +3,7 @@ Author: Schuyle Kelly
 Purpose: Testing cohort object
 """
 
-import unittest
+import unittest, sys
 from lib.cohorts import Students
 from lib.classrooms import Classroom
 
@@ -66,24 +66,38 @@ class TestStudents(unittest.TestCase):
 
     def test_givenConditionalWhileLoopExitCondition_ThenShouldAlwaysEventuallyExit(self):
         
-        self.students1.iterate_classrooms(10)
-        self.students1.iterate_classrooms(20)
-        self.students1.iterate_classrooms(30)
-        self.students1.iterate_classrooms(40)
-        self.students1.iterate_classrooms(50)
-        self.students1.iterate_classrooms(60)
-        self.students1.iterate_classrooms(70)
-        self.students1.iterate_classrooms(80)
-        self.students1.iterate_classrooms(90)
-        self.students1.iterate_classrooms(100)
-        self.students1.iterate_classrooms(200)
-        self.students1.iterate_classrooms(300)
-        self.students1.iterate_classrooms(400)
-        self.students1.iterate_classrooms(500)
-        self.students1.iterate_classrooms(600)
-        self.students1.iterate_classrooms(700)
-        self.students1.iterate_classrooms(800)
-        self.students1.iterate_classrooms(1000)
+        # Creates a log file because this is difficult if not impossible to measure
+        # without inspection
+        standard_stdout = sys.stdout
+        with open('Tests/logs/cohort_iterator_test.log', 'w') as file:
+            sys.stdout = file
+            print(f"Students._iterate_classrooms(10) = {self.students1._iterate_classrooms(10)}")
+            print(f"Students._iterate_classrooms(20) = {self.students1._iterate_classrooms(20)}")
+            print(f"Students._iterate_classrooms(30) = {self.students1._iterate_classrooms(30)}")
+            print(f"Students._iterate_classrooms(39) = {self.students1._iterate_classrooms(39)}")
+            print(f"Students._iterate_classrooms(40) = {self.students1._iterate_classrooms(40)}")
+            print(f"Students._iterate_classrooms(50) = {self.students1._iterate_classrooms(50)}")
+            print(f"Students._iterate_classrooms(60) = {self.students1._iterate_classrooms(60)}")
+            print(f"Students._iterate_classrooms(70) = {self.students1._iterate_classrooms(70)}")
+            print(f"Students._iterate_classrooms(80) = {self.students1._iterate_classrooms(80)}")
+            print(f"Students._iterate_classrooms(90) = {self.students1._iterate_classrooms(90)}")
+            print(f"Students._iterate_classrooms(100) = {self.students1._iterate_classrooms(100)}")
+            print(f"Students._iterate_classrooms(200) = {self.students1._iterate_classrooms(200)}")
+            print(f"Students._iterate_classrooms(300) = {self.students1._iterate_classrooms(300)}")
+            print(f"Students._iterate_classrooms(400) = {self.students1._iterate_classrooms(400)}")
+            print(f"Students._iterate_classrooms(500) = {self.students1._iterate_classrooms(500)}")
+            print(f"Students._iterate_classrooms(600) = {self.students1._iterate_classrooms(600)}")
+            print(f"Students._iterate_classrooms(700) = {self.students1._iterate_classrooms(700)}")
+            print(f"Students._iterate_classrooms(800) = {self.students1._iterate_classrooms(800)}")
+            print(f"Students._iterate_classrooms(1000) = {self.students1._iterate_classrooms(1000)}")
+            sys.stdout = standard_stdout
+            
+    def test_givenStudentCount_thenCohortsAreCreatedCorrectly(self):
+        
+        self.students1.divide_to_cohorts(40, "PC")
+        self.students1.divide_to_cohorts(50, "BC")
+        self.students1.divide_to_cohorts(80, "PM")
+        self.students1.divide_to_cohorts(400, "DXD")
 
 
 if __name__ == "__main__":

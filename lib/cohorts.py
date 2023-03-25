@@ -145,7 +145,7 @@ class Students:
         total_space = sum(classroom.normalCapacity for classroom in combo)
         return total_space - students
         
-    def iterate_classrooms(self, students):
+    def _iterate_classrooms(self, students):
         
         empty_classrooms = [room for room in self._rooms if not room.inUse]
         
@@ -170,7 +170,7 @@ class Students:
             
                 # If the length of the combo reaches 1+ the total number of classrooms,
                 # ghost rooms are needed, and we can break the loop.
-                if len(combo) + 1 == len(self._rooms):
+                if len(combo) + 1 == len(empty_classrooms):
                     ghost_rooms_not_needed = False
                     continue
                 
@@ -186,18 +186,45 @@ class Students:
                     not_one_class_totally_empty = False
                 
                 # Fits in room in this scenario
-                elif 0 < remainder <= smallest.normalCapacity:
+                elif 0 <= remainder <= smallest.normalCapacity:
                     classrooms_with_remaining_space.append([combo, remainder])
                     
             room_count += 1
         
         if ghost_rooms_not_needed:
-            final_combo_choice = min(classrooms_with_remaining_space, key=lambda x: x[1])
+            final_combo_choice = min(classrooms_with_remaining_space, key=lambda x: x[-1])
         else:
             final_combo_choice = [max_remainder_combo, max_remainder]
-        print(final_combo_choice)
         return final_combo_choice
         
+    def divide_to_cohorts(self, students, program):
+        """
+        Description: Will change the representation in the classroom combo into a meaningful
+                     representation of a cohort (Aka list of cohorts)
+        Params: students - number of students cohorts are being made out of.
+        Returns: A list of cohort objects
+        """
+        
+        available_rooms, remainder = self._iterate_classrooms(students)
+        uses_ghost_rooms = remainder < 0
+        
+        cohorts = []
+        
+        if not uses_ghost_rooms:
+            print(available_rooms, remainder)
+            if remainder % 2 == 0:
+                for i, room in enumerate(available_rooms):
+                    if students - room.normalCapacity >= 0:
+                        room.currentStudents = room.normalCapacity
+                        students -= room.normalCapacity
+                    else:
+                        room.currentStudents = students
+                    room.inUse = True
+                    cohorts.append(Cohort(room, f"{program}{self._term:02d}{(i + 1):02d}", room.currentStudents))
+        else:
+            pass
+
+    """ 
     def divide_to_cohorts(self, students, program):
         '''
         Description: this function will assign the appropriate prefix and
@@ -228,3 +255,4 @@ class Students:
                 num += 1
 
         return cohorts
+    """
