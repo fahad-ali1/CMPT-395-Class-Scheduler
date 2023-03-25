@@ -1,4 +1,7 @@
-# Author(s)
+# Class Scheduler
+Scheduler assignment for CMPT 395. Will create a schedule for MacEwan's department of continuing education.
+
+### Author(s)
  - Fahad Ali (GUI)
  - Schuy (Cohorts)
  - Mike (Scheduling and related data structures)
