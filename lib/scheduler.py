@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from openpyxl.reader.excel import load_workbook
 from lib.classrooms import Classroom
 from collections import deque
+from lib.fileio import getClassrooms
 import copy
 
 from collections import deque
@@ -97,7 +98,7 @@ addTimeBlock - adds a new time block to the day
 class Day:
     def __init__(self, dayName):
         self.dayName = dayName # dayName (mon, tues, wed, thurs)
-        self.classrooms = []    # list of timeblock objects
+        self.classrooms = []    # list of classroom objects
 
     def getDayName(self):
         return self.dayName
@@ -123,7 +124,7 @@ METHODS
 getWeekDays - getters
 """
 class Week:
-    def __init__(self, weekNumber, days):
+    def __init__(self, weekNumber):
         self.weekNumber = weekNumber # int to represent n/14 weeks
         self.days = [       # list of day objects
             Day("Monday"),

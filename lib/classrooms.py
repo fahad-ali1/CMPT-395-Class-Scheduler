@@ -44,7 +44,7 @@ class Classroom:
 
     def setBlockTime(self, time):
         self.currentBlockTime = time
-        
+
     def addBlock(self, newTimeBlock):
         self.timeBlocks.append(newTimeBlock)
 
