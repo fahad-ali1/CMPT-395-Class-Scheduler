@@ -6,7 +6,7 @@ Purpose: Module centerd around creating cohorts, based on existing classrooms.
 import math, itertools
 
 # Import local code
-from lib.fileio import getClassrooms
+from lib.fileio import getClassrooms, getAllPrograms
 from lib.classrooms import Classroom
 
 
@@ -206,6 +206,9 @@ class Students:
         Returns: A list of cohort objects
         """
         
+        # NOTE: WHY
+        all_programs = getAllPrograms()
+        
         available_rooms, remainder = self._iterate_classrooms(students)
         if remainder is None:
             any_rooms_available_in_the_first_place = False
@@ -227,7 +230,11 @@ class Students:
                 else:
                     room.currentStudents = students
                 room.inUse = True
-                cohorts.append(Cohort(room, f"{program}{self._term:02d}{(i + 1):02d}", room.currentStudents))
+                temp_cohort = Cohort(room, f"{program}{self._term:02d}{(i + 1):02d}", room.currentStudents)
+                for specific_program in all_programs:
+                    if program in specific_program.programType:
+                        temp_cohort.programCourses = specific_program
+                cohorts.append(temp_cohort)
         else:
             cohort_num = 0
             if any_rooms_available_in_the_first_place:
@@ -237,14 +244,27 @@ class Students:
                     room.currentStudents = room.normalCapacity
                     students -= room.normalCapacity
                     room.inUse = True
-                    cohorts.append(Cohort(room, f"{program}{self._term:02d}{(i + 1):02d}", room.currentStudents))
+                    temp_cohort = Cohort(room, f"{program}{self._term:02d}{(i + 1):02d}", room.currentStudents)
+                    
+                    for specific_program in all_programs:
+                        if program in specific_program.programType:
+                            temp_cohort.programCourses = specific_program
+                            
+                    cohorts.append(temp_cohort)
                 
             # Begin appending ghost rooms here:
             cohort_num += 1
             room = min(self._rooms, key=lambda x: x.normalCapacity)
             room = Classroom("??-???", room.normalCapacity)
             while students - room.normalCapacity > 0:
-                cohorts.append(Cohort(room, f"{program}{self._term:02d}{cohort_num:02d}", room.currentStudents))
+                temp_cohort = Cohort(room, f"{program}{self._term:02d}{cohort_num:02d}", room.currentStudents)
+                
+                for specific_program in all_programs:
+                        if program in specific_program.programType:
+                            temp_cohort.programCourses = specific_program
+                
+                cohorts.append(temp_cohort)
+                
                 cohort_num += 1
                 students -= room.normalCapacity
             room.currentStudents = students

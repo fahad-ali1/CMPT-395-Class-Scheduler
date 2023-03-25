@@ -34,7 +34,7 @@ class Classroom:
         self.inUse = False
         self.isGhost = False
         self.noSpaceForBlocks = False
-        self.timeBlocks = None
+        self.timeBlocks = []
         
     def __repr__(self):
         return f"Classroom(name={self.classRoomNumber}, cap={self.normalCapacity})"
