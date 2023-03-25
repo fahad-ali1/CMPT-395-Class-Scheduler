@@ -123,9 +123,20 @@ METHODS
 getWeekDays - getters
 """
 class Week:
-    def __init__(self, weekNumber, days = []):
+    def __init__(self, weekNumber, days):
         self.weekNumber = weekNumber # int to represent n/14 weeks
-        self.days = days     # list of day objects
+        self.days = [       # list of day objects
+            Day("Monday"),
+            Day("Tuesday"),
+            Day("Wednesday"),
+            Day("Thursday"),
+            Day("Friday"),
+            Day("Saturday"),
+            Day("Sunday")
+        ]
+        
+        for day in self.days:
+            day.classrooms = getClassrooms()
 
     def getWeekNumber(self):
         return self.weekNumber
