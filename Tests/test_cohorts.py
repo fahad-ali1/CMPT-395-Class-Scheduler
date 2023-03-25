@@ -64,8 +64,27 @@ class TestStudents(unittest.TestCase):
         self.assertEqual(self.students1._check_space(classlist4, 120), 0)
         self.assertEqual(self.students1._check_space(classlist4, 115), 5)
 
-    def test_iteration(self):
+    def test_givenConditionalWhileLoopExitCondition_ThenShouldAlwaysEventuallyExit(self):
+    
+        self.students1.iterate_classrooms(10)
+        self.students1.iterate_classrooms(20)
+        self.students1.iterate_classrooms(30)
+        self.students1.iterate_classrooms(40)
+        self.students1.iterate_classrooms(50)
+        self.students1.iterate_classrooms(60)
+        self.students1.iterate_classrooms(70)
+        self.students1.iterate_classrooms(80)
+        self.students1.iterate_classrooms(90)
         self.students1.iterate_classrooms(100)
+        self.students1.iterate_classrooms(200)
+        self.students1.iterate_classrooms(300)
+        self.students1.iterate_classrooms(400)
+        self.students1.iterate_classrooms(500)
+        self.students1.iterate_classrooms(600)
+        self.students1.iterate_classrooms(700)
+        self.students1.iterate_classrooms(800)
+        self.students1.iterate_classrooms(1000)
+
 
 if __name__ == "__main__":
     unittest.main()

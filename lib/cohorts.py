@@ -154,15 +154,31 @@ class Students:
         # We will be iterating through every combination of classrooms
         # using itertools.combination, and room_count represents
         # how many rooms are being added to the combination.
-        room_count = 2
+        room_count = 1
         classrooms_with_remaining_space = []
-        for combo in itertools.combinations(empty_classrooms, room_count):
-            students_copy = students
-            smallest = min(combo, key=lambda x:x.normalCapacity)
+        not_one_class_totally_empty = True
+        ghost_rooms_not_needed = True
+        while not_one_class_totally_empty and ghost_rooms_not_needed:
+            for combo in itertools.combinations(empty_classrooms, room_count):
             
-            # Fits in room in this scenario
-            if (value := self._check_space(combo, students_copy)) <= 0:
-                classrooms_with_remaining_space.append([combo, value])
+                # If the length of the combo reaches 1+ the total number of classrooms,
+                # ghost rooms are needed, and we can break the loop.
+                if len(combo) + 1 == len(self._rooms):
+                    ghost_rooms_not_needed = False
+                    continue
+                
+                smallest = min(combo, key=lambda x:x.normalCapacity)
+                remainder = self._check_space(combo, students)
+                
+                # If one class is completely empy, set the flag
+                if remainder > smallest.normalCapacity:
+                    not_one_class_totally_empty = False
+                
+                # Fits in room in this scenario
+                elif 0 < remainder <= smallest.normalCapacity:
+                    classrooms_with_remaining_space.append([combo, remainder])
+                    
+            room_count += 1
 
     def divide_to_cohorts(self, students, program):
         '''
