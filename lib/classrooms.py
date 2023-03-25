@@ -32,8 +32,14 @@ class Classroom:
         self.lab = lab
         self.inUse = False
         self.isGhost = False
+<<<<<<< HEAD
         self.noSpaceForBlocks = False
         self.timeBlocks = None
+=======
+        
+    def __repr__(self):
+        return f"Classroom(name={self.classRoomNumber}, cap={self.normalCapacity})"
+>>>>>>> 3994a0f42975f9c965bbdb93e01012bea1dd38b2
 
     def setGhost(self):
         self.isGhost = True
