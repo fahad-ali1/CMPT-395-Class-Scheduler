@@ -251,37 +251,4 @@ class Students:
             cohorts.append(Cohort(room, f"{program}{self._term:02d}{cohort_num:02d}", room.currentStudents))
             
         return cohorts
-        
 
-    """ 
-    def divide_to_cohorts(self, students, program):
-        '''
-        Description: this function will assign the appropriate prefix and
-        divide by cohort size and return a list
-        Returns: a list of cohort strings
-        '''
-
-        cohorts = []
-        # Example entry: "PM0101: 11-533, 38/40
-
-        num = 1
-
-        # If there are no students, return the cohorts, as no cohorts can
-        # be created.
-        if students == 0:
-            return cohorts
-
-        rooms = self.most_even_rooms(students)
-
-        if type(rooms) == str:
-            print(f"{rooms} in {program}")
-            quit()
-
-        if rooms:
-            for room in rooms:
-                temp = Cohort(room, f"{program}{self._term:02d}{num:02d}", room.currentStudents)
-                cohorts.append(temp)
-                num += 1
-
-        return cohorts
-    """
