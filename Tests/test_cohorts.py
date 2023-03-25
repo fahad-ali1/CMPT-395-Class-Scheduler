@@ -65,7 +65,7 @@ class TestStudents(unittest.TestCase):
         self.assertEqual(self.students1._check_space(classlist4, 115), 5)
 
     def test_givenConditionalWhileLoopExitCondition_ThenShouldAlwaysEventuallyExit(self):
-    
+        
         self.students1.iterate_classrooms(10)
         self.students1.iterate_classrooms(20)
         self.students1.iterate_classrooms(30)

@@ -155,6 +155,13 @@ class Students:
         # using itertools.combination, and room_count represents
         # how many rooms are being added to the combination.
         room_count = 1
+        
+        # The two below variables exist explicitly for if students fill every
+        # classroom. In the scenario, we want the students placed in classes in such
+        # a way that the remaining students are as few as possible.
+        max_remainder = None
+        max_remainder_combo = None
+        
         classrooms_with_remaining_space = []
         not_one_class_totally_empty = True
         ghost_rooms_not_needed = True
@@ -170,6 +177,11 @@ class Students:
                 smallest = min(combo, key=lambda x:x.normalCapacity)
                 remainder = self._check_space(combo, students)
                 
+                # Number 
+                if max_remainder is None or remainder > max_remainder:
+                    max_remainder = remainder
+                    max_remainder_combo = combo
+                
                 # If one class is completely empy, set the flag
                 if remainder > smallest.normalCapacity:
                     not_one_class_totally_empty = False
@@ -179,7 +191,12 @@ class Students:
                     classrooms_with_remaining_space.append([combo, remainder])
                     
             room_count += 1
-
+            
+        # Set max remainder to abs value because it now represents
+        # number of students that we need to accomodate for and it's negative value
+        # holds no meaning
+        max_remainder = abs(max_remainder)
+        
     def divide_to_cohorts(self, students, program):
         '''
         Description: this function will assign the appropriate prefix and
