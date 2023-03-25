@@ -97,7 +97,7 @@ addTimeBlock - adds a new time block to the day
 class Day:
     def __init__(self, dayName):
         self.dayName = dayName # dayName (mon, tues, wed, thurs)
-        self.classrooms = []    # list of timeblock objects
+        self.classrooms = []    # list of classroom objects
 
     def getDayName(self):
         return self.dayName
@@ -125,7 +125,9 @@ getWeekDays - getters
 class Week:
     def __init__(self, weekNumber, days = []):
         self.weekNumber = weekNumber # int to represent n/14 weeks
-        self.days = days     # list of day objects
+        self.days = [
+
+        ]   # list of day objects
 
     def getWeekNumber(self):
         return self.weekNumber
