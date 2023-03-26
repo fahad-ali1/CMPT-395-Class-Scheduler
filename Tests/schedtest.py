@@ -16,6 +16,7 @@ from lib.fileio import getClassrooms
 
 def scheduleCourses(week, cohorts):
     for cohort in cohorts:
+        print(f"{cohort.cohortName} - {cohort.classroom.classRoomNumber}")
         courseQueue = deque(cohort.programCourses.term1)
 
         if "BC" in cohort.cohortName or "PC" in cohort.cohortName:
@@ -26,25 +27,35 @@ def scheduleCourses(week, cohorts):
         while courseQueue:
             currentCourse = courseQueue.popleft()
             prefClassroomName = cohort.classroom.classRoomNumber
-            day1 = days[0]
-            day2 = days[1]
-            for day in [day1, day2]:
+            for day in days:
+            
+                scheduled_preferred_room = False
                 for i in range(0, len(day.classrooms)):
-                    if (prefClassroomName == day1.classrooms[i].classRoomNumber and day1.classrooms[i].inUse is False) and \
-                       (prefClassroomName == day2.classrooms[i].classRoomNumber and day2.classrooms[i].inUse is False):
-
-                        startTime, endTime = scheduleLecture(currentCourse.lectureLength, day.classrooms[i].currentBlockTime)
-                        newBlock = timeBlock(startTime, endTime, cohort.cohortName, currentCourse.courseName, 0, 0)
-
-                        if checkIfAvailable(day.classrooms[i].timeBlocks, newBlock) != "nofit":
+                    # Create new time block for iteration. Values can be discarded if not used
+                    startTime, endTime = scheduleLecture(currentCourse.lectureLength, day.classrooms[i].currentBlockTime)
+                    newBlock = timeBlock(startTime, endTime, cohort.cohortName, currentCourse.courseName, 0, 0)
+                    
+                    if day.classrooms[i].available_at_time(startTime, endTime):
+                        if day.classrooms[i].classRoomNumber == prefClassroomName and cohort.size <= day.classrooms[i].normalCapacity:
                             day.classrooms[i].timeBlocks.append(newBlock)
                             day.classrooms[i].currentBlockTime = endTime
+                            scheduled_preferred_room = True
                             break
+                            
+                    
+                if not scheduled_preferred_room:
+                    for i in range(0, len(day.classrooms)):
+                    
+                        # Create new time block for iteration. Values can be discarded if not used
+                        startTime, endTime = scheduleLecture(currentCourse.lectureLength, day.classrooms[i].currentBlockTime)
+                        newBlock = timeBlock(startTime, endTime, cohort.cohortName, currentCourse.courseName, 0, 0)
+                        
+                        # Store the first class found in the first iteration.
+                        if day.classrooms[i].available_at_time(startTime, endTime):
+                            if cohort.size <= day.classrooms[i].normalCapacity:
+                                day.classrooms[i].timeBlocks.append(newBlock)
+                                day.classrooms[i].currentBlockTime = endTime
+                                break
+
         return copy.deepcopy(week)
 
-
-
-def checkIfAvailable(timeBlocks, newBlock):
-    for timeblock in timeBlocks:
-        if newBlock.startTime == timeblock.startTime or newBlock.endTime == timeblock.endTime:
-            return "nofit"
