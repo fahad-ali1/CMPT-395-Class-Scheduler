@@ -23,7 +23,7 @@ programCourses  - A queue of courses the cohort must take
 """
 class Cohort:
     def __init__(self, classroom, cohortName="", size=0):
-        self.cohortName = cohortName
+        self.cohortName = cohortName.strip()
         self.classroom = classroom
         self.size = size
         self.programCourses = None  # program class

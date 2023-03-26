@@ -63,7 +63,7 @@ class timeBlock:
         self.endDate = endDate
         
     def __repr__(self):
-        return f"{self.cohortName} - {self.courseName}: {self.startTime} to {self.endTime}"
+        return f"{self.startTime} - {self.endTime}: Cohort Number <{self.cohortName}>,  Course Name <{self.courseName}>"
 
     def isAvailable(self, proposed_start_time, proposed_end_time, cohort):
         if self.cohort is not None:
@@ -106,7 +106,12 @@ class Day:
     def __repr__(self):
         string = ""
         for classroom in self.classrooms:
-            string += f"{classroom.timeBlocks}"
+            if classroom.timeBlocks:
+                string += f"{classroom.classRoomNumber}:\n"
+                for timeBlock in classroom.timeBlocks:
+                    string += f"\t\t{timeBlock}\n"
+            else:
+                string += f"{classroom.classRoomNumber}:\n"
         string.strip("\n")
         return string
 
@@ -150,13 +155,13 @@ class Week:
             day.classrooms = getClassrooms()
             
     def __repr__(self):
-        return f"""{self.days[0]}
-{self.days[1]}
-{self.days[2]}
-{self.days[3]}
-{self.days[4]}
-{self.days[5]}
-{self.days[6]}"""
+        return f"""Monday:\n{self.days[0]}
+Tuesday:\n{self.days[1]}
+Wednesday:\n{self.days[2]}
+Thursday:\n{self.days[3]}
+Friday:\n{self.days[4]}
+Saturday:\n{self.days[5]}
+Sunday:\n{self.days[6]}"""
 
     def getWeekNumber(self):
         return self.weekNumber

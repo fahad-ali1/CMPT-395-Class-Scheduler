@@ -26,7 +26,7 @@ printClassroom() - Prints the classroom data
 """
 class Classroom:
     def __init__(self, classRoomNumber='', normalCapacity=0, lab=False):
-        self.classRoomNumber = classRoomNumber
+        self.classRoomNumber = classRoomNumber.strip()
         self.normalCapacity = normalCapacity
         self.currentStudents = normalCapacity
         self.currentBlockTime = None

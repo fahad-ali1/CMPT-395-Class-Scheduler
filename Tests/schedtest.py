@@ -12,16 +12,17 @@ from lib.fileio import getClassrooms
             currentCourse = courses.pop(0)
             lecLen = currentCourse.lectureLength
 '''
-week = Week(0)
+
+
 def scheduleCourses(week, cohorts):
     for cohort in cohorts:
         courseQueue = deque(cohort.programCourses.term1)
 
-        if "BCOM" in cohort.cohortName or "PCOM" in cohort.cohortName:
+        if "BC" in cohort.cohortName or "PC" in cohort.cohortName:
             days = [week.getDay("Monday"), week.getDay("Wednesday")]
         else:
             days = [week.getDay("Tuesday"), week.getDay("Thursday")]
-        
+
         while courseQueue:
             currentCourse = courseQueue.popleft()
             prefClassroomName = cohort.classroom.classRoomNumber
@@ -33,11 +34,17 @@ def scheduleCourses(week, cohorts):
                        (prefClassroomName == day2.classrooms[i].classRoomNumber and day2.classrooms[i].inUse is False):
 
                         startTime, endTime = scheduleLecture(currentCourse.lectureLength, day.classrooms[i].currentBlockTime)
-
                         newBlock = timeBlock(startTime, endTime, cohort.cohortName, currentCourse.courseName, 0, 0)
-                        day.classrooms[i].timeBlocks.append(newBlock)
-                        day.classrooms[i].currentBlockTime = endTime
-                        break
+
+                        if checkIfAvailable(day.classrooms[i].timeBlocks, newBlock) != "nofit":
+                            day.classrooms[i].timeBlocks.append(newBlock)
+                            day.classrooms[i].currentBlockTime = endTime
+                            break
         return copy.deepcopy(week)
 
 
+
+def checkIfAvailable(timeBlocks, newBlock):
+    for timeblock in timeBlocks:
+        if newBlock.startTime == timeblock.startTime or newBlock.endTime == timeblock.endTime:
+            return "nofit"
