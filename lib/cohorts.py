@@ -31,7 +31,7 @@ class Cohort:
         self.prereq = {}
 
     def __repr__(self):
-        return f"{self.cohortName} - {self.classroom.classRoomNumber}, {self.size}/{self.classroom.normalCapacity}"
+        return f"{self.cohortName} - {self.classroom.classRoomNumber} | {self.size}/{self.classroom.normalCapacity}"
 
     def setmainProgram(self, program):
         self.programCourses = program

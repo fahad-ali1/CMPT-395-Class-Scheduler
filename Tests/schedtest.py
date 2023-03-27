@@ -4,19 +4,10 @@ from lib.scheduler import *
 from lib.scheduler import scheduleLecture, timeBlock, createTemplateWeek
 from lib.fileio import getClassrooms
 
-'''def schedulerTest(cohortList, dayList):
-
-    for cohort in cohortList:
-        courses = cohort.program.getTerm1()
-        while courses:
-            currentCourse = courses.pop(0)
-            lecLen = currentCourse.lectureLength
-'''
-
 
 def scheduleCourses(week, cohorts):
+
     for cohort in cohorts:
-        print(f"{cohort.cohortName} - {cohort.classroom.classRoomNumber}")
         courseQueue = deque(cohort.programCourses.term1)
 
         if "BC" in cohort.cohortName or "PC" in cohort.cohortName:
@@ -32,6 +23,7 @@ def scheduleCourses(week, cohorts):
                 scheduled_preferred_room = False
                 for i in range(0, len(day.classrooms)):
                     # Create new time block for iteration. Values can be discarded if not used
+
                     if (return_value := scheduleLecture(currentCourse.lectureLength, day.classrooms[i].currentBlockTime)) == "-2":
                         continue
                     else:
@@ -61,4 +53,4 @@ def scheduleCourses(week, cohorts):
                                 day.classrooms[i].currentBlockTime = endTime
                                 break
 
-        return copy.deepcopy(week)
+    return copy.deepcopy(week)
