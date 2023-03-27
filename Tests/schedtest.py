@@ -6,8 +6,8 @@ from lib.fileio import getClassrooms
 
 
 def scheduleCourses(week, cohorts):
+
     for cohort in cohorts:
-        print(f"{cohort.cohortName} - {cohort.classroom.classRoomNumber}")
         courseQueue = deque(cohort.programCourses.term1)
 
         if "BC" in cohort.cohortName or "PC" in cohort.cohortName:
@@ -53,4 +53,4 @@ def scheduleCourses(week, cohorts):
                                 day.classrooms[i].currentBlockTime = endTime
                                 break
 
-        return copy.deepcopy(week)
+    return copy.deepcopy(week)

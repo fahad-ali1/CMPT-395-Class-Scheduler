@@ -18,6 +18,9 @@ class Course:
         self.numberOfSessions = 0
         self.courseType = ""
         self.schedulingInstructions = ""
+        
+    def __repr__(self):
+        return f"Course(\"{self.courseName}\", {self.totalTranscriptHours}, {self.lectureLength})"
 
     def printCourseDetails(self):
         print(self.courseName, " ", self.courseDescript, " ", self.totalTranscriptHours)
