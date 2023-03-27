@@ -26,7 +26,7 @@ printClassroom() - Prints the classroom data
 """
 class Classroom:
     def __init__(self, classRoomNumber='', normalCapacity=0, lab=False):
-        self.classRoomNumber = classRoomNumber
+        self.classRoomNumber = classRoomNumber.strip()
         self.normalCapacity = normalCapacity
         self.currentStudents = normalCapacity
         self.currentBlockTime = None
@@ -51,4 +51,10 @@ class Classroom:
     def printClassroom(self):
         print("Classroom #: ", self.classRoomNumber, "Normal Capacity: ", self.normalCapacity, \
               "lab: ", self.lab, " isGhost: ", self.isGhost)
-
+              
+    def available_at_time(self, start_time, end_time):
+        """Checks if the room is available at a given time, string in form "8:00 AM" or similar"""
+        for timeBlock in self.timeBlocks:
+            if timeBlock.startTime == start_time or timeBlock.endTime == end_time:
+                return False
+        return True

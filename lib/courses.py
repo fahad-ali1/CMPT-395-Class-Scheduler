@@ -11,8 +11,8 @@ from datetime import datetime, timedelta
 
 class Course:
     def __init__(self, courseName="", courseDescript="", totalTranscriptHours=0, lectureLength=0, isLab=False):
-        self.courseName = courseName
-        self.courseDescript = courseDescript
+        self.courseName = courseName.strip()
+        self.courseDescript = courseDescript.strip()
         self.totalTranscriptHours = totalTranscriptHours
         self.lectureLength = 1.5
         self.numberOfSessions = 0
