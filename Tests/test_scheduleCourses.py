@@ -26,7 +26,6 @@ class TestScheduler(unittest.TestCase):
         self.PCOM_and_BCOM_cohorts = self.PCOM_cohorts + self.BCOM_cohorts
         
     def test_givenScheduleCoursesFunction_whenRan_ShouldCreateSchedule(self):
-        
         standard_stdout = sys.stdout
         with open("Tests/logs/scheduleCourses_test1.log", "w") as file:
             sys.stdout = file
@@ -37,7 +36,7 @@ class TestScheduler(unittest.TestCase):
             sys.stdout = file
             print(scheduleCourses(self.week, self.BCOM_cohorts))
             sys.stdout = standard_stdout
-            
+
         with open("Tests/logs/scheduleCourses_test3.log", "w") as file:
             sys.stdout = file
             print(scheduleCourses(self.week, self.PCOM_and_BCOM_cohorts))

@@ -23,11 +23,12 @@ def scheduleCourses(week, cohorts):
                 scheduled_preferred_room = False
                 for i in range(0, len(day.classrooms)):
                     # Create new time block for iteration. Values can be discarded if not used
-                    if (return_value := scheduleLecture(currentCourse.lectureLength, day.classrooms[i].currentBlockTime)) == -2:
+
+                    if (return_value := scheduleLecture(currentCourse.lectureLength, day.classrooms[i].currentBlockTime)) == "-2":
                         continue
                     else:
                         startTime, endTime = return_value
-                    
+
                     newBlock = timeBlock(startTime, endTime, cohort.cohortName, currentCourse.courseName, 0, 0)
                     
                     if day.classrooms[i].available_at_time(startTime, endTime):
@@ -53,4 +54,3 @@ def scheduleCourses(week, cohorts):
                                 break
 
         return copy.deepcopy(week)
-
