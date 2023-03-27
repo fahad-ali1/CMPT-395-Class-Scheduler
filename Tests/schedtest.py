@@ -31,39 +31,12 @@ def scheduleCourses(week, cohorts):
             
                 scheduled_preferred_room = False
                 for i in range(0, len(day.classrooms)):
-<<<<<<< HEAD
-                    if (prefClassroomName == day1.classrooms[i].classRoomNumber) and \
-                       (prefClassroomName == day2.classrooms[i].classRoomNumber):
-
-                        startTime, endTime = scheduleLecture(currentCourse.lectureLength, day.classrooms[i].currentBlockTime)
-                        newBlock = timeBlock(startTime, endTime, cohort.cohortName, currentCourse.courseName, 0, 0)
-
-                        if checkIfAvailable(day.classrooms[i].timeBlocks, newBlock) != "nofit":
-                            day.classrooms[i].timeBlocks.append(newBlock)
-                            day.classrooms[i].currentBlockTime = endTime
-                            break
-                    else:
-                        startTime, endTime = scheduleLecture(currentCourse.lectureLength,
-                                                                 day.classrooms[i].currentBlockTime)
-                        newBlock = timeBlock(startTime, endTime, cohort.cohortName, currentCourse.courseName, 0, 0)
-
-                        if checkIfAvailable(day.classrooms[i].timeBlocks, newBlock) != "nofit":
-                            day.classrooms[i].timeBlocks.append(newBlock)
-                            day.classrooms[i].currentBlockTime = endTime
-                            break
-
-
-        return copy.deepcopy(week)
-
-
-
-def checkIfAvailable(timeBlocks, newBlock):
-    for timeblock in timeBlocks:
-        if newBlock.startTime == timeblock.startTime or newBlock.endTime == timeblock.endTime:
-            return "nofit"
-=======
                     # Create new time block for iteration. Values can be discarded if not used
-                    startTime, endTime = scheduleLecture(currentCourse.lectureLength, day.classrooms[i].currentBlockTime)
+                    if (return_value := scheduleLecture(currentCourse.lectureLength, day.classrooms[i].currentBlockTime)) == "-2":
+                        continue
+                    else:
+                        startTime, endTime = return_value
+
                     newBlock = timeBlock(startTime, endTime, cohort.cohortName, currentCourse.courseName, 0, 0)
                     
                     if day.classrooms[i].available_at_time(startTime, endTime):
@@ -89,5 +62,3 @@ def checkIfAvailable(timeBlocks, newBlock):
                                 break
 
         return copy.deepcopy(week)
-
->>>>>>> 2ff3548738b640587901511f5482638c18a6b4e6
