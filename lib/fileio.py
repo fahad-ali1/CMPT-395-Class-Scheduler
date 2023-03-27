@@ -164,7 +164,11 @@ def getAllPrograms():
     return allPrograms
 
 
+'''
+
+
 """
+
 Returns a list of lists. Inner list is the number of students per term for each program.
 List order is as follows:
 BCOM
@@ -192,4 +196,4 @@ def getProgramNumbers(fileName):
     except:
         # print("Error: File not found")
         return -1
-'''
+

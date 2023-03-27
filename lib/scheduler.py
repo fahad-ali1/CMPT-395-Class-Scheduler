@@ -184,8 +184,8 @@ Parameters: lecture length, end time
 Returns: start time and end time
 """
 def scheduleLecture(lectureLength, lastEndTime=None):
-    #if lectureLength not in [1.5, 2, 3]:
-    #    raise ValueError("Invalid lecture length. Lecture lengths can be 1.5, 2, or 3 hours.")
+    if lectureLength not in [1.5, 2, 3]:
+        raise ValueError("Invalid lecture length. Lecture lengths can be 1.5, 2, or 3 hours.")
 
     startTime = datetime.strptime('08:00:00', '%H:%M:%S')
     endTime = datetime.strptime('17:00:00', '%H:%M:%S')
@@ -202,7 +202,7 @@ def scheduleLecture(lectureLength, lastEndTime=None):
         startTime += timedelta(minutes=minutes_to_round)
 
     if startTime + timedelta(minutes=lecture_minutes) > endTime:
-        raise ValueError("Course cannot be booked after 5pm.")
+        return "-2"
 
     endTime = startTime + timedelta(minutes=lecture_minutes) - timedelta(minutes=10)
 
