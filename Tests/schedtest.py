@@ -17,7 +17,7 @@ def scheduleCourses(week, cohorts):
     for cohort in cohorts:
         courseQueue = deque(cohort.programCourses.term1)
 
-        if "BCOM" in cohort.cohortName or "PCOM" in cohort.cohortName:
+        if "BC" in cohort.cohortName or "PC" in cohort.cohortName:
             days = [week.getDay("Monday"), week.getDay("Wednesday")]
         else:
             days = [week.getDay("Tuesday"), week.getDay("Thursday")]
@@ -29,15 +29,32 @@ def scheduleCourses(week, cohorts):
             day2 = days[1]
             for day in [day1, day2]:
                 for i in range(0, len(day.classrooms)):
-                    if (prefClassroomName == day1.classrooms[i].classRoomNumber and day1.classrooms[i].inUse is False) and \
-                       (prefClassroomName == day2.classrooms[i].classRoomNumber and day2.classrooms[i].inUse is False):
+                    if (prefClassroomName == day1.classrooms[i].classRoomNumber) and \
+                       (prefClassroomName == day2.classrooms[i].classRoomNumber):
 
                         startTime, endTime = scheduleLecture(currentCourse.lectureLength, day.classrooms[i].currentBlockTime)
-
                         newBlock = timeBlock(startTime, endTime, cohort.cohortName, currentCourse.courseName, 0, 0)
-                        day.classrooms[i].timeBlocks.append(newBlock)
-                        day.classrooms[i].currentBlockTime = endTime
-                        break
+
+                        if checkIfAvailable(day.classrooms[i].timeBlocks, newBlock) != "nofit":
+                            day.classrooms[i].timeBlocks.append(newBlock)
+                            day.classrooms[i].currentBlockTime = endTime
+                            break
+                    else:
+                        startTime, endTime = scheduleLecture(currentCourse.lectureLength,
+                                                                 day.classrooms[i].currentBlockTime)
+                        newBlock = timeBlock(startTime, endTime, cohort.cohortName, currentCourse.courseName, 0, 0)
+
+                        if checkIfAvailable(day.classrooms[i].timeBlocks, newBlock) != "nofit":
+                            day.classrooms[i].timeBlocks.append(newBlock)
+                            day.classrooms[i].currentBlockTime = endTime
+                            break
+
+
         return copy.deepcopy(week)
 
 
+
+def checkIfAvailable(timeBlocks, newBlock):
+    for timeblock in timeBlocks:
+        if newBlock.startTime == timeblock.startTime or newBlock.endTime == timeblock.endTime:
+            return "nofit"
