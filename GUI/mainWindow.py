@@ -46,12 +46,14 @@ class MainMenu(QWidget):
         self.revertButton3 = self.findChild(QPushButton, "RevertButton3")
 
         self.uploadButton = self.findChild(QPushButton, "UploadFileButton")
+        self.roomsButton = self.findChild(QPushButton, "RoomsButton")
         self.uploadButton2 = self.findChild(QPushButton, "UploadFileButton2")
 
 
         #------------------------- Progress bars ------------------------------
         self.progressBarUpload = self.findChild(QProgressBar, "ProgressBarUpload")
         self.progressBarUpload2 = self.findChild(QProgressBar, "ProgressBarUpload2")
+        self.progressBarUpload3 = self.findChild(QProgressBar, "ProgressBarUpload3")
 
         self.progressBarDownload = self.findChild(QProgressBar, "ProgressBarDownload")
         self.progressBarSaveAllCohort = self.findChild(QProgressBar,
@@ -73,87 +75,104 @@ class MainMenu(QWidget):
 
         self.room1 = self.findChild(QTableWidget, "ScheduleR1")
         self.room1week = self.findChild(QLabel, "WeekNumR1")
-        
         self.room2 = self.findChild(QTableWidget, "ScheduleR2")
         self.room2week = self.findChild(QLabel, "WeekNumR2")
-        
         self.room3 = self.findChild(QTableWidget, "ScheduleR3")
         self.room3week = self.findChild(QLabel, "WeekNumR3")
-        
         self.room4 = self.findChild(QTableWidget, "ScheduleR4")
         self.room4week = self.findChild(QLabel, "WeekNumR4")
-
         self.room5 = self.findChild(QTableWidget, "ScheduleR5")
         self.room5week = self.findChild(QLabel, "WeekNumR5")
-        
         self.room6 = self.findChild(QTableWidget, "ScheduleR6")
         self.room6week = self.findChild(QLabel, "WeekNumR6")
-
         self.room7 = self.findChild(QTableWidget, "ScheduleR7")
         self.room7week = self.findChild(QLabel, "WeekNumR7")
-        
         self.room8 = self.findChild(QTableWidget, "ScheduleR8")
         self.room8week = self.findChild(QLabel, "WeekNumR8")
-
         self.room9 = self.findChild(QTableWidget, "ScheduleR9")
         self.room9week = self.findChild(QLabel, "WeekNumR9")
-        
         self.room10 = self.findChild(QTableWidget, "ScheduleR10")
         self.room10week = self.findChild(QLabel, "WeekNumR10")
-
         self.room11 = self.findChild(QTableWidget, "ScheduleR11")
         self.room11week = self.findChild(QLabel, "WeekNumR11")
-
         self.room12 = self.findChild(QTableWidget, "ScheduleR12")
         self.room12week = self.findChild(QLabel, "WeekNumR12")
-
+        self.room13 = self.findChild(QTableWidget, "ScheduleR13")
+        self.room13week = self.findChild(QLabel, "WeekNumR13")
+        self.room14 = self.findChild(QTableWidget, "ScheduleR14")
+        self.room14week = self.findChild(QLabel, "WeekNumR14")
+        self.room15 = self.findChild(QTableWidget, "ScheduleR15")
+        self.room15week = self.findChild(QLabel, "WeekNumR15")
+        self.room16 = self.findChild(QTableWidget, "ScheduleR16")
+        self.room16week = self.findChild(QLabel, "WeekNumR16")
+        self.room17 = self.findChild(QTableWidget, "ScheduleR17")
+        self.room17week = self.findChild(QLabel, "WeekNumR17")
+        self.room18 = self.findChild(QTableWidget, "ScheduleR18")
+        self.room18week = self.findChild(QLabel, "WeekNumR18")
+        self.room19 = self.findChild(QTableWidget, "ScheduleR19")
+        self.room19week = self.findChild(QLabel, "WeekNumR19")
+        self.room20 = self.findChild(QTableWidget, "ScheduleR20")
+        self.room20week = self.findChild(QLabel, "WeekNumR20")
+        
         # buttons
         self.room1prev = self.findChild(QPushButton, "PrevWeekR1")
         self.room1next = self.findChild(QPushButton, "NextWeekR1")
-        
         self.room2prev = self.findChild(QPushButton, "PrevWeekR2")
         self.room2next = self.findChild(QPushButton, "NextWeekR2")
-        
         self.room3prev = self.findChild(QPushButton, "PrevWeekR3")
         self.room3next = self.findChild(QPushButton, "NextWeekR3")
-        
         self.room4prev = self.findChild(QPushButton, "PrevWeekR4")
         self.room4next = self.findChild(QPushButton, "NextWeekR4")
-
         self.room5prev = self.findChild(QPushButton, "PrevWeekR5")
         self.room5next = self.findChild(QPushButton, "NextWeekR5")
-        
         self.room6prev = self.findChild(QPushButton, "PrevWeekR6")
         self.room6next = self.findChild(QPushButton, "NextWeekR6")
-        
         self.room7prev = self.findChild(QPushButton, "PrevWeekR7")
         self.room7next = self.findChild(QPushButton, "NextWeekR7")
-        
         self.room8prev = self.findChild(QPushButton, "PrevWeekR8")
         self.room8next = self.findChild(QPushButton, "NextWeekR8")
-        
         self.room9prev = self.findChild(QPushButton, "PrevWeekR9")
         self.room9next = self.findChild(QPushButton, "NextWeekR9")
-
         self.room10prev = self.findChild(QPushButton, "PrevWeekR10")
         self.room10next = self.findChild(QPushButton, "NextWeekR10")
-
         self.room11prev = self.findChild(QPushButton, "PrevWeekR11")
         self.room11next = self.findChild(QPushButton, "NextWeekR11")
-        
         self.room12prev = self.findChild(QPushButton, "PrevWeekR12")
         self.room12next = self.findChild(QPushButton, "NextWeekR12")
+        self.room13prev = self.findChild(QPushButton, "PrevWeekR13")
+        self.room13next = self.findChild(QPushButton, "NextWeekR13")
+        self.room14prev = self.findChild(QPushButton, "PrevWeekR14")
+        self.room14next = self.findChild(QPushButton, "NextWeekR14")
+        self.room15prev = self.findChild(QPushButton, "PrevWeekR15")
+        self.room15next = self.findChild(QPushButton, "NextWeekR15")
+        self.room16prev = self.findChild(QPushButton, "PrevWeekR16")
+        self.room16next = self.findChild(QPushButton, "NextWeekR16")
+        self.room17prev = self.findChild(QPushButton, "PrevWeekR17")
+        self.room17next = self.findChild(QPushButton, "NextWeekR17")
+        self.room18prev = self.findChild(QPushButton, "PrevWeekR18")
+        self.room18next = self.findChild(QPushButton, "NextWeekR18")
+        self.room19prev = self.findChild(QPushButton, "PrevWeekR19")
+        self.room19next = self.findChild(QPushButton, "NextWeekR19")
+        self.room20prev = self.findChild(QPushButton, "PrevWeekR20")
+        self.room20next = self.findChild(QPushButton, "NextWeekR20")
+
 
         # List of schedules per room
         self.rooms = [self.room1, self.room2, self.room3, self.room4,\
             self.room5, self.room6, self.room7, self.room8, self.room9, \
-                self.room10, self.room11, self.room12]
+                self.room10, self.room11, self.room12, self.room13, \
+                    self.room14, self.room15, self.room16, self.room17,\
+                        self.room18, self.room19, self.room20]
         
         # List of week number for each room tab
         self.weekNum = [self.room1week, self.room2week, self.room3week, \
             self.room4week, self.room5week, self.room6week, self.room7week,\
                 self.room8week, self.room9week, self.room10week, \
-                    self.room11week, self.room12week]
+                    self.room11week, self.room12week, self.room12week, \
+                        self.room12week, self.room13week, self.room14week, \
+                            self.room15week, self.room16week, self.room17week,\
+                                self.room18week, self.room19week, \
+                                 self.room20week]
 
         # call method and create schedules for all rooms
         self.daysIterator = 0
@@ -188,6 +207,7 @@ class MainMenu(QWidget):
         # Open file browser if upload file clicked
         self.uploadButton.clicked.connect(self.upload_file)
         self.uploadButton2.clicked.connect(self.upload_file)
+        self.roomsButton.clicked.connect(self.upload_room_file)
 
         # Create cohorts when button clicked
         self.createCohort.clicked.connect(self.create_cohorts)
@@ -262,11 +282,16 @@ class MainMenu(QWidget):
 
         self.progressBarUpload.setValue(0)
         self.progressBarUpload2.setValue(0)
+        self.progressBarUpload3.setValue(0)
+        
         self.progressBarUpload.setFormat("")
         self.progressBarUpload2.setFormat("")
+        self.progressBarUpload3.setFormat("")
+        
         self.progressBarUpload.setTextVisible(False)
         self.progressBarUpload2.setTextVisible(False)
-
+        self.progressBarUpload3.setTextVisible(False)
+        
         self.progressBarDownload.setValue(0)
         self.progressBarDownload.setFormat("")
         self.progressBarDownload.setTextVisible(False)
@@ -367,6 +392,23 @@ class MainMenu(QWidget):
             self.spin_box_values(self.zero, tables)
             self.terminput.setValue(1)
 
+    def upload_room_file(self):
+        '''
+        Description: open dialog box to select file and then create room tabs
+        '''
+        # TODO: add functionality ask Mike for his portion of code
+        # open file browser to choose file
+        filter = ".xlsx(*.xlsx)"
+        path = QFileDialog.getOpenFileName(self, 'Open File','', filter)
+        # give path if the user does not hit cancel 
+        if path != ("", ""):
+            filename = path[0]
+            
+            # Set value to progress bar
+            self.progressBarUpload3.setValue(100)
+            self.progressBarUpload3.setFormat('Upload Complete!')
+            self.progressBarUpload3.setTextVisible(True)
+    
     def download_template(self):
         '''
         Description: download student upload file template
