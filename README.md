@@ -22,3 +22,10 @@ Scheduler assignment for CMPT 395. Will create a schedule for MacEwan's departme
  ```
  python main.py
  ```
+ 
+ ## Testing
+ The tests require that you are on a Windows machine. They only depend on `python` and `openpyxl`, so as long as both are installed, the tests can be ran. You can run the tests by calling
+ ```
+ Tests/run_all.bat
+ ```
+ From the root directory of the project. This will run all automated tests that it can, and will create log files for any tests we felt needed to be tested by inspection.
