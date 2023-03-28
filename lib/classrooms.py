@@ -25,12 +25,12 @@ setGhost() - Changes a room into a ghost room
 printClassroom() - Prints the classroom data
 """
 class Classroom:
-    def __init__(self, classRoomNumber='', normalCapacity=0, lab=False):
+    def __init__(self, classRoomNumber='', normalCapacity=0, isLab=False):
         self.classRoomNumber = classRoomNumber.strip()
         self.normalCapacity = normalCapacity
         self.currentStudents = normalCapacity
         self.currentBlockTime = None
-        self.lab = lab
+        self.isLab = isLab
         self.inUse = False
         self.isGhost = False
         self.noSpaceForBlocks = False

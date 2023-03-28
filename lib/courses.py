@@ -10,17 +10,18 @@ from datetime import datetime, timedelta
 
 
 class Course:
-    def __init__(self, courseName="", courseDescript="", totalTranscriptHours=0, lectureLength=0, isLab=False):
+    def __init__(self, courseName="", courseDescript="", totalTranscriptHours=0, isLab=False):
         self.courseName = courseName.strip()
         self.courseDescript = courseDescript.strip()
         self.totalTranscriptHours = totalTranscriptHours
-        self.lectureLength = 1.5
+        self.lectureLength = 0.0
         self.numberOfSessions = 0
+        self.isLab = isLab
         self.courseType = ""
         self.schedulingInstructions = ""
         
     def __repr__(self):
-        return f"Course(\"{self.courseName}\", {self.totalTranscriptHours}, {self.lectureLength})"
+        return f"Course(\"{self.courseName}\", {self.totalTranscriptHours}, {self.lectureLength}, {self.isLab})"
 
     def printCourseDetails(self):
         print(self.courseName, " ", self.courseDescript, " ", self.totalTranscriptHours)
@@ -46,7 +47,7 @@ class Course:
         self.courseType = status
 
     def setLectureLength(self, lecLen):
-        self.LectureLength = lecLen
+        self.lectureLength = lecLen
 
     def setScheduleingInstructions(self, instructions):
         self.schedulingInstructions = instructions

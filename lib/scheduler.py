@@ -202,7 +202,7 @@ def scheduleLecture(lectureLength, lastEndTime=None):
         startTime += timedelta(minutes=minutes_to_round)
 
     if startTime + timedelta(minutes=lecture_minutes) > endTime:
-        return "-2"
+        return False
 
     endTime = startTime + timedelta(minutes=lecture_minutes) - timedelta(minutes=10)
 

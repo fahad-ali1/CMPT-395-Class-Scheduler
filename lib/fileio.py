@@ -21,19 +21,33 @@ def getClassrooms():
     ws = wb.worksheets[8]
     for i in range(2, ws.max_row + 1):
         if "Lab" in ws['A' + str(i)].value:
-            classroom = Classroom(ws['A' + str(i)].value, ws['B' + str(i)].value, True)
+            classroom = Classroom(ws['A' + str(i)].value, ws['B' + str(i)].value, isLab=True)
             allClassrooms.append(classroom)
         else:
             classroom = Classroom(ws['A' + str(i)].value, ws['B' + str(i)].value)
             allClassrooms.append(classroom)
     return allClassrooms
-    
+
+
+# Expected input: value from cell E of AllCourse.xlsx
+# Expected output: returns a string indicating the lab status of a course
+def checkIfLab(data):
+    if data is None:
+        return False
+    elif data == "Lab":
+        return True
+    elif data == "Both":
+        return "Both"
+    elif data == "Virtual":
+        return "Virtual"
+    elif data == "Online":
+        return "Online"
     
 # getAllPrograms
 # Helper Function
 # Purpose: Used to gather a list of program objects representing all available programs at macewan
 def getAllPrograms():
-    wb = load_workbook("data/AllCourses.xlsx")
+    wb = load_workbook('data/AllCourses.xlsx')
     term = None
     allPrograms = []
     for i in range(0, 8):
@@ -48,21 +62,15 @@ def getAllPrograms():
                 course = Course(courseName=ws1['A' + str(j)].value, courseDescript=ws1['B' + str(j)].value,
                                 totalTranscriptHours=ws1['C' + str(j)].value)
                 course.setCourseType(str(checkIfLab(ws1['E' + str(j)].value)))
-                
-                if ws1['F' + str(j)].value is None:
-                    course.setLectureLength(1.5)
-                else:
-                    course.setLectureLength(getMinimumTime(ws1['F' + str(j)].value))
-
+                course.setLectureLength(float(getMinimumTime(ws1['F' + str(j)].value)))
                 if ws1['G' + str(j)].value is None:
-                    course.setNumberOfSessions(calcNumberOfSessions(course))
+                    course.setNumberOfSessions("")
                 else:
                     course.setNumberOfSessions(ws1['G' + str(j)].value)
 
                 program.addToTerm(course, term)
         allPrograms.append(program)
     return allPrograms
-
 
 def calculateSessions(transcriptHours, lectureLen):
     pass
@@ -112,19 +120,6 @@ def calcNumberOfSessions(course):
     return checkIntOrDec(testVar)
 
 
-# Expected input: value from cell E of AllCourse.xlsx
-# Expected output: returns a string indicating the lab status of a course
-def checkIfLab(data):
-    if data is None:
-        return "Normal"
-    elif data == "Lab":
-        return "Lab"
-    elif data == "Both":
-        return "Both"
-    elif data == "Virtual":
-        return "Virtual"
-    elif data == "Online":
-        return "Online"
 
 
 # This function is a help function designed to help with assigning number of sessions to a course
