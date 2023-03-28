@@ -6,7 +6,7 @@ Purpose: Module centerd around creating cohorts, based on existing classrooms.
 import math, itertools
 
 # Import local code
-from lib.fileio import getClassrooms
+from lib.fileio import getClassrooms, getAllPrograms
 from lib.classrooms import Classroom
 
 
@@ -23,7 +23,7 @@ programCourses  - A queue of courses the cohort must take
 """
 class Cohort:
     def __init__(self, classroom, cohortName="", size=0):
-        self.cohortName = cohortName
+        self.cohortName = cohortName.strip()
         self.classroom = classroom
         self.size = size
         self.programCourses = None  # program class
@@ -31,7 +31,7 @@ class Cohort:
         self.prereq = {}
 
     def __repr__(self):
-        return f"{self.cohortName} - {self.classroom.classRoomNumber}, {self.size}/{self.classroom.normalCapacity}"
+        return f"{self.cohortName} - {self.classroom.classRoomNumber} | {self.size}/{self.classroom.normalCapacity}"
 
     def setmainProgram(self, program):
         self.programCourses = program
@@ -136,120 +136,139 @@ class Students:
         for room in classroom_list:
             room.currentStudents = room.normalCapacity
             room.inUse = False
-
-
-    def _check_room_combo(self, temp, combo, percent, wiggle_percent):
-
-        # Iterate through each room in the combo
-        for room in combo:
-            wiggle_room = math.floor(room.normalCapacity - (room.normalCapacity * wiggle_percent))
-            allowed_total = math.floor(room.normalCapacity - (room.normalCapacity * percent))
-
-            # If the remaining students is less than the allowed total, return, as
-            # this combination simply will not work.
-            if temp - wiggle_room < 0:
-                return None
-            # Handle if the remaining students can reasonably fit into the room.
-
-            if temp - wiggle_room >= 0:
-
-                # Check conditions for if this room combo is acceptable.
-                if room == combo[-1] and wiggle_room <= temp <= room.normalCapacity:
-                    room.currentStudents = temp
-                    return combo
-
-                # Convert to int, as allowed total will be a float with ?.0 in it
-                room.currentStudents = int(allowed_total)
-                temp -= allowed_total
-                if temp == 0:
-                    return combo
-
-    def most_even_rooms(self, students):
-
-        empty_classrooms = []
-        for room in self._rooms:
-            if not room.inUse:
-                empty_classrooms.append(room)
-
-        if not empty_classrooms:
-            return f"Need room for {students} students"
-
-        percent = 0.05
-        wiggle_room = 0.05
-        result_found = False
-        being_compared = 1
-        while not result_found:
-            for combo in itertools.combinations(empty_classrooms, being_compared):
-                combo = list(combo)
-                temp = students
-
-                # Reset classrooms so that the state of classrooms is
-                # identical for each check.
-                # NOTE: I really don't know if this is necessary, it just
-                #       eliminates the possibility of bugs.
-                self._reset_classrooms(combo)
-                combo_result = self._check_room_combo(temp, combo, percent, wiggle_room)
-
-                if combo_result:
-                    # Make the result mutable
-                    combo_result = list(combo_result)
-
-                    for result in combo_result:
-                        result.in_use = True
-                    return combo_result
-
-            being_compared += 1
-
-            # If being compared is 5, increase percent and reset combo value
-            if being_compared == len(empty_classrooms) + 1:
-
-                # Set conditions as a series of gates
-
-                # If the percent is zero, start adjusting the wiggle room
-                # that the final classroom can fit within
-                if percent == 0:
-                    if wiggle_room < 1:
-                        wiggle_room += 0.01
-                    else:
-                        wiggle_room = 1
-
-                # If the percentage isn't zero, reduce how much room should
-                # remain in the classrooms
-                if percent != 0:
-                    percent -= 0.01
-                    if percent < 0:
-                        percent = 0
-
-                being_compared = 1
-
+    
+    def _check_space(self, combo, students):
+        
+        # If there are more students than space, this will return a negative
+        # representing space needed, and if more space than students will
+        # return space in room
+        total_space = sum(classroom.normalCapacity for classroom in combo)
+        return total_space - students
+        
+    def _iterate_classrooms(self, students):
+        
+        empty_classrooms = [room for room in self._rooms if not room.inUse]
+        
+        # This variable name is a bit misleading, so it deserves
+        # an explanation. 
+        # We will be iterating through every combination of classrooms
+        # using itertools.combination, and room_count represents
+        # how many rooms are being added to the combination.
+        room_count = 1
+        
+        # The two below variables exist explicitly for if students fill every
+        # classroom. In the scenario, we want the students placed in classes in such
+        # a way that the remaining students are as few as possible.
+        max_remainder = None
+        max_remainder_combo = None
+        
+        classrooms_with_remaining_space = []
+        not_one_class_totally_empty = True
+        ghost_rooms_not_needed = True
+        while not_one_class_totally_empty and ghost_rooms_not_needed:
+            for combo in itertools.combinations(empty_classrooms, room_count):
+            
+                # If the length of the combo reaches 1+ the total number of classrooms,
+                # ghost rooms are needed, and we can break the loop.
+                if len(combo) + 1 == len(empty_classrooms):
+                    ghost_rooms_not_needed = False
+                    continue
+                
+                smallest = min(combo, key=lambda x:x.normalCapacity)
+                remainder = self._check_space(combo, students)
+                
+                if max_remainder is None or remainder > max_remainder:
+                    max_remainder = remainder
+                    max_remainder_combo = combo
+                
+                # If one class is completely empty, set the flag
+                if remainder > smallest.normalCapacity:
+                    not_one_class_totally_empty = False
+                
+                # Fits in room in this scenario
+                elif 0 <= remainder <= smallest.normalCapacity:
+                    classrooms_with_remaining_space.append([combo, remainder])
+                    
+            room_count += 1
+        
+        if ghost_rooms_not_needed:
+            final_combo_choice = min(classrooms_with_remaining_space, key=lambda x: x[-1])
+        else:
+            final_combo_choice = [max_remainder_combo, max_remainder]
+            
+        return final_combo_choice
+        
     def divide_to_cohorts(self, students, program):
-        '''
-        Description: this function will assign the appropriate prefix and
-        divide by cohort size and return a list
-        Returns: a list of cohort strings
-        '''
-
+        """
+        Description: Will change the representation in the classroom combo into a meaningful
+                     representation of a cohort (Aka list of cohorts)
+        Params: students - number of students cohorts are being made out of.
+        Returns: A list of cohort objects
+        """
+        
+        # NOTE: WHY
+        all_programs = getAllPrograms()
+        
+        available_rooms, remainder = self._iterate_classrooms(students)
+        if remainder is None:
+            any_rooms_available_in_the_first_place = False
+        else:
+            any_rooms_available_in_the_first_place = True
+            
+        if not any_rooms_available_in_the_first_place:
+            uses_ghost_rooms = True
+        else:   
+            uses_ghost_rooms = remainder < 0
+        
         cohorts = []
-        # Example entry: "PM0101: 11-533, 38/40
-
-        num = 1
-
-        # If there are no students, return the cohorts, as no cohorts can
-        # be created.
-        if students == 0:
-            return cohorts
-
-        rooms = self.most_even_rooms(students)
-
-        if type(rooms) == str:
-            print(f"{rooms} in {program}")
-            quit()
-
-        if rooms:
-            for room in rooms:
-                temp = Cohort(room, f"{program}{self._term:02d}{num:02d}", room.currentStudents)
-                cohorts.append(temp)
-                num += 1
-
+        
+        if not uses_ghost_rooms:
+            for i, room in enumerate(available_rooms):
+                if students - room.normalCapacity >= 0:
+                    room.currentStudents = room.normalCapacity
+                    students -= room.normalCapacity
+                else:
+                    room.currentStudents = students
+                room.inUse = True
+                temp_cohort = Cohort(room, f"{program}{self._term:02d}{(i + 1):02d}", room.currentStudents)
+                for specific_program in all_programs:
+                    if program in specific_program.programType:
+                        temp_cohort.programCourses = specific_program
+                cohorts.append(temp_cohort)
+        else:
+            cohort_num = 0
+            if any_rooms_available_in_the_first_place:
+                cohorts_num = 1
+                for i, room in enumerate(available_rooms):
+                    cohort_num = i + 1
+                    room.currentStudents = room.normalCapacity
+                    students -= room.normalCapacity
+                    room.inUse = True
+                    temp_cohort = Cohort(room, f"{program}{self._term:02d}{(i + 1):02d}", room.currentStudents)
+                    
+                    for specific_program in all_programs:
+                        if program in specific_program.programType:
+                            temp_cohort.programCourses = specific_program
+                            
+                    cohorts.append(temp_cohort)
+                
+            # Begin appending ghost rooms here:
+            cohort_num += 1
+            room = min(self._rooms, key=lambda x: x.normalCapacity)
+            room = Classroom("??-???", room.normalCapacity)
+            while students - room.normalCapacity > 0:
+                temp_cohort = Cohort(room, f"{program}{self._term:02d}{cohort_num:02d}", room.currentStudents)
+                
+                for specific_program in all_programs:
+                        if program in specific_program.programType:
+                            temp_cohort.programCourses = specific_program
+                
+                cohorts.append(temp_cohort)
+                
+                cohort_num += 1
+                students -= room.normalCapacity
+            room.currentStudents = students
+            cohorts.append(Cohort(room, f"{program}{self._term:02d}{cohort_num:02d}", room.currentStudents))
+            
         return cohorts
 

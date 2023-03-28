@@ -2,12 +2,48 @@
 Author: Mike Lee
 Purpose: Collection of objects related to weeks and days.
 """
+from datetime import datetime, timedelta
+from openpyxl.reader.excel import load_workbook
+from lib.classrooms import Classroom
+from collections import deque
+from lib.fileio import getClassrooms
+import copy
+
+from collections import deque
+
+def findAvailableTimeBlock(day, cohort, courseLength):
+    for classroom in day.classrooms:
+        if classroom.capacity >= cohort.size:
+            lastEndTime = '08:00 AM'
+            for currentTimeBlock in classroom.timeBlocks:
+                if currentTimeBlock.isAvailable(lastEndTime, courseLength, cohort):
+                    return classroom, currentTimeBlock
+                lastEndTime = currentTimeBlock.endTime
+            return classroom, None
+    return None, None
+
+def sessionsPerWeek(courseLength):
+    if courseLength == 1.5:
+        return 2
+    else:
+        return 1
+
+
+def createTemplateWeek(classrooms):
+    DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    templateWeek = Week(0)
+
+    for dayName in DAYS:
+        day = Day(dayName)
+        day.classrooms = copy.deepcopy(classrooms)
+        templateWeek.addDay(day)
+
+    return templateWeek
 
 
 """
 TIMEBLOCK
 ---------
-
 ATTRIBUTES
 ----------
 startTime   - course start time
@@ -19,13 +55,34 @@ endDate     - course end date
 """
 class timeBlock:
     def __init__(self, startTime, endTime, cohortName, courseName, startDate, endDate):
-    self.startTime = startTime
-    self.endTime = endTime
-    self.cohortName = cohortName
-    self.courseName = courseName
-    self.startDate = startDate
-    self.endDate = endDate
+        self.startTime = startTime
+        self.endTime = endTime
+        self.cohortName = cohortName
+        self.courseName = courseName
+        self.startDate = startDate
+        self.endDate = endDate
+        
+    def __repr__(self):
+        return f"{self.startTime} - {self.endTime}: Cohort Number <{self.cohortName}>,  Course Name <{self.courseName}>"
 
+    def isAvailable(self, proposed_start_time, proposed_end_time, cohort):
+        if self.cohort is not None:
+            return False
+
+        startTime = datetime.strptime(self.startTime, '%I:%M %p')
+        endTime = datetime.strptime(self.endTime, '%I:%M %p')
+
+        proposed_start_time = datetime.strptime(proposed_start_time, '%I:%M %p')
+        proposed_end_time = datetime.strptime(proposed_end_time, '%I:%M %p')
+
+        if proposed_start_time >= startTime and proposed_end_time <= endTime:
+            return True
+        else:
+            return False
+
+    def schedule(self, cohort, course):
+        self.cohortName = cohort
+        self.courseName = course
 
 """
 DAY
@@ -34,7 +91,7 @@ DAY
 ATTRIBUTES
 ----------
 dayName     - name of the day as a string
-timeBlock   - list of timeblock objects
+classrooms   - list of classroom objects
 
 METHODS
 -------
@@ -44,16 +101,28 @@ addTimeBlock - adds a new time block to the day
 class Day:
     def __init__(self, dayName):
         self.dayName = dayName # dayName (mon, tues, wed, thurs)
-        self.timeBlock = []    # list of timeblock objects
+        self.classrooms = []    # list of classroom objects
+        
+    def __repr__(self):
+        string = ""
+        for classroom in self.classrooms:
+            if classroom.timeBlocks:
+                string += f"{classroom.classRoomNumber}:\n"
+                for timeBlock in classroom.timeBlocks:
+                    string += f"\t\t{timeBlock}\n"
+            else:
+                string += f"{classroom.classRoomNumber}:\n"
+        string.strip("\n")
+        return string
 
     def getDayName(self):
         return self.dayName
 
-    def getTimeBlock(self):
-        return self.timeBlock
+    def getClassrooms(self):
+        return self.classrooms
 
-    def addTimeBlock(self, newTimeBlock):
-        self.timeBlock.append(newTimeBlock)
+    def addClassroom(self, newClassroom):
+        self.classrooms.append(newClassroom)
 
 
 """
@@ -70,12 +139,43 @@ METHODS
 getWeekDays - getters
 """
 class Week:
-    def __init__(self, weekNumber, weekDay):
+    def __init__(self, weekNumber):
         self.weekNumber = weekNumber # int to represent n/14 weeks
-        self.weekDays = weekDays     # list of day objects
+        self.days = [       # list of day objects
+            Day("Monday"),
+            Day("Tuesday"),
+            Day("Wednesday"),
+            Day("Thursday"),
+            Day("Friday"),
+            Day("Saturday"),
+            Day("Sunday")
+        ]
+        
+        for day in self.days:
+            day.classrooms = getClassrooms()
+            
+    def __repr__(self):
+        return f"""Monday:\n{self.days[0]}
+Tuesday:\n{self.days[1]}
+Wednesday:\n{self.days[2]}
+Thursday:\n{self.days[3]}
+Friday:\n{self.days[4]}
+Saturday:\n{self.days[5]}
+Sunday:\n{self.days[6]}"""
+
+    def getWeekNumber(self):
+        return self.weekNumber
 
     def getWeekDays(self):
-        return self.weekDays
+        return self.days
+
+    def getDay(self, dayName):
+        for day in self.days:
+            if(day.getDayName() == dayName):
+                return day
+
+    def addDay(self, day):
+        self.days.append(day)
 
 
 """
@@ -102,7 +202,7 @@ def scheduleLecture(lectureLength, lastEndTime=None):
         startTime += timedelta(minutes=minutes_to_round)
 
     if startTime + timedelta(minutes=lecture_minutes) > endTime:
-        raise ValueError("Course cannot be booked after 5pm.")
+        return "-2"
 
     endTime = startTime + timedelta(minutes=lecture_minutes) - timedelta(minutes=10)
 

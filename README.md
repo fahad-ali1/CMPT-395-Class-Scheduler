@@ -1,14 +1,24 @@
-# Author
-Fahad Ali (GUI & some cohorts), Schuy (Cohorts), Mike (Classes/Hours/Start&End date)
+# Class Scheduler
+Scheduler assignment for CMPT 395. Will create a schedule for MacEwan's department of continuing education.
 
-# GUI and Cohort functionality
-Created using PyQt5. 
-
-# How to run
-(Dependencies: openpyxl, pyqt5)
-
-Make sure you have PyQt5 and Openpyxl installed. To check go to your terminal and type ```pip3 show PyQt5``` and ```pip3 show openpyxl```. 
-
-If it is not installed then make sure to install it by typing ```pip3 install PyQt5``` and ```pip3 install openpyxl```. 
-
-As of now, to run the main app click on ```main.py``` and run the file. 
+### Author(s)
+ - Fahad (GUI)
+ - Schuy (Cohorts)
+ - Mike (Scheduling and related data structures)
+ - Sankalp (Changing course info in xlsx file)
+ 
+ ## Installation
+ If you have python3 installed (you can install python [here.](https://www.python.org/downloads/)\) Otherwise, download the `.exe` file under the releases section (W.I.P.).
+ 
+ ## Dependencies
+ Currently, the project is dependent on [PyQt5](https://pypi.org/project/PyQt5/) and [openpyxl](https://pypi.org/project/openpyxl/)\. You can install these by running:
+ ```
+ pip install PyQt5 openpyxl
+ ```
+ Please note that these dependencies aren't necessary if you download and run the `.exe` version.
+ 
+ ## How To Run
+ As stated above, please make sure you have both `PyQt5` and `openpyxl` packages installed. Besides that, all you need to do is either double click the `main.py` file or run the following terminal command in Powershell:
+ ```
+ python main.py
+ ```
