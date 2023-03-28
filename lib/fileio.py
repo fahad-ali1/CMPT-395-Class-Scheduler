@@ -38,7 +38,7 @@ def getAllPrograms():
     allPrograms = []
     for i in range(0, 8):
         ws1 = wb.worksheets[i]
-        program = Program(programType=ws1.title)
+        program = Program(programType=str(ws1.title).strip())
         for j in range(2, ws1.max_row + 1):
             if re.search('Term [1-3]', ws1['A' + str(j)].value):
                 term = ws1['A' + str(j)].value

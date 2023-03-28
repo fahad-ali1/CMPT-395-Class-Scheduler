@@ -1,16 +1,35 @@
+PC0101 40
+PC0102 36
+PC0103 30
+PC0104 24
 Monday:
 11-533:
+		08:00 AM - 09:20 AM: Cohort Number <PC0102>,  Course Name <PCOM 0101>
+		09:30 AM - 10:50 AM: Cohort Number <PC0102>,  Course Name <PCOM 0105>
+		11:00 AM - 12:20 PM: Cohort Number <PC0102>,  Course Name <PCOM 0107>
+		12:30 PM - 01:50 PM: Cohort Number <PC0102>,  Course Name <CMSK 0233>
+		02:00 PM - 03:20 PM: Cohort Number <PC0102>,  Course Name <CMSK 0235>
 11-534:
 11-560:
+		08:00 AM - 09:20 AM: Cohort Number <PC0104>,  Course Name <PCOM 0101>
+		09:30 AM - 10:50 AM: Cohort Number <PC0104>,  Course Name <PCOM 0105>
+		11:00 AM - 12:20 PM: Cohort Number <PC0104>,  Course Name <PCOM 0107>
+		12:30 PM - 01:50 PM: Cohort Number <PC0104>,  Course Name <CMSK 0233>
+		02:00 PM - 03:20 PM: Cohort Number <PC0104>,  Course Name <CMSK 0235>
 11-562:
 11-564:
 11-458:
-11-430:
 		08:00 AM - 09:20 AM: Cohort Number <PC0101>,  Course Name <PCOM 0101>
 		09:30 AM - 10:50 AM: Cohort Number <PC0101>,  Course Name <PCOM 0105>
 		11:00 AM - 12:20 PM: Cohort Number <PC0101>,  Course Name <PCOM 0107>
 		12:30 PM - 01:50 PM: Cohort Number <PC0101>,  Course Name <CMSK 0233>
 		02:00 PM - 03:20 PM: Cohort Number <PC0101>,  Course Name <CMSK 0235>
+11-430:
+		08:00 AM - 09:20 AM: Cohort Number <PC0103>,  Course Name <PCOM 0101>
+		09:30 AM - 10:50 AM: Cohort Number <PC0103>,  Course Name <PCOM 0105>
+		11:00 AM - 12:20 PM: Cohort Number <PC0103>,  Course Name <PCOM 0107>
+		12:30 PM - 01:50 PM: Cohort Number <PC0103>,  Course Name <CMSK 0233>
+		02:00 PM - 03:20 PM: Cohort Number <PC0103>,  Course Name <CMSK 0235>
 11-320:
 11-532 Computer Lab:
 
@@ -27,17 +46,32 @@ Tuesday:
 
 Wednesday:
 11-533:
+		08:00 AM - 09:20 AM: Cohort Number <PC0102>,  Course Name <PCOM 0101>
+		09:30 AM - 10:50 AM: Cohort Number <PC0102>,  Course Name <PCOM 0105>
+		11:00 AM - 12:20 PM: Cohort Number <PC0102>,  Course Name <PCOM 0107>
+		12:30 PM - 01:50 PM: Cohort Number <PC0102>,  Course Name <CMSK 0233>
+		02:00 PM - 03:20 PM: Cohort Number <PC0102>,  Course Name <CMSK 0235>
 11-534:
 11-560:
+		08:00 AM - 09:20 AM: Cohort Number <PC0104>,  Course Name <PCOM 0101>
+		09:30 AM - 10:50 AM: Cohort Number <PC0104>,  Course Name <PCOM 0105>
+		11:00 AM - 12:20 PM: Cohort Number <PC0104>,  Course Name <PCOM 0107>
+		12:30 PM - 01:50 PM: Cohort Number <PC0104>,  Course Name <CMSK 0233>
+		02:00 PM - 03:20 PM: Cohort Number <PC0104>,  Course Name <CMSK 0235>
 11-562:
 11-564:
 11-458:
-11-430:
 		08:00 AM - 09:20 AM: Cohort Number <PC0101>,  Course Name <PCOM 0101>
 		09:30 AM - 10:50 AM: Cohort Number <PC0101>,  Course Name <PCOM 0105>
 		11:00 AM - 12:20 PM: Cohort Number <PC0101>,  Course Name <PCOM 0107>
 		12:30 PM - 01:50 PM: Cohort Number <PC0101>,  Course Name <CMSK 0233>
 		02:00 PM - 03:20 PM: Cohort Number <PC0101>,  Course Name <CMSK 0235>
+11-430:
+		08:00 AM - 09:20 AM: Cohort Number <PC0103>,  Course Name <PCOM 0101>
+		09:30 AM - 10:50 AM: Cohort Number <PC0103>,  Course Name <PCOM 0105>
+		11:00 AM - 12:20 PM: Cohort Number <PC0103>,  Course Name <PCOM 0107>
+		12:30 PM - 01:50 PM: Cohort Number <PC0103>,  Course Name <CMSK 0233>
+		02:00 PM - 03:20 PM: Cohort Number <PC0103>,  Course Name <CMSK 0235>
 11-320:
 11-532 Computer Lab:
 

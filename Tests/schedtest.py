@@ -8,6 +8,8 @@ from lib.fileio import getClassrooms
 def scheduleCourses(week, cohorts):
 
     for cohort in cohorts:
+        
+        print(cohort.cohortName, cohort.size)
         courseQueue = deque(cohort.programCourses.term1)
 
         if "BC" in cohort.cohortName or "PC" in cohort.cohortName:
@@ -19,15 +21,19 @@ def scheduleCourses(week, cohorts):
             currentCourse = courseQueue.popleft()
             prefClassroomName = cohort.classroom.classRoomNumber
             for day in days:
-            
+                
+                # If the preferred classroom is a ghost room, add it to the list of classrooms
+                if prefClassroomName == "??-???":
+                    day.classrooms.append(cohort.classroom)
+                    
                 scheduled_preferred_room = False
                 for i in range(0, len(day.classrooms)):
                     # Create new time block for iteration. Values can be discarded if not used
 
-                    if (return_value := scheduleLecture(currentCourse.lectureLength, day.classrooms[i].currentBlockTime)) == "-2":
-                        continue
-                    else:
+                    if (return_value := scheduleLecture(currentCourse.lectureLength, day.classrooms[i].currentBlockTime)):
                         startTime, endTime = return_value
+                    else:
+                        continue
 
                     newBlock = timeBlock(startTime, endTime, cohort.cohortName, currentCourse.courseName, 0, 0)
                     
@@ -43,7 +49,11 @@ def scheduleCourses(week, cohorts):
                     for i in range(0, len(day.classrooms)):
                     
                         # Create new time block for iteration. Values can be discarded if not used
-                        startTime, endTime = scheduleLecture(currentCourse.lectureLength, day.classrooms[i].currentBlockTime)
+                        if (return_value := scheduleLecture(currentCourse.lectureLength, day.classrooms[i].currentBlockTime)):
+                            startTime, endTime = return_value
+                        else:
+                            continue
+
                         newBlock = timeBlock(startTime, endTime, cohort.cohortName, currentCourse.courseName, 0, 0)
                         
                         # Store the first class found in the first iteration.
