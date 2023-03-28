@@ -612,15 +612,13 @@ class MainMenu(QWidget):
         '''
         Description: set schedule to week after current
         '''
-        # TODO: catch error if trying to access next year
-        if self.daysIterator >= 365:
+        if self.daysIterator >= 359:
             self.daysIterator = 0
         self.daysIterator += 7
         
-        if self.week >= 53:
-            self.week = 53
-            
-        self.week += 1
+        # if self.week >= 53:
+        #     self.week = 0
+        # self.week += 1
         
         self.create_dates()
         self.create_schedule()
@@ -630,13 +628,12 @@ class MainMenu(QWidget):
         Description: set schedule to week before current
         '''
         if self.daysIterator <= 0:
-            self.daysIterator = 7
+            self.daysIterator = 366
         self.daysIterator -= 7
         
-        if self.week <= 1:
-            self.week = 2
-            
-        self.week -= 1
+        # if self.week <= 1:
+        #     self.week = 54
+        # self.week -= 1
         
         self.create_dates()
         self.create_schedule()
