@@ -1,8 +1,5 @@
-
-# *.txt
-*.pyc
-Sprint1_Demo.py
-~$AllCourses.xlsx
+__pycache__/
+*.txt
+*.py[cod]
 .DS_Store
-Sprint1_Demo.py
-whatToWorkOnSprint3.txt
+

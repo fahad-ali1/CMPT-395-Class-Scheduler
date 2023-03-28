@@ -206,9 +206,10 @@ class Students:
         Returns: A list of cohort objects
         """
         
-        # NOTE: WHY
+        # Get all the available programs
         all_programs = getAllPrograms()
         
+        # Determine which classrooms to use for the cohort(s)
         available_rooms, remainder = self._iterate_classrooms(students)
         if remainder is None:
             any_rooms_available_in_the_first_place = False
@@ -234,6 +235,7 @@ class Students:
                 for specific_program in all_programs:
                     if program in specific_program.programType:
                         temp_cohort.programCourses = specific_program
+
                 cohorts.append(temp_cohort)
         else:
             cohort_num = 0
@@ -249,7 +251,7 @@ class Students:
                     for specific_program in all_programs:
                         if program in specific_program.programType:
                             temp_cohort.programCourses = specific_program
-                            
+      
                     cohorts.append(temp_cohort)
                 
             # Begin appending ghost rooms here:
@@ -262,13 +264,19 @@ class Students:
                 for specific_program in all_programs:
                         if program in specific_program.programType:
                             temp_cohort.programCourses = specific_program
-                
                 cohorts.append(temp_cohort)
                 
                 cohort_num += 1
                 students -= room.normalCapacity
-            room.currentStudents = students
-            cohorts.append(Cohort(room, f"{program}{self._term:02d}{cohort_num:02d}", room.currentStudents))
-            
+                
+            # Add final cohort if remaining students is above zero
+            if students > 0:
+                room.currentStudents = students
+                
+                temp_cohort = Cohort(room, f"{program}{self._term:02d}{cohort_num:02d}", room.currentStudents)
+                for specific_program in all_programs:
+                    if program in specific_program.programType:
+                        temp_cohort.programCourses = specific_program
+                cohorts.append(temp_cohort)
         return cohorts
 
