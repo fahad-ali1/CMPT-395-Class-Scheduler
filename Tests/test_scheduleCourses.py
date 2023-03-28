@@ -20,8 +20,8 @@ class TestScheduler(unittest.TestCase):
         self.week3 = Week(0)
         #cohort_nums = [random.randint(30, 200) for _ in range(8)]
         self.students1 = Students()
-        self.students1._PCOMStudents = 130
-        self.students1._BCOMStudents = 270
+        self.students1._PCOMStudents = 70
+        self.students1._BCOMStudents = 60
         self.students1._term = 1
         self.cohort_list = self.students1.cohorts_final()
         self.PCOM_cohorts = self.cohort_list[0]
