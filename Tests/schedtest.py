@@ -25,6 +25,11 @@ def scheduleCourses(week, cohorts):
                 schedule_days = [random.choice(days)]
 
             for day in schedule_days:
+            
+                # If the preferred classroom is a ghost room, add it to the list of classrooms
+                if prefClassroomName == "??-???" and cohort.classroom not in day.classrooms:
+                    day.classrooms.append(cohort.classroom)
+
                 scheduled_preferred_room = False
                 for i in range(len(day.classrooms)):
                     if (return_value := scheduleLecture(lectureLength, day.classrooms[i].currentBlockTime)):

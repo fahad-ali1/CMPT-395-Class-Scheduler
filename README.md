@@ -28,4 +28,9 @@ Scheduler assignment for CMPT 395. Will create a schedule for MacEwan's departme
  ```
  Tests/run_all.bat
  ```
- From the root directory of the project. This will run all automated tests that it can, and will create log files for any tests we felt needed to be tested by inspection.
+ From the root directory of the project. This will run all automated tests that it can, and will create log files for any tests we felt needed to be tested by inspection. You can also run each test individually by running
+ ```
+ python -m Tests.<test_name>
+ ```
+ where `<test_name>` is the name of the test file in the `Tests` directory.
+ 
