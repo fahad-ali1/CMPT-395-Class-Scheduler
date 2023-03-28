@@ -20,7 +20,7 @@ Please note that this relies on you having a `pip` installation, which ships wit
 
 After installing PyInstaller, you can create an executable by running the following command:
 ```
-pyinstaller --onefile main.py
+pyinstaller --onefile --noconsole main.py
 ```
 The executable can be found in the `dist` directory created by the command.
  
