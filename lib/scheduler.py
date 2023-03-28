@@ -1,7 +1,8 @@
 """
-Author: Mike Lee
+Author: Mike Lee, Schuyler Kelly
 Purpose: Collection of objects related to weeks and days.
 """
+import random
 from datetime import datetime, timedelta
 from openpyxl.reader.excel import load_workbook
 from lib.classrooms import Classroom
@@ -10,6 +11,76 @@ from lib.fileio import getClassrooms
 import copy
 
 from collections import deque
+
+
+class Scheduler:
+    def __init__(self):
+        self.timeMap = {}
+        hours = 8
+        minutes = 0
+        am_or_pm = "AM"
+        for timeValue in range(1, 20):
+            self.timeMap[f"{hours}:{minutes:02d} {am_or_pm}"] = timeValue
+            hours = hours + 1 if (hours != 12 and minutes == 30) else 1 if (hours == 12 and minutes == 30) else hours
+            minutes = 30 if minutes == 0 else 0
+            am_or_pm = "AM" if 8 <= hours < 12 else "PM"
+            
+    def scheduleCourses(self, week, cohorts):
+        for cohort in cohorts:
+            courseQueue = deque(cohort.programCourses.term1)
+            if "BC" in cohort.cohortName or "PC" in cohort.cohortName:
+                days = [week.getDay("Monday"), week.getDay("Wednesday")]
+            else:
+                days = [week.getDay("Tuesday"), week.getDay("Thursday")]
+
+            while courseQueue:
+                currentCourse = courseQueue.popleft()
+                prefClassroomName = cohort.classroom.classRoomNumber
+                lectureLength = currentCourse.lectureLength
+
+                # Determine how many times to schedule the lecture
+                if lectureLength == 1.5:
+                    schedule_days = days
+                else:
+                    schedule_days = [random.choice(days)]
+
+                for day in schedule_days:
+                
+                    # If the preferred classroom is a ghost room, add it to the list of classrooms
+                    if prefClassroomName == "??-???" and cohort.classroom not in day.classrooms:
+                        day.classrooms.append(cohort.classroom)
+
+                    scheduled_preferred_room = False
+                    for i in range(len(day.classrooms)):
+                        if (return_value := scheduleLecture(lectureLength, day.classrooms[i].currentBlockTime)):
+                            startTime, endTime = return_value
+                        else:
+                            continue
+
+                        newBlock = timeBlock(startTime, endTime, cohort.cohortName, currentCourse.courseName, 0, 0)
+                        if day.classrooms[i].available_at_time(startTime, endTime):
+                            if day.classrooms[i].classRoomNumber == prefClassroomName and cohort.size <= day.classrooms[i].normalCapacity:
+                                day.classrooms[i].timeBlocks.append(newBlock)
+                                day.classrooms[i].currentBlockTime = endTime
+                                scheduled_preferred_room = True
+                                break
+
+                    if not scheduled_preferred_room:
+                        for i in range(len(day.classrooms)):
+                            if (return_value := scheduleLecture(lectureLength, day.classrooms[i].currentBlockTime)):
+                                startTime, endTime = return_value
+                            else:
+                                continue
+
+                            newBlock = timeBlock(startTime, endTime, cohort.cohortName, currentCourse.courseName, 0, 0)
+                            if day.classrooms[i].available_at_time(startTime, endTime):
+                                if cohort.size <= day.classrooms[i].normalCapacity:
+                                    day.classrooms[i].timeBlocks.append(newBlock)
+                                    day.classrooms[i].currentBlockTime = endTime
+                                    break
+
+        return copy.deepcopy(week)
+
 
 def findAvailableTimeBlock(day, cohort, courseLength):
     for classroom in day.classrooms:
