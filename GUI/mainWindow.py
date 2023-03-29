@@ -55,7 +55,6 @@ class MainMenu(QWidget):
         #------------------------- Progress bars ------------------------------
         self.progressBarUpload = self.findChild(QProgressBar, "ProgressBarUpload")
         self.progressBarUpload2 = self.findChild(QProgressBar, "ProgressBarUpload2")
-        self.progressBarUpload3 = self.findChild(QProgressBar, "ProgressBarUpload3")
 
         self.progressBarDownload = self.findChild(QProgressBar, "ProgressBarDownload")
         self.progressBarSaveAllCohort = self.findChild(QProgressBar,
@@ -208,7 +207,6 @@ class MainMenu(QWidget):
         # Open file browser if upload file clicked
         self.uploadButton.clicked.connect(self.upload_file)
         self.uploadButton2.clicked.connect(self.upload_file)
-        self.roomsButton.clicked.connect(self.upload_room_file)
 
         # Create cohorts when button clicked
         self.createCohort.clicked.connect(self.create_cohorts)
@@ -301,15 +299,12 @@ class MainMenu(QWidget):
 
         self.progressBarUpload.setValue(0)
         self.progressBarUpload2.setValue(0)
-        self.progressBarUpload3.setValue(0)
         
         self.progressBarUpload.setFormat("")
         self.progressBarUpload2.setFormat("")
-        self.progressBarUpload3.setFormat("")
         
         self.progressBarUpload.setTextVisible(False)
         self.progressBarUpload2.setTextVisible(False)
-        self.progressBarUpload3.setTextVisible(False)
         
         self.progressBarDownload.setValue(0)
         self.progressBarDownload.setFormat("")
@@ -413,23 +408,6 @@ class MainMenu(QWidget):
             self.spin_box_values(self.zero, tables)
             self.terminput.setValue(1)
             self.cohortUploaded = True
-        
-    def upload_room_file(self):
-        '''
-        Description: open dialog box to select file and then create room tabs
-        '''
-        # TODO: add functionality ask Mike for his portion of code
-        # open file browser to choose file
-        filter = ".xlsx(*.xlsx)"
-        path = QFileDialog.getOpenFileName(self, 'Open File','', filter)
-        # give path if the user does not hit cancel 
-        if path != ("", ""):
-            filename = path[0]
-            
-            # Set value to progress bar
-            self.progressBarUpload3.setValue(100)
-            self.progressBarUpload3.setFormat('Upload Complete!')
-            self.progressBarUpload3.setTextVisible(True)
     
     def download_template(self):
         '''
