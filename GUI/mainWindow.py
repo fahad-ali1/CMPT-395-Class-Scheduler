@@ -8,10 +8,12 @@ from openpyxl.styles import PatternFill, Border, Side
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5 import QtGui, uic
+from itertools import chain
 
 # Import local code
 from lib.fileio import getProgramNumbers, getClassrooms
 from lib.cohorts import Students 
+from lib.scheduler import Scheduler, Week, Day, timeBlock
 
 class MainMenu(QWidget):
     def __init__(self):
@@ -183,7 +185,6 @@ class MainMenu(QWidget):
         # format calender to year
         self.format_calendar(self.year)
         self.create_dates()
-        self.create_schedule()     
         
         # create proper room names and enable the correct room
         self.enable_room()       
@@ -222,33 +223,52 @@ class MainMenu(QWidget):
         # Download/save all schedules as .xlsx
         self.saveAllSchedule.clicked.connect(self.save_all_schedule)
 
-        # Create next week schedule
-        self.room1next.clicked.connect(self.week_next)
-        self.room2next.clicked.connect(self.week_next)
-        self.room3next.clicked.connect(self.week_next)
-        self.room4next.clicked.connect(self.week_next)
-        self.room5next.clicked.connect(self.week_next)
-        self.room6next.clicked.connect(self.week_next)
-        self.room7next.clicked.connect(self.week_next)
-        self.room8next.clicked.connect(self.week_next)
-        self.room9next.clicked.connect(self.week_next)
-        self.room10next.clicked.connect(self.week_next)
-        self.room11next.clicked.connect(self.week_next)
-        self.room12next.clicked.connect(self.week_next)
-        
-        # Create previous week schedule
-        self.room1prev.clicked.connect(self.week_prev)
-        self.room2prev.clicked.connect(self.week_prev)
-        self.room3prev.clicked.connect(self.week_prev)
-        self.room4prev.clicked.connect(self.week_prev)
-        self.room5prev.clicked.connect(self.week_prev)
-        self.room6prev.clicked.connect(self.week_prev)
-        self.room7prev.clicked.connect(self.week_prev)
-        self.room8prev.clicked.connect(self.week_prev)
-        self.room9prev.clicked.connect(self.week_prev)
-        self.room10prev.clicked.connect(self.week_prev)
-        self.room11prev.clicked.connect(self.week_prev)
-        self.room12prev.clicked.connect(self.week_prev)
+        try:
+            # Create next week schedule
+            self.room1next.clicked.connect(self.week_next)
+            self.room2next.clicked.connect(self.week_next)
+            self.room3next.clicked.connect(self.week_next)
+            self.room4next.clicked.connect(self.week_next)
+            self.room5next.clicked.connect(self.week_next)
+            self.room6next.clicked.connect(self.week_next)
+            self.room7next.clicked.connect(self.week_next)
+            self.room8next.clicked.connect(self.week_next)
+            self.room9next.clicked.connect(self.week_next)
+            self.room10next.clicked.connect(self.week_next)
+            self.room11next.clicked.connect(self.week_next)
+            self.room12next.clicked.connect(self.week_next)
+            self.room13next.clicked.connect(self.week_next)
+            self.room14next.clicked.connect(self.week_next)
+            self.room15next.clicked.connect(self.week_next)
+            self.room16next.clicked.connect(self.week_next)
+            self.room17next.clicked.connect(self.week_next)
+            self.room18next.clicked.connect(self.week_next)
+            self.room19next.clicked.connect(self.week_next)
+            self.room20next.clicked.connect(self.week_next)
+            
+            # Create previous week schedule
+            self.room1prev.clicked.connect(self.week_prev)
+            self.room2prev.clicked.connect(self.week_prev)
+            self.room3prev.clicked.connect(self.week_prev)
+            self.room4prev.clicked.connect(self.week_prev)
+            self.room5prev.clicked.connect(self.week_prev)
+            self.room6prev.clicked.connect(self.week_prev)
+            self.room7prev.clicked.connect(self.week_prev)
+            self.room8prev.clicked.connect(self.week_prev)
+            self.room9prev.clicked.connect(self.week_prev)
+            self.room10prev.clicked.connect(self.week_prev)
+            self.room11prev.clicked.connect(self.week_prev)
+            self.room12prev.clicked.connect(self.week_prev)
+            self.room13prev.clicked.connect(self.week_prev)
+            self.room14prev.clicked.connect(self.week_prev)
+            self.room15prev.clicked.connect(self.week_prev)
+            self.room16prev.clicked.connect(self.week_prev)
+            self.room17prev.clicked.connect(self.week_prev)
+            self.room18prev.clicked.connect(self.week_prev)
+            self.room19prev.clicked.connect(self.week_prev)
+            self.room20prev.clicked.connect(self.week_prev)
+        except AttributeError:
+            pass
     
     def spin_box_values(self, value, tables):
             '''
@@ -321,7 +341,9 @@ class MainMenu(QWidget):
 
         # create cohort final attribute
         self._cohortFinal = self._studentCohort.cohorts_final()
-
+        self._flattened_cohorts = list(chain.from_iterable(self._cohortFinal))
+        self.create_schedule()     
+    
     def add_cohort_table(self):
         '''
         Description: create cohort tables
@@ -623,7 +645,18 @@ class MainMenu(QWidget):
         
         # wherever a blank is required, a "None" should be present
         
-        # 1 = 8:00AM, 2 = 8:30AM... 20 = 5:00PM        
+        # 1 = 8:00AM, 2 = 8:30AM... 20 = 5:00PM  
+        scheduler = Scheduler()        
+        scheduled_week = scheduler.scheduleCourses(Week(0), self._flattened_cohorts)
+        
+        for day in scheduled_week.days:
+            # day is the column, do something here
+            for timeBlock in day:
+                # timeBlock is a timeBlock object. You can check 
+                # what attributes a timeBlock object has in
+                # scheduler.py
+                print(timeBlock)
+        
         for hour in range(1, 20):
             # 0 = Mon, 1 = Tue ... 6 = Sun
             for day in range(7):
