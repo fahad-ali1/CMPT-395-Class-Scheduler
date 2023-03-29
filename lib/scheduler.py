@@ -285,7 +285,7 @@ Purpose: NULL
 Paramters: NULL
 Returns: NULL
 """
-def claculateSessions(transcriptHours, lectureLen):
+def calculateSessions(transcriptHours, lectureLen):
     pass
 
 
