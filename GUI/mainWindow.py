@@ -222,54 +222,53 @@ class MainMenu(QWidget):
 
         # Download/save all schedules as .xlsx
         self.saveAllSchedule.clicked.connect(self.save_all_schedule)
+        
+        self.cohortUploaded = False
+        
+        # Create next week schedule
+        self.room1next.clicked.connect(self.week_next)
+        self.room2next.clicked.connect(self.week_next)
+        self.room3next.clicked.connect(self.week_next)
+        self.room4next.clicked.connect(self.week_next)
+        self.room5next.clicked.connect(self.week_next)
+        self.room6next.clicked.connect(self.week_next)
+        self.room7next.clicked.connect(self.week_next)
+        self.room8next.clicked.connect(self.week_next)
+        self.room9next.clicked.connect(self.week_next)
+        self.room10next.clicked.connect(self.week_next)
+        self.room11next.clicked.connect(self.week_next)
+        self.room12next.clicked.connect(self.week_next)
+        self.room13next.clicked.connect(self.week_next)
+        self.room14next.clicked.connect(self.week_next)
+        self.room15next.clicked.connect(self.week_next)
+        self.room16next.clicked.connect(self.week_next)
+        self.room17next.clicked.connect(self.week_next)
+        self.room18next.clicked.connect(self.week_next)
+        self.room19next.clicked.connect(self.week_next)
+        self.room20next.clicked.connect(self.week_next)
+        
+        # Create previous week schedule
+        self.room1prev.clicked.connect(self.week_prev)
+        self.room2prev.clicked.connect(self.week_prev)
+        self.room3prev.clicked.connect(self.week_prev)
+        self.room4prev.clicked.connect(self.week_prev)
+        self.room5prev.clicked.connect(self.week_prev)
+        self.room6prev.clicked.connect(self.week_prev)
+        self.room7prev.clicked.connect(self.week_prev)
+        self.room8prev.clicked.connect(self.week_prev)
+        self.room9prev.clicked.connect(self.week_prev)
+        self.room10prev.clicked.connect(self.week_prev)
+        self.room11prev.clicked.connect(self.week_prev)
+        self.room12prev.clicked.connect(self.week_prev)
+        self.room13prev.clicked.connect(self.week_prev)
+        self.room14prev.clicked.connect(self.week_prev)
+        self.room15prev.clicked.connect(self.week_prev)
+        self.room16prev.clicked.connect(self.week_prev)
+        self.room17prev.clicked.connect(self.week_prev)
+        self.room18prev.clicked.connect(self.week_prev)
+        self.room19prev.clicked.connect(self.week_prev)
+        self.room20prev.clicked.connect(self.week_prev)
 
-        try:
-            # Create next week schedule
-            self.room1next.clicked.connect(self.week_next)
-            self.room2next.clicked.connect(self.week_next)
-            self.room3next.clicked.connect(self.week_next)
-            self.room4next.clicked.connect(self.week_next)
-            self.room5next.clicked.connect(self.week_next)
-            self.room6next.clicked.connect(self.week_next)
-            self.room7next.clicked.connect(self.week_next)
-            self.room8next.clicked.connect(self.week_next)
-            self.room9next.clicked.connect(self.week_next)
-            self.room10next.clicked.connect(self.week_next)
-            self.room11next.clicked.connect(self.week_next)
-            self.room12next.clicked.connect(self.week_next)
-            self.room13next.clicked.connect(self.week_next)
-            self.room14next.clicked.connect(self.week_next)
-            self.room15next.clicked.connect(self.week_next)
-            self.room16next.clicked.connect(self.week_next)
-            self.room17next.clicked.connect(self.week_next)
-            self.room18next.clicked.connect(self.week_next)
-            self.room19next.clicked.connect(self.week_next)
-            self.room20next.clicked.connect(self.week_next)
-            
-            # Create previous week schedule
-            self.room1prev.clicked.connect(self.week_prev)
-            self.room2prev.clicked.connect(self.week_prev)
-            self.room3prev.clicked.connect(self.week_prev)
-            self.room4prev.clicked.connect(self.week_prev)
-            self.room5prev.clicked.connect(self.week_prev)
-            self.room6prev.clicked.connect(self.week_prev)
-            self.room7prev.clicked.connect(self.week_prev)
-            self.room8prev.clicked.connect(self.week_prev)
-            self.room9prev.clicked.connect(self.week_prev)
-            self.room10prev.clicked.connect(self.week_prev)
-            self.room11prev.clicked.connect(self.week_prev)
-            self.room12prev.clicked.connect(self.week_prev)
-            self.room13prev.clicked.connect(self.week_prev)
-            self.room14prev.clicked.connect(self.week_prev)
-            self.room15prev.clicked.connect(self.week_prev)
-            self.room16prev.clicked.connect(self.week_prev)
-            self.room17prev.clicked.connect(self.week_prev)
-            self.room18prev.clicked.connect(self.week_prev)
-            self.room19prev.clicked.connect(self.week_prev)
-            self.room20prev.clicked.connect(self.week_prev)
-        except AttributeError:
-            pass
-    
     def spin_box_values(self, value, tables):
             '''
             Description: changes spinbox values
@@ -343,7 +342,7 @@ class MainMenu(QWidget):
         self._cohortFinal = self._studentCohort.cohorts_final()
         self._flattened_cohorts = list(chain.from_iterable(self._cohortFinal))
         self.create_schedule()     
-    
+            
     def add_cohort_table(self):
         '''
         Description: create cohort tables
@@ -413,7 +412,8 @@ class MainMenu(QWidget):
             # set values 
             self.spin_box_values(self.zero, tables)
             self.terminput.setValue(1)
-
+            self.cohortUploaded = True
+        
     def upload_room_file(self):
         '''
         Description: open dialog box to select file and then create room tabs
@@ -646,22 +646,15 @@ class MainMenu(QWidget):
         # wherever a blank is required, a "None" should be present
         
         # 1 = 8:00AM, 2 = 8:30AM... 20 = 5:00PM  
-        scheduler = Scheduler()        
-        scheduled_week = scheduler.scheduleCourses(Week(0), self._flattened_cohorts)
-        
-        for day in scheduled_week.days:
-            # day is the column, do something here
-            for timeBlock in day:
-                # timeBlock is a timeBlock object. You can check 
-                # what attributes a timeBlock object has in
-                # scheduler.py
-                print(timeBlock)
-        
-        for hour in range(1, 20):
-            # 0 = Mon, 1 = Tue ... 6 = Sun
-            for day in range(7):
-                # self.rooms[0] = 1st room, self.rooms[1] = 2nd room ... etc
-                self.rooms[0].setItem(hour, day, QTableWidgetItem("testScHedule"))
+        scheduler = Scheduler()
+        if self.cohortUploaded:   
+            scheduled_week = scheduler.scheduleCourses(Week(0), self._flattened_cohorts)
+                
+            for hour in range(1, 20):
+                # 0 = Mon, 1 = Tue ... 6 = Sun
+                for day in range(7):
+                    # self.rooms[0] = 1st room, self.rooms[1] = 2nd room ... etc
+                    self.rooms[0].setItem(hour, day, QTableWidgetItem("testScHedule"))
     
     def enable_room(self):
         '''
@@ -691,9 +684,9 @@ class MainMenu(QWidget):
             self.daysIterator = 0
         self.daysIterator += 7
         
-        # if self.week >= 53:
-        #     self.week = 0
-        # self.week += 1
+        if self.week >= 53:
+            self.week = 0
+        self.week += 1
         
         self.create_dates()
         self.create_schedule()
@@ -706,9 +699,9 @@ class MainMenu(QWidget):
             self.daysIterator = 366
         self.daysIterator -= 7
         
-        # if self.week <= 1:
-        #     self.week = 54
-        # self.week -= 1
+        if self.week <= 1:
+            self.week = 54
+        self.week -= 1
         
         self.create_dates()
         self.create_schedule()
